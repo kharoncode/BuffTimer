@@ -1,0 +1,10 @@
+.container {
+   display: flex;
+   justify-content: space-betweens;
+   width: 80%;
+   background-color: red;
+}
+
+.title {
+   width: 100%;
+}
