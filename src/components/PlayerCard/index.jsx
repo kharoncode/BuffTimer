@@ -1,12 +1,12 @@
 import styles from './playerCard.module.css';
 import SpellCard from '../SpellCard';
-import Life from '../Life';
+import LifeBar from '../LifeBar';
 
 export default function PlayerCard({ data }) {
    return (
       <div className={styles.container}>
          Hi {data.name}
-         <Life life={data.life} maxLife={data.maxLife} />
+         <LifeBar life={data.life} />
          {data.buff.map((el, index) => (
             <SpellCard
                key={`${data.userId}-${index}`}
