@@ -8,8 +8,8 @@ export default function Home() {
       const player = players.data.players;
       return (
          <div className={styles.container}>
-            {player.map((el) => (
-               <PlayerCard data={el} />
+            {player.map((el, index) => (
+               <PlayerCard key={`${el.userId}-${index}`} data={el} />
             ))}
          </div>
       );
