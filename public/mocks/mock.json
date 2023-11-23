@@ -1,7 +1,7 @@
 [
    {
       "id": "kharon",
-      "date": "2023-11-25",
+      "date": "1700876034991",
       "spell": "benedictionDeKeldar",
       "category": "justice",
       "int": "30",
@@ -10,7 +10,7 @@
    },
    {
       "id": "kharon",
-      "date": "2023-11-25",
+      "date": "1700876034991",
       "spell": "benedictionDeKeldar",
       "category": "justice",
       "int": "30",
@@ -19,72 +19,72 @@
    },
    {
       "id": "kharon",
-      "date": "2023-11-25",
+      "date": "1700876034991",
       "spell": "regenerationMineure",
-      "category": null,
+      "category": "protection",
       "int": "15",
       "currentLife": "70",
       "maxLife": "160"
    },
    {
       "id": "andrea",
-      "date": "2023-11-30",
+      "date": "1700876034991",
       "spell": "regenerationMineure",
-      "category": null,
+      "category": "protection",
       "int": "11",
       "currentLife": "172",
       "maxLife": "250"
    },
    {
       "id": "kharon",
-      "date": "2023-11-25",
+      "date": "1700876034991",
       "spell": "regenerationMineure",
-      "category": null,
+      "category": "protection",
       "int": "15",
       "currentLife": "70",
       "maxLife": "160"
    },
    {
       "id": "kharon",
-      "date": "2023-11-25",
+      "date": "1700876034991",
       "spell": "regenerationMineure",
-      "category": null,
+      "category": "protection",
       "int": "15",
       "currentLife": "70",
       "maxLife": "160"
    },
    {
       "id": "kharon",
-      "date": "2023-11-25",
+      "date": "1700876034991",
       "spell": "regenerationMineure",
-      "category": null,
+      "category": "protection",
       "int": "15",
       "currentLife": "70",
       "maxLife": "160"
    },
    {
       "id": "kharon",
-      "date": "2023-11-25",
+      "date": "1700876034991",
       "spell": "regenerationMineure",
-      "category": null,
+      "category": "protection",
       "int": "15",
       "currentLife": "70",
       "maxLife": "160"
    },
    {
       "id": "kharon",
-      "date": "2023-11-25",
+      "date": "1700876034991",
       "spell": "regenerationMineure",
-      "category": null,
+      "category": "protection",
       "int": "15",
       "currentLife": "70",
       "maxLife": "160"
    },
    {
       "id": "kharon",
-      "date": "2023-11-25",
+      "date": "1700876034991",
       "spell": "regenerationMineure",
-      "category": null,
+      "category": "protection",
       "int": "15",
       "currentLife": "70",
       "maxLife": "160"

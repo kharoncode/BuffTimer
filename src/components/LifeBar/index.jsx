@@ -2,12 +2,14 @@ import styled from 'styled-components';
 
 const LifeElt = styled.div`
    font-weight: 500;
-   text-align: center;
+   display: flex;
+   justify-content: center;
+   align-items: center;
    color: black;
    border: solid 1px black;
    border-radius: 10px;
    width: 90%;
-   height: 20px;
+   height: 25px;
    background-image: linear-gradient(
       90deg,
       rgba(102, 255, 87, 1) ${({ stop }) => stop}%,

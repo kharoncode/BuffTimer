@@ -9,7 +9,7 @@ export default function Timer(date) {
 
    useEffect(() => {
       const getTime = () => {
-         const time = Date.parse(date.time) - Date.now();
+         const time = date.time - Date.now();
 
          setDays(Math.floor(time / (1000 * 60 * 60 * 24)));
          setHours(Math.floor((time / (1000 * 60 * 60)) % 24));

@@ -11,15 +11,29 @@ const SpellContainer = styled.div`
    background-color: ${({ color }) => color};
 `;
 
-export default function SpellCard({ name, date, category }) {
+function removeSpell(id, spell, store) {
+   store
+      .edit('spell', {
+         search: { id: `${id}`, spell: `${spell}` },
+         set: { date: 'null' },
+      })
+      .then((res) => {
+         console.log(res);
+      });
+}
+
+export default function SpellCard({ id, name, date, category, store }) {
    const spells = {
       benedictionDeKeldar: 'Bénédiction de Keldar',
-      grandeBenedictionDeKeldar: 'Grande Bénédiction de Keldar',
+      attaqueSacree: 'Attaque Sacrée',
+      grandeBenedictionDeKeldar: 'Grd Bénédiction de Keldar',
+      lameDeJustice: 'Lame de Justice',
       transcendance: 'Transcendance',
       regenerationMineure: 'Régénération Mineure',
       resistance: 'Résistance',
+      salutDuDivin: 'Salut du Divin',
       regeneration: 'Régénération',
-      capriceDuDestin: 'Caprce du Destin',
+      capriceDuDestin: 'Caprice du Destin',
       chatiment: 'Chatiment',
    };
 
@@ -29,7 +43,12 @@ export default function SpellCard({ name, date, category }) {
       <SpellContainer color={color}>
          <div className={styles.title}>{spells[`${name}`]}</div>
          <Timer time={date} />
-         <img className={styles.close} src={close} alt="close" />
+         <img
+            className={styles.close}
+            src={close}
+            alt="close"
+            onClick={() => removeSpell(id, name, store)}
+         />
       </SpellContainer>
    );
 }

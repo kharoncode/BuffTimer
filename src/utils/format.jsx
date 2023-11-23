@@ -1,12 +1,14 @@
 export default function formatData(data) {
    const baseData = {
       kharon: {
+         id: 'kharon',
          name: "Kha'ron",
          picture: 'kharon.png',
          life: {},
          buff: [],
       },
       andrea: {
+         id: 'andrea',
          name: 'Andrea',
          picture: 'andrea.png',
          life: {},
