@@ -4,16 +4,6 @@ import PlayerCard from '../../components/PlayerCard';
 import formatData from '../../utils/format';
 //import { useEffect, useState } from 'react';
 
-function addIDToMap(mapElt, key, id) {
-   if (mapElt.has(key)) {
-      let temp = mapElt.get(key);
-      temp.add(id);
-      mapElt.set(key, temp);
-   } else {
-      mapElt.set(key, new Set([id]));
-   }
-}
-
 export default function Home() {
    //const [data, setData] = useState([]);
 
@@ -70,15 +60,22 @@ export default function Home() {
    //       console.log(res);
    //    });
 
-   const test = useFetch(
+   const data = useFetch(
       //'https://api.steinhq.com/v1/storages/655f4fbec5ad5604ce2daa84/spell'
       '../mocks/mock.json'
    );
-   if (test.data[0]) {
-      formatData(test.data);
+   if (data.data.length !== undefined) {
+      const players = formatData(data.data);
+      return (
+         <div className={styles.container}>
+            {players.map((el, index) => (
+               <PlayerCard key={`${el.userId}-${index}`} data={el} />
+            ))}
+         </div>
+      );
    }
 
-   const players = useFetch('../mocks/players.json');
+   /* const players = useFetch('../mocks/players.json');
    if (players.data.players) {
       const player = players.data.players;
       return (
@@ -88,5 +85,5 @@ export default function Home() {
             ))}
          </div>
       );
-   }
+   } */
 }
