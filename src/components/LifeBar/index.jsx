@@ -6,7 +6,7 @@ const LifeElt = styled.div`
    color: black;
    border: solid 1px black;
    border-radius: 10px;
-   width: 80%;
+   width: 90%;
    height: 20px;
    background-image: linear-gradient(
       90deg,

@@ -6,8 +6,16 @@
          "picture": "kharon.png",
          "life": { "now": 20, "maxLife": 120 },
          "buff": [
-            { "name": "Benediction de Keldar", "date": "2023-11-22:16:52:00" },
-            { "name": "Régénération Mineur", "date": "2023-11-24:10:58:20" }
+            {
+               "category": "justice",
+               "name": "Benediction de Keldar",
+               "date": "2023-11-22:16:52:00"
+            },
+            {
+               "category": "protection",
+               "name": "Régénération Mineur",
+               "date": "2023-11-24:10:58:20"
+            }
          ]
       },
       {
@@ -16,8 +24,16 @@
          "picture": "andrea.png",
          "life": { "now": 160, "maxLife": 250 },
          "buff": [
-            { "name": "Benediction de Keldar", "date": "2023-12-01:14:58:00" },
-            { "name": "Régénération Mineur", "date": "2023-11-24:10:58:20" }
+            {
+               "category": "justice",
+               "name": "Benediction de Keldar",
+               "date": "2023-12-01:14:58:00"
+            },
+            {
+               "category": "protection",
+               "name": "Régénération Mineur",
+               "date": "2023-11-24:10:58:20"
+            }
          ]
       }
    ]

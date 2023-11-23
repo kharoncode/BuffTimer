@@ -1,10 +1,11 @@
-.container {
+.title {
    display: flex;
-   justify-content: space-betweens;
-   width: 80%;
-   background-color: red;
+   justify-content: center;
+   align-items: center;
+   width: 100%;
 }
 
-.title {
-   width: 100%;
+.close {
+   margin-right: 10px;
+   width: 15px;
 }
