@@ -5,6 +5,7 @@ import formatData from '../../utils/format';
 import { useStore } from '../../utils/callApi';
 
 export default function Home() {
+   console.log('Bienvenu dans Buff Timer');
    // API
    const SteinStore = require('stein-js-client');
    const store = new SteinStore(

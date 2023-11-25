@@ -1,35 +1,39 @@
 export default function formatData(data) {
-   const baseData = {
-      kharon: {
-         id: 'kharon',
-         name: "Kha'ron",
-         picture: 'kharon.png',
-         life: {},
-         buff: [],
-      },
-      andrea: {
-         id: 'andrea',
-         name: 'Andrea',
-         picture: 'andrea.png',
-         life: {},
-         buff: [],
-      },
-   };
+   const formatData = {};
 
    const newData = [];
 
    data.map((el) => {
-      baseData[`${el.id}`].buff.push({
-         category: el.category,
-         name: el.spell,
-         date: el.date,
-      });
-      baseData[`${el.id}`].life = { now: el.currentLife, maxLife: el.maxLife };
+      if (formatData[`${el.id}`]) {
+         formatData[`${el.id}`].buff.push({
+            category: el.category,
+            name: el.spell,
+            date: el.date,
+         });
+         formatData[`${el.id}`].life = {
+            now: el.currentLife,
+            maxLife: el.maxLife,
+         };
+      } else {
+         formatData[`${el.id}`] = {
+            id: `${el.id}`,
+            name: `${el.name}`,
+            picture: `${el.id}.png`,
+            life: { now: el.currentLife, maxLife: el.maxLife },
+            buff: [
+               {
+                  category: el.category,
+                  name: el.spell,
+                  date: el.date,
+               },
+            ],
+         };
+      }
 
-      return baseData;
+      return formatData;
    });
    // eslint-disable-next-line
-   for (const [key, value] of Object.entries(baseData)) {
+   for (const [key, value] of Object.entries(formatData)) {
       newData.push(value);
    }
 
