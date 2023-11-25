@@ -2,6 +2,7 @@ import styles from './spellCard.module.css';
 import styled from 'styled-components';
 import close from '../../assets/close.svg';
 import Timer from '../Timer';
+import { useState } from 'react';
 
 const SpellContainer = styled.div`
    border-radius: 5px;
@@ -23,6 +24,12 @@ function removeSpell(id, spell, store) {
 }
 
 export default function SpellCard({ id, name, date, category, store }) {
+   const [isOver, setIsOver] = useState(false);
+   /* if (isOver) {
+      removeSpell(id, name, store);
+      return;
+   } */
+
    const spells = {
       benedictionDeKeldar: 'Bénédiction de Keldar',
       attaqueSacree: 'Attaque Sacrée',
@@ -42,7 +49,7 @@ export default function SpellCard({ id, name, date, category, store }) {
    return (
       <SpellContainer color={color}>
          <div className={styles.title}>{spells[`${name}`]}</div>
-         <Timer time={date} />
+         <Timer date={date} setIsOver={setIsOver} />
          <img
             className={styles.close}
             src={close}

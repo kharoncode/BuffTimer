@@ -6,7 +6,7 @@ import formatData from '../../utils/format';
 
 export default function Home() {
    // API
-   /* const SteinStore = require('stein-js-client');
+   /*  const SteinStore = require('stein-js-client');
    const store = new SteinStore(
       'https://api.steinhq.com/v1/storages/655f4fbec5ad5604ce2daa84'
    );
