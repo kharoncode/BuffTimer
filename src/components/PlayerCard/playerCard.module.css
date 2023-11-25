@@ -26,12 +26,6 @@
    gap: 5px;
 }
 
-.form {
-   display: flex;
-   flex-direction: column;
-}
-.critic {
-   display: flex;
-   justify-content: center;
-   gap: 10px;
+.modal {
+   display: none;
 }

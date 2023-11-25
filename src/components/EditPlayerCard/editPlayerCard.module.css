@@ -1,0 +1,15 @@
+.container {
+   display: flex;
+   justify-content: space-around;
+   gap: 20px;
+}
+
+.form {
+   display: flex;
+   flex-direction: column;
+}
+.critic {
+   display: flex;
+   justify-content: center;
+   gap: 10px;
+}
