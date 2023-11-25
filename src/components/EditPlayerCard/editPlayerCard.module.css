@@ -1,15 +1,42 @@
 .container {
+   width: 100%;
    display: flex;
    justify-content: space-around;
    gap: 20px;
 }
 
-.form {
+.formLife {
+   width: 20%;
    display: flex;
    flex-direction: column;
 }
+
+.inputLife {
+   width: 50px;
+}
+
+.formSpell {
+   width: 80%;
+   display: flex;
+   align-items: center;
+   flex-direction: column;
+}
+
+.select {
+   text-align: center;
+}
+
+.inputInt {
+   width: 50px;
+   text-align: center;
+}
+
 .critic {
    display: flex;
    justify-content: center;
    gap: 10px;
+}
+
+.button {
+   padding: 0 5px;
 }

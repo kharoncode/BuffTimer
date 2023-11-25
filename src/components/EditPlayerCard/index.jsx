@@ -69,28 +69,40 @@ export default function EditPlayerCard({ id, life, store }) {
    return (
       <div className={styles.container}>
          <form
-            className={styles.form}
+            className={styles.formLife}
             onSubmit={(e) => {
                e.preventDefault();
                postLife(id, store);
             }}
          >
-            <input id={`life-${id}`} type="text" defaultValue={life.now} />
+            <label>PV</label>
             <input
+               className={styles.inputLife}
+               id={`life-${id}`}
+               type="text"
+               defaultValue={life.now}
+            />
+            <label>PV Max</label>
+            <input
+               className={styles.inputLife}
                id={`maxLife-${id}`}
                type="text"
                defaultValue={life.maxLife}
             />
-            <input type="submit" value="MaJ" />
+            <input className={styles.button} type="submit" value="MaJ" />
          </form>
          <form
-            className={styles.form}
+            className={styles.formSpell}
             onSubmit={(e) => {
                e.preventDefault();
                postSpell(id, store);
             }}
          >
-            <select name="spellsList" id={`spellList-${id}`}>
+            <select
+               className={styles.select}
+               name="spellsList"
+               id={`spellList-${id}`}
+            >
                <option value="benedictionDeKeldar">
                   Bénédiction de Keldar
                </option>
@@ -107,12 +119,21 @@ export default function EditPlayerCard({ id, life, store }) {
                <option value="capriceDuDestin">Caprice du Destin</option>
                <option value="chatiment">Chatiment</option>
             </select>
-            <input type="text" placeholder="INT" id={`int-${id}`} />
+            <input
+               className={styles.inputInt}
+               type="text"
+               placeholder="INT"
+               id={`int-${id}`}
+            />
             <div className={styles.critic}>
                <input type="checkbox" id={`critic-${id}`} />
                <label>Critique ?</label>
             </div>
-            <input type="submit" value="Ajouter un sort" />
+            <input
+               className={styles.button}
+               type="submit"
+               value="Ajouter un sort"
+            />
          </form>
       </div>
    );

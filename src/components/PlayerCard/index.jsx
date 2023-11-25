@@ -31,7 +31,10 @@ export default function PlayerCard({ data, store }) {
                )
             )}
          </div>
-         <button onClick={() => (isOpen ? setIsOpen(false) : setIsOpen(true))}>
+         <button
+            className={styles.button}
+            onClick={() => (isOpen ? setIsOpen(false) : setIsOpen(true))}
+         >
             Modifier
          </button>
          <Modal display={isOpen ? 'block' : 'none'}>

@@ -25,7 +25,6 @@ export default function Home() {
 
    if (data.data.length !== undefined) {
       const players = formatData(data.data);
-      console.log(players);
       return (
          <div className={styles.container}>
             {players.map((el, index) => (
