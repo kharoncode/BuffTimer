@@ -1,18 +1,31 @@
 import styles from './home.module.css';
 import PlayerCard from '../../components/PlayerCard';
 import formatData from '../../utils/format';
-import { useStore } from '../../utils/callApi';
+//import { useStore } from '../../utils/callApi';
+import { useFetch } from '../../utils/call';
 
 export default function Home() {
    console.log('Bienvenu dans Buff Timer');
-   const SteinStore = require('stein-js-client');
+
+   // CALL API
+   /* const SteinStore = require('stein-js-client');
    const store = new SteinStore(
       'https://api.steinhq.com/v1/storages/655f4fbec5ad5604ce2daa84'
    );
    const data = useStore(store);
+   console.log(store); */
+   //
+
+   // CALL MOCK
+   const data = useFetch(`./mock/players.json`);
+   const store = {
+      url: 'https://api.steinhq.com/v1/storages/655f4fbec5ad5604ce2daa84/',
+   };
+   //
 
    if (data.data.length !== undefined) {
       const players = formatData(data.data);
+      console.log(players);
       return (
          <div className={styles.container}>
             {players.map((el, index) => (
