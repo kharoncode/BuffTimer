@@ -32,6 +32,7 @@ export default function formatData(data) {
 
       return formatData;
    });
+
    // eslint-disable-next-line
    for (const [key, value] of Object.entries(formatData)) {
       newData.push(value);
