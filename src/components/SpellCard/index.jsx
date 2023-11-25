@@ -25,10 +25,10 @@ function removeSpell(id, spell, store) {
 
 export default function SpellCard({ id, name, date, category, store }) {
    const [isOver, setIsOver] = useState(false);
-   /* if (isOver) {
+   if (isOver) {
       removeSpell(id, name, store);
       return;
-   } */
+   }
 
    const spells = {
       benedictionDeKeldar: 'Bénédiction de Keldar',
