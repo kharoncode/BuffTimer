@@ -8,7 +8,7 @@ function formatDate(time, id) {
 
 function spellDate(spell, int, id) {
    const turn = 93600000;
-   const hour = 86400000;
+   const hour = 3600000;
    switch (spell) {
       case 'benedictionDeKeldar':
          return formatDate(Math.floor((int / 12) * turn), id);
