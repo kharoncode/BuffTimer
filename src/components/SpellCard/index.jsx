@@ -5,11 +5,16 @@ import Timer from '../Timer';
 import { useState } from 'react';
 
 const SpellContainer = styled.div`
+   position: relative;
    border-radius: 5px;
    display: flex;
    justify-content: space-between;
    width: 100%;
+   height: 100%;
    background-color: ${({ color }) => color};
+   ${({ x }) => x}
+   transition-duration: 0.3s;
+   z-index: 100;
 `;
 
 function removeSpell(id, spell, store) {
@@ -25,6 +30,7 @@ function removeSpell(id, spell, store) {
 }
 
 export default function SpellCard({ id, name, date, category, store }) {
+   const [toBeDeleted, setToBeDeleted] = useState(false);
    const [isOver, setIsOver] = useState(false);
    if (isOver) {
       removeSpell(id, name, store);
@@ -47,16 +53,32 @@ export default function SpellCard({ id, name, date, category, store }) {
 
    const color =
       category === 'justice' ? 'rgba(255, 186, 83, 1)' : 'rgba(4, 215, 251, 1)';
+
+   const x = toBeDeleted ? 'transform: translate(-40px);' : '';
    return (
-      <SpellContainer color={color}>
-         <div className={styles.title}>{spells[`${name}`]}</div>
-         <Timer date={date} setIsOver={setIsOver} />
-         <img
-            className={styles.close}
-            src={close}
-            alt="close"
-            onClick={() => removeSpell(id, name, store)}
-         />
-      </SpellContainer>
+      <div className={styles.container}>
+         <SpellContainer color={color} x={x}>
+            <div className={styles.title}>{spells[`${name}`]}</div>
+            <Timer date={date} setIsOver={setIsOver} />
+            <img
+               className={styles.close}
+               src={close}
+               alt="close"
+               onClick={() => {
+                  toBeDeleted ? setToBeDeleted(false) : setToBeDeleted(true);
+               }}
+            />
+         </SpellContainer>
+         <div className={styles.deleteContainer}>
+            <img
+               className={styles.deleteButton}
+               src={close}
+               alt="close"
+               onClick={() => {
+                  removeSpell(id, name, store);
+               }}
+            />
+         </div>
+      </div>
    );
 }

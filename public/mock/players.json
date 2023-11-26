@@ -416,7 +416,7 @@
    {
       "id": "kharon",
       "name": "Kha'ron",
-      "date": "1901120337705",
+      "date": "null",
       "spell": "grandeBenedictionDeKeldar",
       "category": "justice",
       "currentLife": "169",
@@ -434,7 +434,7 @@
    {
       "id": "kharon",
       "name": "Kha'ron",
-      "date": "null",
+      "date": "1901120337705",
       "spell": "transcendance",
       "category": "justice",
       "currentLife": "169",
