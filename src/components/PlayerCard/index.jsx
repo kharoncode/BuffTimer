@@ -12,7 +12,7 @@ const Modal = styled.div`
 export default function PlayerCard({ data, store }) {
    const [isOpen, setIsOpen] = useState(false);
    return (
-      <div className={styles.container}>
+      <div id={`${data.id}Card`} className={styles.container}>
          <div className={styles.title}>{data.name}</div>
          <LifeBar life={data.life} />
          <div className={styles.spellContainer}>
