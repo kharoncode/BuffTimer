@@ -101,6 +101,7 @@ export default function EditPlayerCard({ id, life, store }) {
                   id={`life-${id}`}
                   type="text"
                   defaultValue={life.now}
+                  required="required"
                />
             </div>
             <div className={styles.inputLabel}>
@@ -110,6 +111,7 @@ export default function EditPlayerCard({ id, life, store }) {
                   id={`maxLife-${id}`}
                   type="text"
                   defaultValue={life.maxLife}
+                  required="required"
                />
             </div>
             <div className={styles.submitContainer}>
