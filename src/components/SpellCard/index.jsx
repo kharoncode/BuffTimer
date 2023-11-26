@@ -1,6 +1,7 @@
 import styles from './spellCard.module.css';
 import styled from 'styled-components';
 import close from '../../assets/close.svg';
+import ok from '../../assets/ok.svg';
 import Timer from '../Timer';
 import { useState } from 'react';
 
@@ -17,7 +18,21 @@ const SpellContainer = styled.div`
    z-index: 100;
 `;
 
-function removeSpell(id, spell, store) {
+const DeleteContainer = styled.div`
+   position: absolute;
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   border-radius: 0 5px 5px 0;
+   height: 100%;
+   width: 50px;
+   background-color: ${({ test }) => test};
+   right: 0;
+   top: 0;
+   z-index: 1;
+`;
+
+function removeSpell(id, spell, store, setDeleted) {
    store
       .edit('spell', {
          search: { id: `${id}`, spell: `${spell}` },
@@ -25,15 +40,17 @@ function removeSpell(id, spell, store) {
       })
       .then((res) => {
          //console.log(res);
+         setDeleted(true);
          console.log(`Le buff ${spell} de ${id} a été supprimé.`);
       });
 }
 
 export default function SpellCard({ id, name, date, category, store }) {
+   const [deleted, setDeleted] = useState(false);
    const [toBeDeleted, setToBeDeleted] = useState(false);
    const [isOver, setIsOver] = useState(false);
    if (isOver) {
-      removeSpell(id, name, store);
+      removeSpell(id, name, store, setDeleted);
       return;
    }
 
@@ -55,6 +72,8 @@ export default function SpellCard({ id, name, date, category, store }) {
       category === 'justice' ? 'rgba(255, 186, 83, 1)' : 'rgba(4, 215, 251, 1)';
 
    const x = toBeDeleted ? 'transform: translate(-40px);' : '';
+
+   const test = deleted ? 'green' : 'red';
    return (
       <div className={styles.container}>
          <SpellContainer color={color} x={x}>
@@ -69,16 +88,16 @@ export default function SpellCard({ id, name, date, category, store }) {
                }}
             />
          </SpellContainer>
-         <div className={styles.deleteContainer}>
+         <DeleteContainer test={test}>
             <img
                className={styles.deleteButton}
-               src={close}
-               alt="close"
+               src={deleted ? ok : close}
+               alt="deleted ? valide : close"
                onClick={() => {
-                  removeSpell(id, name, store);
+                  removeSpell(id, name, store, setDeleted);
                }}
             />
-         </div>
+         </DeleteContainer>
       </div>
    );
 }

@@ -19,21 +19,8 @@
    cursor: pointer;
 }
 
-.deleteContainer {
-   position: absolute;
-   display: flex;
-   flex-direction: column;
-   justify-content: center;
-   border-radius: 0 5px 5px 0;
-   height: 100%;
-   width: 50px;
-   background-color: red;
-   right: 0;
-   top: 0;
-   z-index: 1;
-}
-
 .deleteButton {
+   filter: brightness(0) invert(1);
    align-self: flex-end;
    margin-right: 5px;
    width: 25px;
