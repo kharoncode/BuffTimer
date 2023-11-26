@@ -12,8 +12,8 @@ const LifeElt = styled.div`
    height: 25px;
    background-image: linear-gradient(
       90deg,
-      rgba(102, 255, 87, 1) ${({ stop }) => stop}%,
-      rgba(255, 0, 83, 1) ${({ stop }) => stop}%,
+      rgba(102, 255, 87, 1) ${({ color }) => color}%,
+      rgba(255, 0, 83, 1) ${({ color }) => color}%,
       rgba(255, 0, 83, 1) 100%
    );
 `;
@@ -22,7 +22,7 @@ export default function Life(life) {
    const lifeInfo = life.life;
    const stop = Math.round((lifeInfo.now / lifeInfo.maxLife) * 100);
    return (
-      <LifeElt stop={stop}>
+      <LifeElt color={stop}>
          {lifeInfo.now}/{lifeInfo.maxLife}
       </LifeElt>
    );
