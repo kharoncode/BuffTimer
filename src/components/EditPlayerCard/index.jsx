@@ -7,31 +7,31 @@ function formatDate(time, id) {
 }
 
 function spellDate(spell, int, id) {
-   const tours = 93600000;
+   const turn = 93600000;
    const hour = 86400000;
    switch (spell) {
       case 'benedictionDeKeldar':
-         return formatDate(Math.floor((int / 12) * tours), id);
+         return formatDate(Math.floor((int / 12) * turn), id);
       case 'attaqueSacree':
-         return formatDate(Math.floor((int / 2) * tours), id);
+         return formatDate(Math.floor((int / 2) * hour), id);
       case 'grandeBenedictionDeKeldar':
-         return formatDate(Math.floor((int / 12) * tours), id);
+         return formatDate(Math.floor((int / 12) * turn), id);
       case 'lameDeJustice':
-         return formatDate(Math.floor((int / 12) * tours), id);
+         return formatDate(Math.floor((int / 12) * turn), id);
       case 'transcendance':
          return formatDate(Math.floor((int / 1.25) * hour), id);
       case 'regenerationMineure':
-         return formatDate(Math.floor((int / 12) * tours), id);
+         return formatDate(Math.floor((int / 12) * turn), id);
       case 'resistance':
-         return formatDate(Math.floor((int / 20) * tours), id);
+         return formatDate(Math.floor((int / 20) * turn), id);
       case 'salutDuDivin':
-         return formatDate(Math.floor((int / 12) * tours), id);
+         return formatDate(Math.floor((int / 12) * turn), id);
       case 'regeneration':
-         return formatDate(Math.floor((int / 24) * tours), id);
+         return formatDate(Math.floor((int / 24) * turn), id);
       case 'capriceDuDestin':
-         return formatDate(Math.floor((int / 48) * tours), id);
+         return formatDate(Math.floor((int / 48) * turn), id);
       case 'chatiment':
-         return formatDate(Math.floor((int / 20) * tours), id);
+         return formatDate(Math.floor((int / 20) * turn), id);
       default:
          return Date.now();
    }
