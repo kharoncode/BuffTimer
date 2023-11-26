@@ -2,7 +2,7 @@ import styles from './editPlayerCard.module.css';
 
 function formatDate(time, id) {
    const critic = document.getElementById(`critic-${id}`).checked;
-   const date = Date.now() + (critic ? time * 2 : time);
+   const date = Date.now() + (critic ? time * 1.5 : time);
    return date;
 }
 
