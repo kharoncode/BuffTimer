@@ -154,6 +154,7 @@ export default function EditPlayerCard({ id, life, store }) {
                   type="text"
                   placeholder="INT"
                   id={`int-${id}`}
+                  required="required"
                />
             </div>
             <div className={styles.inputLabel}>
