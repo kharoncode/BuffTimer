@@ -9,9 +9,15 @@ export function useStore(store) {
       }
       async function fetchData() {
          try {
-            store.read('spell').then((data) => {
+            if (localStorage.getItem('data')) {
+               const data = JSON.parse(localStorage.getItem('data'));
                setData(data);
-            });
+            } else {
+               store.read('spell').then((data) => {
+                  localStorage.setItem('data', JSON.stringify(data));
+                  setData(data);
+               });
+            }
          } catch (err) {
             console.log('==== error ====', err);
          } finally {

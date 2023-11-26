@@ -6,7 +6,6 @@ import { useFetch } from '../../utils/call';
 
 export default function Home() {
    console.log('Bienvenu dans Buff Timer');
-
    // CALL API
    /* const SteinStore = require('stein-js-client');
    const store = new SteinStore(
@@ -27,13 +26,23 @@ export default function Home() {
       const players = formatData(data.data);
       return (
          <div className={styles.container}>
-            {players.map((el, index) => (
-               <PlayerCard
-                  key={`${el.userId}-${index}`}
-                  data={el}
-                  store={store}
-               />
-            ))}
+            <button
+               onClick={() => {
+                  localStorage.clear();
+                  window.location.reload(false);
+               }}
+            >
+               Recharger
+            </button>
+            <div className={styles.playersContainer}>
+               {players.map((el, index) => (
+                  <PlayerCard
+                     key={`${el.userId}-${index}`}
+                     data={el}
+                     store={store}
+                  />
+               ))}
+            </div>
          </div>
       );
    }
