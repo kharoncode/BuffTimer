@@ -19,7 +19,8 @@ function removeSpell(id, spell, store) {
          set: { date: 'null' },
       })
       .then((res) => {
-         console.log(res);
+         //console.log(res);
+         console.log(`Le buff ${spell} de ${id} a été supprimé.`);
       });
 }
 

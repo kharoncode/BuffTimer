@@ -48,7 +48,8 @@ function postSpell(id, store) {
          set: { date: `${time}` },
       })
       .then((res) => {
-         console.log(res);
+         //console.log(res);
+         console.log(`Ajout du Buff ${spell} à ${id}`);
       });
 }
 
@@ -61,7 +62,8 @@ function postLife(id, store) {
          set: { currentLife: `${life}`, maxLife: `${maxLife}` },
       })
       .then((res) => {
-         console.log(res);
+         //console.log(res);
+         console.log(`MaJ PV de ${id} : ${life}/${maxLife}`);
       });
 }
 
@@ -69,30 +71,34 @@ export default function EditPlayerCard({ id, life, store }) {
    return (
       <div className={styles.container}>
          <form
-            className={styles.formLife}
+            className={`${styles.formLife} ${styles.form}`}
             onSubmit={(e) => {
                e.preventDefault();
                postLife(id, store);
             }}
          >
-            <label>PV</label>
-            <input
-               className={styles.inputLife}
-               id={`life-${id}`}
-               type="text"
-               defaultValue={life.now}
-            />
-            <label>PV Max</label>
-            <input
-               className={styles.inputLife}
-               id={`maxLife-${id}`}
-               type="text"
-               defaultValue={life.maxLife}
-            />
-            <input className={styles.button} type="submit" value="MaJ" />
+            <div className={styles.inputLabel}>
+               <label>PV :</label>
+               <input
+                  className={styles.inputText}
+                  id={`life-${id}`}
+                  type="text"
+                  defaultValue={life.now}
+               />
+            </div>
+            <div className={styles.inputLabel}>
+               <label>PV Max :</label>
+               <input
+                  className={styles.inputText}
+                  id={`maxLife-${id}`}
+                  type="text"
+                  defaultValue={life.maxLife}
+               />
+            </div>
+            <input className={styles.button} type="submit" value="MaJ PV" />
          </form>
          <form
-            className={styles.formSpell}
+            className={`${styles.formSpell} ${styles.form}`}
             onSubmit={(e) => {
                e.preventDefault();
                postSpell(id, store);
@@ -119,15 +125,18 @@ export default function EditPlayerCard({ id, life, store }) {
                <option value="capriceDuDestin">Caprice du Destin</option>
                <option value="chatiment">Chatiment</option>
             </select>
-            <input
-               className={styles.inputInt}
-               type="text"
-               placeholder="INT"
-               id={`int-${id}`}
-            />
-            <div className={styles.critic}>
+            <div className={styles.inputLabel}>
+               <label>Intéligence :</label>
+               <input
+                  className={styles.inputText}
+                  type="text"
+                  placeholder="INT"
+                  id={`int-${id}`}
+               />
+            </div>
+            <div className={styles.inputLabel}>
+               <label>Réussite Critique ?</label>
                <input type="checkbox" id={`critic-${id}`} />
-               <label>Critique ?</label>
             </div>
             <input
                className={styles.button}
