@@ -101,7 +101,7 @@
    {
       "id": "andrea",
       "name": "Andrea",
-      "date": "1701009841783",
+      "date": "null",
       "spell": "benedictionDeKeldar",
       "category": "justice",
       "currentLife": "1",
@@ -416,7 +416,7 @@
    {
       "id": "kharon",
       "name": "Kha'ron",
-      "date": "1701120337705",
+      "date": "1901120337705",
       "spell": "grandeBenedictionDeKeldar",
       "category": "justice",
       "currentLife": "169",
@@ -425,7 +425,7 @@
    {
       "id": "kharon",
       "name": "Kha'ron",
-      "date": "1701122802779",
+      "date": "1801122802779",
       "spell": "lameDeJustice",
       "category": "justice",
       "currentLife": "169",
