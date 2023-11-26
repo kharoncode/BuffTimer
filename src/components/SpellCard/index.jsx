@@ -26,7 +26,7 @@ const DeleteContainer = styled.div`
    border-radius: 0 5px 5px 0;
    height: 100%;
    width: 50px;
-   background-color: ${({ test }) => test};
+   background-color: ${({ color }) => color};
    right: 0;
    top: 0;
    z-index: 1;
@@ -73,7 +73,7 @@ export default function SpellCard({ id, name, date, category, store }) {
 
    const x = toBeDeleted ? 'transform: translate(-40px);' : '';
 
-   const test = deleted ? 'green' : 'red';
+   const delColor = deleted ? '#66ff57' : 'red';
    return (
       <div className={styles.container}>
          <SpellContainer color={color} x={x}>
@@ -88,7 +88,7 @@ export default function SpellCard({ id, name, date, category, store }) {
                }}
             />
          </SpellContainer>
-         <DeleteContainer test={test}>
+         <DeleteContainer color={delColor}>
             <img
                className={styles.deleteButton}
                src={deleted ? ok : close}

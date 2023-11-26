@@ -31,10 +31,21 @@
    gap: 5px;
 }
 
+.submitContainer {
+   display: flex;
+   align-items: center;
+   gap: 10px;
+}
+
 .select {
    text-align: center;
 }
 
 .button {
    padding: 0 5px;
+}
+
+.ok {
+   filter: invert(74%) sepia(68%) saturate(452%) hue-rotate(59deg)
+      brightness(102%) contrast(104%);
 }

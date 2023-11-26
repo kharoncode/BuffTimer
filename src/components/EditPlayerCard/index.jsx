@@ -1,4 +1,7 @@
+import { useState } from 'react';
 import styles from './editPlayerCard.module.css';
+import styled from 'styled-components';
+import ok from '../../assets/ok.svg';
 
 function formatDate(time, id) {
    const critic = document.getElementById(`critic-${id}`).checked;
@@ -37,7 +40,7 @@ function spellDate(spell, int, id) {
    }
 }
 
-function postSpell(id, store) {
+function postSpell(id, store, setState) {
    const spell = document.getElementById(`spellList-${id}`).value;
    const int = document.getElementById(`int-${id}`).value;
 
@@ -49,11 +52,12 @@ function postSpell(id, store) {
       })
       .then((res) => {
          //console.log(res);
+         setState(true);
          console.log(`Ajout du Buff ${spell} à ${id}`);
       });
 }
 
-function postLife(id, store) {
+function postLife(id, store, setState) {
    const life = document.getElementById(`life-${id}`).value;
    const maxLife = document.getElementById(`maxLife-${id}`).value;
    store
@@ -63,22 +67,35 @@ function postLife(id, store) {
       })
       .then((res) => {
          //console.log(res);
+         setState(true);
          console.log(`MaJ PV de ${id} : ${life}/${maxLife}`);
       });
 }
 
+const Confirmation = styled.div`
+   display: ${({ display }) => display};
+   justify-content: center;
+   align-items: center;
+   height: 20px;
+   width: 20px;
+`;
+
 export default function EditPlayerCard({ id, life, store }) {
+   const [isBuffed, setIsBuffed] = useState(false);
+   const [pvMaj, setPvMaj] = useState(false);
+   const maj = pvMaj ? 'flex' : 'none';
+   const buffed = isBuffed ? 'flex' : 'none';
    return (
       <div className={styles.container}>
          <form
             className={`${styles.formLife} ${styles.form}`}
             onSubmit={(e) => {
                e.preventDefault();
-               postLife(id, store);
+               postLife(id, store, setPvMaj);
             }}
          >
             <div className={styles.inputLabel}>
-               <label>PV :</label>
+               <label htmlFor={`life-${id}`}>PV :</label>
                <input
                   className={styles.inputText}
                   id={`life-${id}`}
@@ -87,7 +104,7 @@ export default function EditPlayerCard({ id, life, store }) {
                />
             </div>
             <div className={styles.inputLabel}>
-               <label>PV Max :</label>
+               <label htmlFor={`maxLife-${id}`}>PV Max :</label>
                <input
                   className={styles.inputText}
                   id={`maxLife-${id}`}
@@ -95,13 +112,18 @@ export default function EditPlayerCard({ id, life, store }) {
                   defaultValue={life.maxLife}
                />
             </div>
-            <input className={styles.button} type="submit" value="MaJ PV" />
+            <div className={styles.submitContainer}>
+               <input className={styles.button} type="submit" value="MaJ PV" />
+               <Confirmation display={maj}>
+                  <img className={styles.ok} src={ok} alt="ok" />
+               </Confirmation>
+            </div>
          </form>
          <form
             className={`${styles.formSpell} ${styles.form}`}
             onSubmit={(e) => {
                e.preventDefault();
-               postSpell(id, store);
+               postSpell(id, store, setIsBuffed);
             }}
          >
             <select
@@ -126,7 +148,7 @@ export default function EditPlayerCard({ id, life, store }) {
                <option value="chatiment">Chatiment</option>
             </select>
             <div className={styles.inputLabel}>
-               <label>Intéligence :</label>
+               <label htmlFor={`int-${id}`}>Intéligence :</label>
                <input
                   className={styles.inputText}
                   type="text"
@@ -135,14 +157,19 @@ export default function EditPlayerCard({ id, life, store }) {
                />
             </div>
             <div className={styles.inputLabel}>
-               <label>Réussite Critique ?</label>
+               <label htmlFor={`critic-${id}`}>Réussite Critique ?</label>
                <input type="checkbox" id={`critic-${id}`} />
             </div>
-            <input
-               className={styles.button}
-               type="submit"
-               value="Ajouter un sort"
-            />
+            <div className={styles.submitContainer}>
+               <input
+                  className={styles.button}
+                  type="submit"
+                  value="Ajouter un sort"
+               />
+               <Confirmation display={buffed}>
+                  <img className={styles.ok} src={ok} alt="ok" />
+               </Confirmation>
+            </div>
          </form>
       </div>
    );
