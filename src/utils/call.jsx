@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import formatData from './format';
 
 export function useFetch(url) {
    const [data, setData] = useState({});
@@ -17,8 +18,9 @@ export function useFetch(url) {
                console.log('Data from API');
                const response = await fetch(url);
                const data = await response.json();
-               localStorage.setItem('data', JSON.stringify(data));
-               setData(data);
+               const dataFormat = formatData(data);
+               localStorage.setItem('data', JSON.stringify(dataFormat));
+               setData(dataFormat);
             }
          } catch (err) {
             console.log('==== error ====', err);

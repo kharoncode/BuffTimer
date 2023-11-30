@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import formatData from './format';
 
 export function useStore(store) {
    const [data, setData] = useState({});
@@ -16,8 +17,9 @@ export function useStore(store) {
             } else {
                console.log('Data from API');
                store.read('spell').then((data) => {
-                  localStorage.setItem('data', JSON.stringify(data));
-                  setData(data);
+                  const dataFormat = formatData(data);
+                  localStorage.setItem('data', JSON.stringify(dataFormat));
+                  setData(dataFormat);
                });
             }
          } catch (err) {
