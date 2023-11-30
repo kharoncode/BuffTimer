@@ -52,6 +52,12 @@ function postSpell(id, store, setState) {
       })
       .then((res) => {
          //console.log(res);
+         const { index, data } = getPlayerIndex(id);
+         const spellIndex = getSpellIndex(spell);
+         const draft = [...data];
+         draft[index].buff[spellIndex].date = time;
+         localStorage.setItem('data', JSON.stringify(draft));
+         setState(true);
          setState(true);
          console.log(`Ajout du Buff ${spell} à ${id}`);
       });
@@ -67,9 +73,52 @@ function postLife(id, store, setState) {
       })
       .then((res) => {
          //console.log(res);
+         const { index, data } = getPlayerIndex(id);
+         const draft = [...data];
+         draft[index] = {
+            ...draft[index],
+            life: { now: life, maxLife: maxLife },
+         };
+         localStorage.setItem('data', JSON.stringify(draft));
          setState(true);
          console.log(`MaJ PV de ${id} : ${life}/${maxLife}`);
       });
+}
+
+function getPlayerIndex(id) {
+   const element = (el) => el.id === id;
+   const data = JSON.parse(localStorage.getItem('data'));
+   const index = data.findIndex(element);
+   return { index, data };
+}
+
+function getSpellIndex(spell) {
+   switch (spell) {
+      case 'benedictionDeKeldar':
+         return 0;
+      case 'attaqueSacree':
+         return 1;
+      case 'grandeBenedictionDeKeldar':
+         return 2;
+      case 'lameDeJustice':
+         return 3;
+      case 'transcendance':
+         return 4;
+      case 'regenerationMineure':
+         return 5;
+      case 'resistance':
+         return 6;
+      case 'salutDuDivin':
+         return 7;
+      case 'regeneration':
+         return 8;
+      case 'capriceDuDestin':
+         return 9;
+      case 'chatiment':
+         return 10;
+      default:
+         return;
+   }
 }
 
 const Confirmation = styled.div`
