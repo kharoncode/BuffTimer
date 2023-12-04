@@ -37,6 +37,5 @@ export default function formatData(data) {
    for (const [key, value] of Object.entries(formatData)) {
       newData.push(value);
    }
-
    return newData;
 }

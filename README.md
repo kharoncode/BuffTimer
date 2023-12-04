@@ -33,7 +33,7 @@ This repository contains the Front-End Dashboard of the Ideo-Buff Timer applicat
 
 -  Run the project (Port 3001)
 
-   `yarn start`
+   `REACT_APP_MOCKED=true yarn start`
 
 ## 3. BackEnd
 
