@@ -18,7 +18,18 @@
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "noFallthroughCasesInSwitch": true
+    "noFallthroughCasesInSwitch": true,
+
+    /* Vite Alias */
+      "types": ["node"],
+      "paths": {
+         "@/*": ["./src/*"],
+         "@router/*": ["./src/router/*"],
+         "@assets/*": ["./src/assets/*"],
+         "@components/*": ["./src/components/*"],
+         "@pages/*": ["./src/pages/*"],
+         "@utils/*": ["./src/utils/*"]
+      }
   },
   "include": ["src"],
   "references": [{ "path": "./tsconfig.node.json" }]
