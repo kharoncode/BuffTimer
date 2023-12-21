@@ -17,7 +17,7 @@ function App() {
             <Route path="/profile" element={<Profile />} />
             <Route path="/favoris" element={<Favoris />} />
             <Route path="/general" element={<General />} />
-            <Route path="/error" element={<Error />} />
+            <Route path="*" element={<Error />} />
          </Routes>
       </Router>
    );
