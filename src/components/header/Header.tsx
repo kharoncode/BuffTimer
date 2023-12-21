@@ -1,10 +1,17 @@
 import styles from './header.module.css';
 
 function Header() {
+   const profile: boolean = false;
    return (
       <header className={styles.header}>
-         <h1>BUFFTIMER</h1>
-         <nav className={styles.menu}>Player Favoris Profil SignIn</nav>
+         <nav className={styles.menu}>
+            <h1>BUFFTIMER</h1>
+            <div className={styles.categories}>Général Favoris</div>
+         </nav>
+
+         <div className={styles.settings}>
+            {profile ? <div>Profile / LogOut</div> : <div>LogIn</div>}
+         </div>
       </header>
    );
 }
