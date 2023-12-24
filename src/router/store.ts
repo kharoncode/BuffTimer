@@ -1,5 +1,6 @@
 import { loginSlice } from '@/pages/login/loginSlice';
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
+import { useDispatch } from 'react-redux';
 import { persistStore, persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import { thunk } from 'redux-thunk';
@@ -18,6 +19,9 @@ const store = configureStore({
    middleware: (getDefaultMiddleware) =>
       getDefaultMiddleware({ serializableCheck: false }).concat(thunk),
 });
+
+export type AppDispatch = typeof store.dispatch;
+export const useAppDispatch: () => AppDispatch = useDispatch;
 
 const persistor = persistStore(store, null);
 
