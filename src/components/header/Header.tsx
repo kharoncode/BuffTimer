@@ -1,8 +1,11 @@
 import { Link } from 'react-router-dom';
 import styles from './header.module.css';
+import { useSelector } from 'react-redux';
+import { getAuth } from '@/router/selectors';
 
 function Header() {
-   const profile: boolean = false;
+   const auth: boolean = useSelector(getAuth);
+   //const profile: boolean = false;
    return (
       <header className={styles.header}>
          <nav className={styles.menu}>
@@ -16,7 +19,7 @@ function Header() {
          </nav>
 
          <div className={styles.settings}>
-            {profile ? (
+            {auth ? (
                <div>Profile / LogOut</div>
             ) : (
                <Link to="/login">LogIn</Link>

@@ -9,16 +9,18 @@ export type profile = {
    favoris: [string];
 };
 
-type LoginState = {
+type loginState = {
    loading: boolean;
    profile: null | profile;
    error: null | string;
+   auth: boolean;
 };
 
 export const fetchProfile = createAsyncThunk(
    'login/fetchProfile',
    async (log: loginData, { rejectWithValue }) => {
-      return fetch(`${import.meta.env.VITE_APIURL}/profiles`, {
+      return fetch(`${import.meta.env.VITE_MOCKURL}`, {
+         //return fetch(`${import.meta.env.VITE_API}/profiles`, {
          method: 'get',
          headers: {
             'Content-Type': 'application/json',
@@ -41,7 +43,7 @@ export const fetchProfile = createAsyncThunk(
    }
 );
 
-const initialState: LoginState = {
+const initialState: loginState = {
    loading: false,
    profile: {
       id: '',
@@ -51,6 +53,7 @@ const initialState: LoginState = {
       favoris: [''],
    },
    error: null,
+   auth: false,
 };
 
 export const loginSlice = createSlice({
@@ -64,22 +67,23 @@ export const loginSlice = createSlice({
    extraReducers: (builder) => {
       builder.addCase(fetchProfile.pending, (state) => {
          state.loading = true;
-         state.profile = null;
-         state.error = null;
       });
       builder.addCase(fetchProfile.fulfilled, (state, action) => {
          if (action.payload[0].payload?.error) {
             state.loading = false;
             state.profile = null;
             state.error = action.payload[0].payload.error;
+            state.auth = false;
          } else {
             state.loading = false;
             state.profile = action.payload[0];
             state.error = null;
+            state.auth = true;
          }
       });
       builder.addCase(fetchProfile.rejected, (state, action) => {
          console.log('error');
+         console.log(action.error);
          state.loading = false;
          state.profile = null;
          state.error = action.error.toString();
