@@ -12,7 +12,7 @@ export type profile = {
 type loginState = {
    loading: boolean;
    profile: null | profile;
-   error: null | string;
+   error: null | string | undefined;
    auth: boolean;
 };
 
@@ -27,19 +27,18 @@ export const fetchProfile = createAsyncThunk(
          },
       })
          .then((result) => result.json())
-         .then((data) =>
-            data.map((el: profile) => {
-               if (el.id !== log.login) {
-                  return rejectWithValue({ error: 'Wrong Log' });
-               } else {
-                  if (el.password !== log.password) {
-                     return rejectWithValue({ error: 'Wrong Pass' });
-                  } else {
-                     return el;
-                  }
-               }
-            })
-         );
+         .then((data) => {
+            const filter = data.filter(function (el: profile) {
+               return el.id === log.login && el.password === log.password;
+            });
+            if (filter.length !== 0) {
+               return filter[0];
+            } else {
+               return rejectWithValue({
+                  error: 'Login Failed: Your user ID or password is incorrect',
+               });
+            }
+         });
    }
 );
 
@@ -66,27 +65,22 @@ export const loginSlice = createSlice({
    },
    extraReducers: (builder) => {
       builder.addCase(fetchProfile.pending, (state) => {
+         console.log('pending');
          state.loading = true;
       });
       builder.addCase(fetchProfile.fulfilled, (state, action) => {
-         if (action.payload[0].payload?.error) {
-            state.loading = false;
-            state.profile = null;
-            state.error = action.payload[0].payload.error;
-            state.auth = false;
-         } else {
-            state.loading = false;
-            state.profile = action.payload[0];
-            state.error = null;
-            state.auth = true;
-         }
+         console.log('fulfilled');
+         state.loading = false;
+         state.profile = action.payload;
+         state.error = null;
+         state.auth = true;
       });
       builder.addCase(fetchProfile.rejected, (state, action) => {
          console.log('error');
-         console.log(action.error);
          state.loading = false;
          state.profile = null;
-         state.error = action.error.toString();
+         state.error = action.error.message;
+         state.auth = false;
       });
    },
 });

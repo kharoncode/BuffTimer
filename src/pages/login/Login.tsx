@@ -22,7 +22,7 @@ export const Login: FunctionComponent = () => {
       const login: string = e.currentTarget.login.value;
       const password: string = e.currentTarget.password.value;
       const dataLog: loginData = { login: login, password: password };
-      dispatch(fetchProfile(dataLog)).then((data) => console.log(data));
+      dispatch(fetchProfile(dataLog));
    };
 
    return (
