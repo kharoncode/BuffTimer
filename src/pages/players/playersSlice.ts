@@ -1,16 +1,10 @@
+import { formatPlayers } from '@/utils/formatPlayer';
+import type { player } from '@/utils/formatPlayer';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-
-export type players = {
-   id: string;
-   password: string;
-   name: string;
-   intelligence: number;
-   favoris: [string];
-};
 
 type playersState = {
    loading: boolean;
-   players: players[] | string[];
+   players: player[];
    error: null | string | undefined;
 };
 
@@ -26,7 +20,7 @@ export const fetchPlayers = createAsyncThunk(
       })
          .then((result) => result.json())
          .then((data) => {
-            return data;
+            return formatPlayers(data);
          });
    }
 );

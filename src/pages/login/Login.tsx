@@ -20,7 +20,7 @@ export const Login: FunctionComponent = () => {
       const password: string = e.currentTarget.password.value;
       const dataLog: loginData = { login: login, password: password };
       dispatch(fetchProfile(dataLog)).then((data) => {
-         if (!data.error) {
+         if (data.payload.error === undefined) {
             navigate('/profile');
          }
       });

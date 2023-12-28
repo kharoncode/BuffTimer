@@ -7,3 +7,7 @@ export function getLogin(state: RootState) {
 export const getAuth = (state: RootState) => {
    return getLogin(state).auth;
 };
+
+export function getPlayers(state: RootState) {
+   return state?.players;
+}
