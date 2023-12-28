@@ -4,7 +4,7 @@ import Home from '@/pages/home/Home';
 import { Login } from '@/pages/login/Login';
 import Profile from '@/pages/profile/Profile';
 import Favoris from '@/pages/favoris/Favoris';
-import General from '@/pages/general/General';
+import Players from '@/pages/players/Players';
 import Error from '@/pages/error/Error';
 import { persistor, store } from './store';
 import { Provider } from 'react-redux';
@@ -21,7 +21,7 @@ function App() {
                   <Route path="/login" element={<Login />} />
                   <Route path="/profile" element={<Profile />} />
                   <Route path="/favoris" element={<Favoris />} />
-                  <Route path="/general" element={<General />} />
+                  <Route path="/players" element={<Players />} />
                   <Route path="*" element={<Error />} />
                </Routes>
             </Router>

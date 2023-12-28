@@ -19,7 +19,7 @@ type loginState = {
 export const fetchProfile = createAsyncThunk(
    'login/fetchProfile',
    async (log: loginData, { rejectWithValue }) => {
-      return fetch(`${import.meta.env.VITE_MOCKURL}`, {
+      return fetch(`${import.meta.env.VITE_MOCKURL}profiles.json`, {
          //return fetch(`${import.meta.env.VITE_API}/profiles`, {
          method: 'get',
          headers: {

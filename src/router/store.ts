@@ -1,4 +1,5 @@
 import { loginSlice } from '@/pages/login/loginSlice';
+import { playersSlice } from '@/pages/players/playersSlice';
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 import { persistStore, persistReducer } from 'redux-persist';
@@ -12,6 +13,7 @@ const persistConfig = {
 
 const reducers = combineReducers({
    login: loginSlice.reducer,
+   players: playersSlice.reducer,
 });
 
 const store = configureStore({

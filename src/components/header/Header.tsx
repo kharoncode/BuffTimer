@@ -13,7 +13,7 @@ function Header() {
                <h1>BUFFTIMER</h1>
             </Link>
             <div className={styles.categories}>
-               <Link to="/general">Général</Link>
+               <Link to="/players">Général</Link>
                <Link to="/favoris">Favoris</Link>
             </div>
          </nav>
