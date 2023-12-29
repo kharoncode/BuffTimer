@@ -20,7 +20,8 @@
     "redux": "^5.0.1",
     "redux-persist": "^6.0.0",
     "redux-thunk": "^3.1.0",
-    "stein-js-client": "^0.0.2"
+    "stein-js-client": "^0.0.2",
+    "styled-components": "^6.1.6"
   },
   "devDependencies": {
     "@types/react": "^18.2.45",

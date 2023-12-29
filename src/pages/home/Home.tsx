@@ -1,3 +1,4 @@
+import styles from './home.module.css';
 import { store } from '@/router/store';
 import { playersSlice } from '../players/playersSlice';
 
@@ -7,7 +8,7 @@ function Home() {
    };
 
    return (
-      <div>
+      <div className={styles.container}>
          Home
          <button onClick={() => reset()}>Reset</button>
       </div>
