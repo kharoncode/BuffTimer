@@ -23,7 +23,7 @@ function Header() {
             </Link>
             <div className={styles.categories}>
                <Link to="/players">Général</Link>
-               <Link to="/favoris">Favoris</Link>
+               {auth ? <Link to="/favoris">Favoris</Link> : <></>}
             </div>
          </nav>
 
