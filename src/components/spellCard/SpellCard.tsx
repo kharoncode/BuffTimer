@@ -1,6 +1,6 @@
 import styles from './spellCard.module.css';
 import styled from 'styled-components';
-import close from '../../assets/close.svg';
+import close from '../../assets/icones/close.svg';
 //import ok from '../../assets/ok.svg';
 import { useState } from 'react';
 import Timer from '../timer/Timer';
