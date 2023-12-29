@@ -6,12 +6,14 @@ import type { player } from '@/utils/formatPlayer';
 
 function Players() {
    const dispatch = useDispatch<AppDispatch>();
-   const { loading, players } = useSelector(getPlayers);
-   if (players.length === 0) {
+   const { loading, players, error } = useSelector(getPlayers);
+   if (error === null && players.length === 0) {
       dispatch(fetchPlayers());
    }
 
-   return loading ? (
+   return error ? (
+      <div>Error : {error}</div>
+   ) : loading ? (
       <div>Loading ...</div>
    ) : (
       players.map((el: player, index: number) => (
