@@ -1,6 +1,6 @@
 import styles from './home.module.css';
 import { store } from '@/router/store';
-import { playersSlice } from '../players/playersSlice';
+import { playersSlice } from '@/pages/players/playersSlice';
 
 function Home() {
    const reset = () => {

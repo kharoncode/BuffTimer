@@ -1,6 +1,7 @@
-import LifeBar from '../lifeBar/lifeBar';
-import SpellCard from '../spellCard/SpellCard';
+import LifeBar from '@components/lifeBar/lifeBar';
+import SpellCard from '@components/spellCard/SpellCard';
 import styles from './playerCard.module.css';
+import type { player } from '@/utils/formatPlayer';
 //import EditPlayerCard from '../EditPlayerCard';
 //import { useState } from 'react';
 //import styled from 'styled-components';
@@ -11,19 +12,22 @@ import styles from './playerCard.module.css';
 //    display: ${({ display }) => display};
 // `;
 
-export default function PlayerCard({ data }) {
+type data = { data: player };
+
+const PlayerCard: React.FC<data> = (data: data) => {
+   const player = data.data;
    // const [isOpen, setIsOpen] = useState(false);
    return (
-      <div id={`${data.id}Card`} className={styles.container}>
-         <div className={styles.title}>{data.name}</div>
-         <LifeBar life={data.life} />
+      <div id={`${player.id}Card`} className={styles.container}>
+         <div className={styles.title}>{player.name}</div>
+         <LifeBar life={player.life} />
          <div className={styles.spellContainer}>
-            {data.spells.map((el, index) =>
+            {player.spells.map((el, index: number) =>
                el.date === null ? (
                   <></>
                ) : (
                   <SpellCard
-                     key={`${data.id}-${index}`}
+                     key={`${player.id}-${index}-spell`}
                      name={el.name}
                      date={el.date}
                      //category={el.category}
@@ -43,4 +47,6 @@ export default function PlayerCard({ data }) {
          </Modal> */}
       </div>
    );
-}
+};
+
+export default PlayerCard;

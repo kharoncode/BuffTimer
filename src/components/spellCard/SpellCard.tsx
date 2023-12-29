@@ -1,7 +1,7 @@
 import styles from './spellCard.module.css';
 import styled from 'styled-components';
 import close from '../../assets/close.svg';
-import ok from '../../assets/ok.svg';
+//import ok from '../../assets/ok.svg';
 import { useState } from 'react';
 import Timer from '../timer/Timer';
 
@@ -17,7 +17,7 @@ const SpellContainer = styled.div`
    z-index: 100;
 `;
 
-const DeleteContainer = styled.div`
+/* const DeleteContainer = styled.div`
    position: absolute;
    display: flex;
    flex-direction: column;
@@ -29,7 +29,7 @@ const DeleteContainer = styled.div`
    right: 0;
    top: 0;
    z-index: 1;
-`;
+`; */
 
 // function removeSpell(id, spell, store, setDeleted) {
 //    store
@@ -44,33 +44,24 @@ const DeleteContainer = styled.div`
 //       });
 // }
 
-export default function SpellCard({ name, date }) {
-   const [deleted, setDeleted] = useState(false);
+type data = {
+   name: string;
+   date: number;
+};
+
+const SpellCard: React.FC<data> = (data) => {
+   const { name, date } = data;
+   //const [deleted, setDeleted] = useState(false);
    const [toBeDeleted, setToBeDeleted] = useState(false);
    const [isOver, setIsOver] = useState(false);
-   // if (isOver) {
-   //    removeSpell(id, name, store, setDeleted);
-   //    return;
-   // }
-
-   // const spells = {
-   //    benedictionDeKeldar: 'Bénédiction de Keldar',
-   //    attaqueSacree: 'Attaque Sacrée',
-   //    grandeBenedictionDeKeldar: 'Grd Bénédiction de Keldar',
-   //    lameDeJustice: 'Lame de Justice',
-   //    transcendance: 'Transcendance',
-   //    regenerationMineure: 'Régénération Mineure',
-   //    resistance: 'Résistance',
-   //    salutDuDivin: 'Salut du Divin',
-   //    regeneration: 'Régénération',
-   //    capriceDuDestin: 'Caprice du Destin',
-   //    chatiment: 'Chatiment',
-   // };
+   if (isOver) {
+      console.log('over');
+   }
 
    const color = 'rgba(255, 186, 83, 1)';
    // category === 'justice' ? 'rgba(255, 186, 83, 1)' : 'rgba(4, 215, 251, 1)';
 
-   const delColor = deleted ? '#66ff57' : 'red';
+   // const delColor = deleted ? '#66ff57' : 'red';
    return (
       <div className={styles.container}>
          <SpellContainer color={color}>
@@ -85,7 +76,7 @@ export default function SpellCard({ name, date }) {
                }}
             />
          </SpellContainer>
-         <DeleteContainer color={delColor}>
+         {/* <DeleteContainer color={delColor}>
             <img
                className={styles.deleteButton}
                src={deleted ? ok : close}
@@ -94,7 +85,9 @@ export default function SpellCard({ name, date }) {
                //    removeSpell(id, name, store, setDeleted);
                // }}
             />
-         </DeleteContainer>
+         </DeleteContainer> */}
       </div>
    );
-}
+};
+
+export default SpellCard;

@@ -18,11 +18,13 @@ const LifeElt = styled.div`
    );
 `;
 type life = {
-   currentLife: number;
-   maxLife: number;
+   life: {
+      currentLife: number;
+      maxLife: number;
+   };
 };
 
-export default function LifeBar(life) {
+export default function LifeBar(life: life) {
    const lifeInfo = life.life;
    const stop = Math.round((lifeInfo.currentLife / lifeInfo.maxLife) * 100);
    return (

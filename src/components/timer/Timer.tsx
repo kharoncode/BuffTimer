@@ -1,14 +1,20 @@
 import styles from './timer.module.css';
 import { useState, useEffect } from 'react';
 
-export default function Timer({ date, setIsOver }) {
+type data = {
+   date: number;
+   setIsOver: React.Dispatch<React.SetStateAction<boolean>>;
+};
+
+const Timer: React.FC<data> = (data) => {
+   const { date, setIsOver } = data;
    const [days, setDays] = useState(0);
    const [hours, setHours] = useState(0);
    const [minutes, setMinutes] = useState(0);
    //const [seconds, setSeconds] = useState(0);
 
    useEffect(() => {
-      const getTime = () => {
+      const getTime = (date: number) => {
          const time = date - Date.now();
          if (time < 0) {
             setIsOver(true);
@@ -32,4 +38,6 @@ export default function Timer({ date, setIsOver }) {
          {days}d {hours}h {minutes}m
       </div>
    );
-}
+};
+
+export default Timer;

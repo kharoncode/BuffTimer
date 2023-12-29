@@ -36,7 +36,7 @@ export type player = {
    spells: spells;
 };
 
-type players = player[];
+export type players = { [key: string]: player };
 
 const formatPlayer = (el: dataEl) => {
    const spellsName = {
@@ -75,7 +75,7 @@ const formatPlayer = (el: dataEl) => {
 };
 
 export const formatPlayers = (data: data) => {
-   const players: players = [];
-   data.map((el) => players.push(formatPlayer(el)));
+   const players: players = {};
+   data.map((el) => (players[`${el.id}`] = formatPlayer(el)));
    return players;
 };

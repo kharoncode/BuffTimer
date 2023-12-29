@@ -1,15 +1,14 @@
 import styles from './players.module.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchPlayers } from './playersSlice';
+import { fetchPlayers, playersState } from './playersSlice';
 import { AppDispatch } from '@/router/store';
 import { getPlayers } from '@/router/selectors';
-import type { player } from '@/utils/formatPlayer';
 import PlayerCard from '@/components/playerCard/PlayerCard';
 
 function Players() {
    const dispatch = useDispatch<AppDispatch>();
-   const { loading, players, error } = useSelector(getPlayers);
-   if (error === null && players.length === 0) {
+   const { loading, players, error }: playersState = useSelector(getPlayers);
+   if (error === null && Object.keys(players).length === 0) {
       dispatch(fetchPlayers());
    }
 
@@ -21,8 +20,11 @@ function Players() {
             <div>Loading ...</div>
          ) : (
             <div className={styles.playersContainer}>
-               {players.map((el: player, index: number) => (
-                  <PlayerCard key={`${el.id}-${index}`} data={el} />
+               {Object.keys(players).map((key) => (
+                  <PlayerCard
+                     key={`${players[key].id}-player`}
+                     data={players[key]}
+                  />
                ))}
             </div>
          )}

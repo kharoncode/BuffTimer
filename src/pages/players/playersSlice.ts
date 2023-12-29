@@ -1,10 +1,10 @@
 import { formatPlayers } from '@/utils/formatPlayer';
-import type { player } from '@/utils/formatPlayer';
+import type { players } from '@/utils/formatPlayer';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
-type playersState = {
+export type playersState = {
    loading: boolean;
-   players: player[];
+   players: players;
    error: null | string | undefined;
 };
 
@@ -27,7 +27,7 @@ export const fetchPlayers = createAsyncThunk(
 
 const initialState: playersState = {
    loading: false,
-   players: [],
+   players: {},
    error: null,
 };
 
@@ -53,7 +53,7 @@ export const playersSlice = createSlice({
       builder.addCase(fetchPlayers.rejected, (state, action) => {
          console.log('error');
          state.loading = false;
-         state.players = [];
+         state.players = {};
          state.error = action.error.message;
       });
    },
