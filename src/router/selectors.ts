@@ -11,3 +11,11 @@ export const getAuth = (state: RootState) => {
 export function getPlayers(state: RootState) {
    return state?.players;
 }
+
+export function getProfile(state: RootState) {
+   return getLogin(state).profile;
+}
+
+export function getFavoris(state: RootState) {
+   return getProfile(state).favoris;
+}
