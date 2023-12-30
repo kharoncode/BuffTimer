@@ -6,6 +6,8 @@ const Card = () => {
    const player = {
       id: 'almir',
       name: 'Almir',
+      picture:
+         'https://i.pinimg.com/originals/e3/1c/8b/e31c8b19dfc42750ad3655647f074a94.jpg',
       life: {
          currentLife: 157,
          maxLife: 157,
@@ -71,11 +73,7 @@ const Card = () => {
    return (
       <div className={styles.container}>
          <div className={styles.status}>
-            <img
-               className={styles.img}
-               src={`avatar/${player.id}.jpg`}
-               alt="Almir"
-            ></img>
+            <img className={styles.img} src={player.picture} alt="Almir"></img>
             <div className={styles.title}>{player.name}</div>
             <LifeBar life={player.life} />
          </div>

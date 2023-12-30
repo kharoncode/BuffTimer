@@ -2,7 +2,7 @@
    {
       "id": "almir",
       "name": "Almir",
-      "picture": "null",
+      "picture": "https://i.pinimg.com/originals/e3/1c/8b/e31c8b19dfc42750ad3655647f074a94.jpg",
       "currentLife": "157",
       "maxLife": "157",
       "benedictionDeKeldar": "null",
@@ -20,7 +20,7 @@
    {
       "id": "andrea",
       "name": "Andrea",
-      "picture": "null",
+      "picture": "https://cdn.discordapp.com/attachments/1037812361152696472/1087800084353273936/Andrea.jpg",
       "currentLife": "211",
       "maxLife": "211",
       "benedictionDeKeldar": "null",
@@ -38,7 +38,7 @@
    {
       "id": "angelus",
       "name": "Angelus",
-      "picture": "null",
+      "picture": "https://i.pinimg.com/564x/68/98/57/6898573bbfe827ac49e45245a12fc07b.jpg",
       "currentLife": "1",
       "maxLife": "1",
       "benedictionDeKeldar": "null",
@@ -56,7 +56,7 @@
    {
       "id": "elayne",
       "name": "Elayne",
-      "picture": "null",
+      "picture": "https://zupimages.net/viewer.php?id=21/06/8ixi.png",
       "currentLife": "1",
       "maxLife": "1",
       "benedictionDeKeldar": "null",
@@ -74,7 +74,7 @@
    {
       "id": "haslor",
       "name": "Haslôr",
-      "picture": "null",
+      "picture": "https://cdn.discordapp.com/attachments/1087025758377103456/1089109557487341588/HaslorVDB.png",
       "currentLife": "124",
       "maxLife": "147",
       "benedictionDeKeldar": "null",
@@ -92,7 +92,7 @@
    {
       "id": "kaine",
       "name": "Kaine",
-      "picture": "null",
+      "picture": "https://zupimages.net/viewer.php?id=23/11/nplq.jpg",
       "currentLife": "206",
       "maxLife": "215",
       "benedictionDeKeldar": "null",
@@ -110,10 +110,10 @@
    {
       "id": "kharon",
       "name": "Kha'ron",
-      "picture": "null",
+      "picture": "https://cdn.discordapp.com/attachments/1130197336543461457/1173950520642256916/kharon_03.jpg",
       "currentLife": "171",
       "maxLife": "171",
-      "benedictionDeKeldar": "null",
+      "benedictionDeKeldar": "1801122802779",
       "attaqueSacree": "null",
       "grandeBenedictionDeKeldar": "null",
       "lameDeJustice": "1801122802779",
@@ -123,12 +123,12 @@
       "salutDuDivin": "null",
       "regeneration": "null",
       "capriceDuDestin": "null",
-      "chatiment": "null"
+      "chatiment": "1801122802779"
    },
    {
       "id": "redemption",
       "name": "Rédemption",
-      "picture": "null",
+      "picture": "https://zupimages.net/viewer.php?id=20/44/anr6.gif",
       "currentLife": "1",
       "maxLife": "1",
       "benedictionDeKeldar": "null",
@@ -146,7 +146,7 @@
    {
       "id": "rissan",
       "name": "Rissan",
-      "picture": "null",
+      "picture": "https://i.goopics.net/GGrXa.jpg",
       "currentLife": "1",
       "maxLife": "1",
       "benedictionDeKeldar": "null",
@@ -164,7 +164,7 @@
    {
       "id": "shin",
       "name": "Shin",
-      "picture": "null",
+      "picture": "https://media.discordapp.net/attachments/853199187800752131/1112836410353918055/shin_dit_le_loyal.PNG?width=708&height=700",
       "currentLife": "1",
       "maxLife": "1",
       "benedictionDeKeldar": "null",
@@ -182,7 +182,7 @@
    {
       "id": "supras",
       "name": "Supras",
-      "picture": "null",
+      "picture": "https://zupimages.net/viewer.php?id=23/06/3uk4.jpg",
       "currentLife": "1",
       "maxLife": "1",
       "benedictionDeKeldar": "null",
@@ -200,7 +200,7 @@
    {
       "id": "tagoa",
       "name": "Tagoa",
-      "picture": "null",
+      "picture": "https://zupimages.net/viewer.php?id=23/26/bwqp.jpg",
       "currentLife": "1",
       "maxLife": "1",
       "benedictionDeKeldar": "null",
@@ -218,7 +218,7 @@
    {
       "id": "wilonah",
       "name": "Wilonah",
-      "picture": "null",
+      "picture": "https://zupimages.net/viewer.php?id=21/06/stfy.jpg",
       "currentLife": "193",
       "maxLife": "193",
       "benedictionDeKeldar": "null",
