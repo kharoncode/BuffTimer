@@ -45,12 +45,13 @@ const SpellContainer = styled.div`
 // }
 
 type data = {
+   id: string;
    name: string;
    date: number;
 };
 
 const SpellCard: React.FC<data> = (data) => {
-   const { name, date } = data;
+   const { id, name, date } = data;
    //const [deleted, setDeleted] = useState(false);
    const [toBeDeleted, setToBeDeleted] = useState(false);
    const [isOver, setIsOver] = useState(false);
@@ -65,6 +66,7 @@ const SpellCard: React.FC<data> = (data) => {
    return (
       <div className={styles.container}>
          <SpellContainer color={color}>
+            <img src={`/pictures/spells/${id}.gif`} alt={`${name}`}></img>
             <div className={styles.title}>{name}</div>
             <Timer date={date} setIsOver={setIsOver} />
             <img

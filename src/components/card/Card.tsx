@@ -84,6 +84,7 @@ const Card = () => {
                ) : (
                   <SpellCard
                      key={`${player.id}-${index}-spell`}
+                     id={el.id}
                      name={el.name}
                      date={el.date}
                   />

@@ -28,6 +28,7 @@ const PlayerCard: React.FC<data> = (data: data) => {
                ) : (
                   <SpellCard
                      key={`${player.id}-${index}-spell`}
+                     id={el.id}
                      name={el.name}
                      date={el.date}
                      //category={el.category}
