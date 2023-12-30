@@ -2,6 +2,7 @@
    {
       "id": "almir",
       "name": "Almir",
+      "picture": "null",
       "currentLife": "157",
       "maxLife": "157",
       "benedictionDeKeldar": "null",
@@ -19,6 +20,7 @@
    {
       "id": "andrea",
       "name": "Andrea",
+      "picture": "null",
       "currentLife": "211",
       "maxLife": "211",
       "benedictionDeKeldar": "null",
@@ -36,6 +38,7 @@
    {
       "id": "angelus",
       "name": "Angelus",
+      "picture": "null",
       "currentLife": "1",
       "maxLife": "1",
       "benedictionDeKeldar": "null",
@@ -53,6 +56,7 @@
    {
       "id": "elayne",
       "name": "Elayne",
+      "picture": "null",
       "currentLife": "1",
       "maxLife": "1",
       "benedictionDeKeldar": "null",
@@ -70,6 +74,7 @@
    {
       "id": "haslor",
       "name": "Haslôr",
+      "picture": "null",
       "currentLife": "124",
       "maxLife": "147",
       "benedictionDeKeldar": "null",
@@ -87,6 +92,7 @@
    {
       "id": "kaine",
       "name": "Kaine",
+      "picture": "null",
       "currentLife": "206",
       "maxLife": "215",
       "benedictionDeKeldar": "null",
@@ -104,6 +110,7 @@
    {
       "id": "kharon",
       "name": "Kha'ron",
+      "picture": "null",
       "currentLife": "171",
       "maxLife": "171",
       "benedictionDeKeldar": "null",
@@ -121,6 +128,7 @@
    {
       "id": "redemption",
       "name": "Rédemption",
+      "picture": "null",
       "currentLife": "1",
       "maxLife": "1",
       "benedictionDeKeldar": "null",
@@ -138,6 +146,7 @@
    {
       "id": "rissan",
       "name": "Rissan",
+      "picture": "null",
       "currentLife": "1",
       "maxLife": "1",
       "benedictionDeKeldar": "null",
@@ -155,6 +164,7 @@
    {
       "id": "shin",
       "name": "Shin",
+      "picture": "null",
       "currentLife": "1",
       "maxLife": "1",
       "benedictionDeKeldar": "null",
@@ -172,6 +182,7 @@
    {
       "id": "supras",
       "name": "Supras",
+      "picture": "null",
       "currentLife": "1",
       "maxLife": "1",
       "benedictionDeKeldar": "null",
@@ -189,6 +200,7 @@
    {
       "id": "tagoa",
       "name": "Tagoa",
+      "picture": "null",
       "currentLife": "1",
       "maxLife": "1",
       "benedictionDeKeldar": "null",
@@ -206,6 +218,7 @@
    {
       "id": "wilonah",
       "name": "Wilonah",
+      "picture": "null",
       "currentLife": "193",
       "maxLife": "193",
       "benedictionDeKeldar": "null",

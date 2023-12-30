@@ -1,6 +1,7 @@
 type dataEl = {
    id: string;
    name: string;
+   picture: string;
    currentLife: string;
    maxLife: string;
    benedictionDeKeldar: string;
@@ -29,6 +30,7 @@ type spells = spell[];
 export type player = {
    id: string;
    name: string;
+   picture: string;
    life: {
       currentLife: number;
       maxLife: number;
@@ -54,7 +56,7 @@ const formatPlayer = (el: dataEl) => {
    };
 
    const spells: spells = [];
-   for (let i = 4; i < Object.keys(el).length; i++) {
+   for (let i = 5; i < Object.keys(el).length; i++) {
       spells.push({
          id: Object.keys(el)[i],
          name: spellsName[Object.keys(el)[i] as keyof typeof spellsName],
@@ -66,6 +68,7 @@ const formatPlayer = (el: dataEl) => {
    return {
       id: el.id,
       name: el.name,
+      picture: el.picture,
       life: {
          currentLife: Number(el.currentLife),
          maxLife: Number(el.maxLife),
