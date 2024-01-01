@@ -9,6 +9,7 @@ import Error from '@/pages/error/Error';
 import { persistor, store } from './store';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
+import PrivateRoute from '@/utils/PrivateRoute';
 
 function App() {
    return (
@@ -19,9 +20,11 @@ function App() {
                <Routes>
                   <Route path="/" element={<Home />} />
                   <Route path="/login" element={<Login />} />
-                  <Route path="/profile" element={<Profile />} />
-                  <Route path="/favoris" element={<Favoris />} />
-                  <Route path="/players" element={<Players />} />
+                  <Route element={<PrivateRoute />}>
+                     <Route path="/profile" element={<Profile />} />
+                     <Route path="/favoris" element={<Favoris />} />
+                     <Route path="/players" element={<Players />} />
+                  </Route>
                   <Route path="*" element={<Error />} />
                </Routes>
             </Router>
