@@ -2,7 +2,7 @@ import styles from './profile.module.css';
 import { getPlayers, getProfile } from '@/router/selectors';
 import { useSelector } from 'react-redux';
 import { playersState } from '../players/playersSlice';
-import PlayersContainer from '@/components/playersContainer/PlayersContainer';
+import PlayerCard from '@/components/playerCard/PlayerCard';
 
 function Profile() {
    const profile = useSelector(getProfile);
@@ -15,7 +15,7 @@ function Profile() {
          ) : loading ? (
             <div>Loading ...</div>
          ) : (
-            <PlayersContainer players={players} />
+            <PlayerCard player={players[profile.id]} />
          )}
       </div>
    );
