@@ -1,11 +1,12 @@
-import type { FormEvent, FunctionComponent } from 'react';
+import { type FormEvent, type FunctionComponent } from 'react';
 import styles from './login.module.css';
-import { fetchProfile } from './loginSlice';
-import { useDispatch, useSelector } from 'react-redux';
+import { fetchProfile, loginSlice } from './loginSlice';
+import { useDispatch, useSelector, useStore } from 'react-redux';
 import { AppDispatch } from '@/router/store';
 import { useNavigate } from 'react-router-dom';
 import { fetchPlayers } from '../players/playersSlice';
 import { getLogin } from '@/router/selectors';
+import formatFavoris from '@/utils/formatFavoris';
 
 export type loginData = {
    login: string;
@@ -13,6 +14,7 @@ export type loginData = {
 };
 
 export const Login: FunctionComponent = () => {
+   const store = useStore();
    const dispatch = useDispatch<AppDispatch>();
    const navigate = useNavigate();
    const { loading, error } = useSelector(getLogin);
@@ -24,7 +26,17 @@ export const Login: FunctionComponent = () => {
       const dataLog: loginData = { login: login, password: password };
       dispatch(fetchProfile(dataLog)).then((data) => {
          if (data.payload.error === undefined) {
-            dispatch(fetchPlayers());
+            const favoris = data.payload.favoris;
+            dispatch(fetchPlayers()).then((data) => {
+               if (data.payload.error === undefined) {
+                  const players = data.payload;
+                  store.dispatch(
+                     loginSlice.actions.addFavoris(
+                        formatFavoris(favoris, players)
+                     )
+                  );
+               }
+            });
             navigate('/profile');
          }
       });

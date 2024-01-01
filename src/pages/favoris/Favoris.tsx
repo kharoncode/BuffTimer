@@ -1,15 +1,17 @@
 import PlayersContainer from '@/components/playersContainer/PlayersContainer';
 import styles from './favoris.module.css';
-import { getFavoris, getPlayers } from '@/router/selectors';
-import formatFavoris from '@/utils/formatFavoris';
+import { getFavoris } from '@/router/selectors';
 import { useSelector } from 'react-redux';
 
 function Favoris() {
-   const { players } = useSelector(getPlayers);
-   const favoris = formatFavoris(useSelector(getFavoris), players);
+   const favoris = useSelector(getFavoris);
    return (
       <div className={styles.container}>
-         <PlayersContainer players={favoris} />
+         {Object.keys(favoris).length !== 0 ? (
+            <PlayersContainer players={favoris} />
+         ) : (
+            'Empty'
+         )}
       </div>
    );
 }
