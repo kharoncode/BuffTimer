@@ -19,11 +19,18 @@ const PlayerCard: React.FC<data> = (data: data) => {
    // const [isOpen, setIsOpen] = useState(false);
    return (
       <div id={`${player.id}Card`} className={styles.container}>
-         <div className={styles.title}>{player.name}</div>
-         <LifeBar life={player.life} />
+         <div className={styles.status}>
+            <img
+               className={styles.img}
+               src={player.picture}
+               alt={player.name}
+            ></img>
+            <div className={styles.title}>{player.name}</div>
+            <LifeBar life={player.life} />
+         </div>
          <div className={styles.spellContainer}>
-            {player.spells.map((el, index: number) => {
-               return el.date === null ? (
+            {player.spells.map((el, index: number) =>
+               el.date === null ? (
                   <></>
                ) : (
                   <SpellCard
@@ -31,21 +38,10 @@ const PlayerCard: React.FC<data> = (data: data) => {
                      id={el.id}
                      name={el.name}
                      date={el.date}
-                     //category={el.category}
-                     //store={store}
                   />
-               );
-            })}
+               )
+            )}
          </div>
-         {/* <button
-            className={styles.button}
-            onClick={() => (isOpen ? setIsOpen(false) : setIsOpen(true))}
-         >
-            Modifier
-         </button> */}
-         {/* <Modal display={isOpen ? 'flex' : 'none'}>
-            <EditPlayerCard id={data.id} life={data.life} store={store} />
-         </Modal> */}
       </div>
    );
 };
