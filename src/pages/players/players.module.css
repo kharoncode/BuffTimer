@@ -6,13 +6,3 @@
    align-items: center;
    gap: 20px;
 }
-
-.playersContainer {
-   padding: 10px;
-   width: 100%;
-   display: flex;
-   justify-content: space-around;
-   align-items: flex-start;
-   flex-wrap: wrap;
-   gap: 20px;
-}

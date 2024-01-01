@@ -2,7 +2,7 @@ import styles from './players.module.css';
 import { useSelector } from 'react-redux';
 import { playersState } from './playersSlice';
 import { getPlayers } from '@/router/selectors';
-import PlayerCard from '@/components/playerCard/PlayerCard';
+import PlayersContainer from '@/components/playersContainer/PlayersContainer';
 
 function Players() {
    const { loading, players, error }: playersState = useSelector(getPlayers);
@@ -14,14 +14,7 @@ function Players() {
          ) : loading ? (
             <div>Loading ...</div>
          ) : (
-            <div className={styles.playersContainer}>
-               {Object.keys(players).map((key) => (
-                  <PlayerCard
-                     key={`${players[key].id}-player`}
-                     player={players[key]}
-                  />
-               ))}
-            </div>
+            <PlayersContainer players={players} />
          )}
       </div>
    );
