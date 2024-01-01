@@ -1,10 +1,11 @@
 import type { FormEvent, FunctionComponent } from 'react';
 import styles from './login.module.css';
 import { fetchProfile } from './loginSlice';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch } from '@/router/store';
 import { useNavigate } from 'react-router-dom';
 import { fetchPlayers } from '../players/playersSlice';
+import { getLogin } from '@/router/selectors';
 
 export type loginData = {
    login: string;
@@ -14,6 +15,7 @@ export type loginData = {
 export const Login: FunctionComponent = () => {
    const dispatch = useDispatch<AppDispatch>();
    const navigate = useNavigate();
+   const { loading, error } = useSelector(getLogin);
 
    const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
       e.preventDefault();
@@ -37,7 +39,10 @@ export const Login: FunctionComponent = () => {
                <input type="text" id="login" name="login" />
                <label htmlFor="password"></label>
                <input type="password" id="password" name="password" />
-               <button type="submit">Connect</button>
+               <button type="submit">
+                  {loading ? 'Loading ...' : 'Connect'}
+               </button>
+               {error ? <div>Error</div> : ''}
             </form>
          </div>
       </main>
