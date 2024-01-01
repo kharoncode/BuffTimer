@@ -1,9 +1,9 @@
 .playersContainer {
-   padding: 10px;
+   padding: 10px 10px 10px 60px;
    width: 100%;
    display: flex;
    justify-content: space-around;
    align-items: flex-start;
    flex-wrap: wrap;
-   gap: 20px;
+   gap: 20px 60px;
 }

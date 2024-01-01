@@ -9,14 +9,16 @@ function Profile() {
    const { loading, players, error }: playersState = useSelector(getPlayers);
    return (
       <div className={styles.container}>
-         Hello {profile.name}
-         {error ? (
-            <div>Error : {error}</div>
-         ) : loading ? (
-            <div>Loading ...</div>
-         ) : (
-            <PlayerCard player={players[profile.id]} />
-         )}
+         <div className={styles.title}>Hello {profile.name}</div>
+         <div className={styles.profileCardContainer}>
+            {error ? (
+               <div>Error : {error}</div>
+            ) : loading ? (
+               <div>Loading ...</div>
+            ) : (
+               <PlayerCard player={players[profile.id]} />
+            )}
+         </div>
       </div>
    );
 }

@@ -1,7 +1,7 @@
 import { Link, useNavigate } from 'react-router-dom';
 import styles from './header.module.css';
 import { useSelector } from 'react-redux';
-import { getAuth } from '@/router/selectors';
+import { getAuth, getProfile } from '@/router/selectors';
 import { store } from '@/router/store';
 import { loginSlice } from '@/pages/login/loginSlice';
 
@@ -9,6 +9,7 @@ function Header() {
    const navigate = useNavigate();
 
    const auth: boolean = useSelector(getAuth);
+   const profile = useSelector(getProfile);
 
    const logOut = () => {
       store.dispatch(loginSlice.actions.resetLogin());
@@ -30,7 +31,9 @@ function Header() {
                <></>
             )}
          </nav>
-
+         <div className={styles.profile}>
+            {auth ? <h2>{profile.name}</h2> : <></>}
+         </div>
          <div>
             {auth ? (
                <div className={styles.settings}>

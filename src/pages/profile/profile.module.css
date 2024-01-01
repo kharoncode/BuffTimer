@@ -1,3 +1,19 @@
 .container {
    display: flex;
+   flex-direction: column;
+   align-items: center;
+   padding-top: 20px;
+   display: flex;
+}
+
+.title {
+   text-transform: uppercase;
+   margin-bottom: 20px;
+}
+
+.profileCardContainer {
+   padding: 10px 10px 10px 60px;
+   width: 100%;
+   display: flex;
+   justify-content: center;
 }

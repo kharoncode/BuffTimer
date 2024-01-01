@@ -1,4 +1,5 @@
 .header {
+   width: 100%;
    padding: 10px;
    display: flex;
    justify-content: space-between;
@@ -7,10 +8,19 @@
 
 .menu {
    display: flex;
+   justify-content: space-between;
+   gap: 20px;
 }
 
 .settings {
    display: flex;
    gap: 5px;
    cursor: pointer;
+}
+
+.categories {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   gap: 10px;
 }
