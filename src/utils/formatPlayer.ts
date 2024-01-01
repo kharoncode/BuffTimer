@@ -61,7 +61,9 @@ const formatPlayer = (el: dataEl) => {
          id: Object.keys(el)[i],
          name: spellsName[Object.keys(el)[i] as keyof typeof spellsName],
          date:
-            Object.values(el)[i] === null ? null : Number(Object.values(el)[i]),
+            Object.values(el)[i] === 'null'
+               ? null
+               : Number(Object.values(el)[i]),
       });
    }
 
@@ -80,5 +82,6 @@ const formatPlayer = (el: dataEl) => {
 export const formatPlayers = (data: data) => {
    const players: players = {};
    data.map((el) => (players[`${el.id}`] = formatPlayer(el)));
+   console.log(players);
    return players;
 };

@@ -22,8 +22,8 @@ const PlayerCard: React.FC<data> = (data: data) => {
          <div className={styles.title}>{player.name}</div>
          <LifeBar life={player.life} />
          <div className={styles.spellContainer}>
-            {player.spells.map((el, index: number) =>
-               el.date === null ? (
+            {player.spells.map((el, index: number) => {
+               return el.date === null ? (
                   <></>
                ) : (
                   <SpellCard
@@ -34,8 +34,8 @@ const PlayerCard: React.FC<data> = (data: data) => {
                      //category={el.category}
                      //store={store}
                   />
-               )
-            )}
+               );
+            })}
          </div>
          {/* <button
             className={styles.button}

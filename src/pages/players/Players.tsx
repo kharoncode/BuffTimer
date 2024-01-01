@@ -1,16 +1,11 @@
 import styles from './players.module.css';
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchPlayers, playersState } from './playersSlice';
-import { AppDispatch } from '@/router/store';
+import { useSelector } from 'react-redux';
+import { playersState } from './playersSlice';
 import { getPlayers } from '@/router/selectors';
 import PlayerCard from '@/components/playerCard/PlayerCard';
 
 function Players() {
-   const dispatch = useDispatch<AppDispatch>();
    const { loading, players, error }: playersState = useSelector(getPlayers);
-   if (error === null && Object.keys(players).length === 0) {
-      dispatch(fetchPlayers());
-   }
 
    return (
       <div className={styles.container}>
