@@ -12,10 +12,10 @@ import type { player } from '@/utils/formatPlayer';
 //    display: ${({ display }) => display};
 // `;
 
-type data = { data: player };
+type data = { player: player };
 
 const PlayerCard: React.FC<data> = (data: data) => {
-   const player = data.data;
+   const { player } = data;
    // const [isOpen, setIsOpen] = useState(false);
    return (
       <div id={`${player.id}Card`} className={styles.container}>

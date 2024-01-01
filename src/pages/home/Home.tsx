@@ -79,7 +79,7 @@ function Home() {
    return (
       <div className={styles.container}>
          Home
-         <PlayerCard data={player} />
+         <PlayerCard player={player} />
          <button onClick={() => reset()}>Reset</button>
       </div>
    );

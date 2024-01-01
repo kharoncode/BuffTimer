@@ -82,6 +82,5 @@ const formatPlayer = (el: dataEl) => {
 export const formatPlayers = (data: data) => {
    const players: players = {};
    data.map((el) => (players[`${el.id}`] = formatPlayer(el)));
-   console.log(players);
    return players;
 };

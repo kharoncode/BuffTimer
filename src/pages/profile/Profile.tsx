@@ -1,3 +1,4 @@
+import styles from './profile.module.css';
 import PlayerCard from '@/components/playerCard/PlayerCard';
 import { getPlayers, getProfile } from '@/router/selectors';
 import { useSelector } from 'react-redux';
@@ -14,10 +15,12 @@ function Profile() {
          ) : loading ? (
             <div>Loading ...</div>
          ) : (
-            <PlayerCard
-               key={`${players[profile.id].id}-player`}
-               data={players[profile.id]}
-            />
+            <div className={styles.playersContainer}>
+               <PlayerCard
+                  key={`${players[profile.id].id}-player`}
+                  player={players[profile.id]}
+               />
+            </div>
          )}
       </div>
    );

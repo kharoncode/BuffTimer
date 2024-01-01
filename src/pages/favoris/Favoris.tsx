@@ -1,3 +1,4 @@
+import styles from './favoris.module.css';
 import PlayerCard from '@/components/playerCard/PlayerCard';
 import { getFavoris, getPlayers } from '@/router/selectors';
 import formatFavoris from '@/utils/formatFavoris';
@@ -8,14 +9,16 @@ function Favoris() {
    const players = useSelector(getPlayers);
    return (
       <div>
-         {favoris.map((el) => {
-            return (
-               <PlayerCard
-                  key={`${players.players[el].id}-player`}
-                  data={players.players[el]}
-               />
-            );
-         })}
+         <div className={styles.playersContainer}>
+            {favoris.map((el) => {
+               return (
+                  <PlayerCard
+                     key={`${players.players[el].id}-player`}
+                     player={players.players[el]}
+                  />
+               );
+            })}
+         </div>
       </div>
    );
 }

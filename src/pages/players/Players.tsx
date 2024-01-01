@@ -18,7 +18,7 @@ function Players() {
                {Object.keys(players).map((key) => (
                   <PlayerCard
                      key={`${players[key].id}-player`}
-                     data={players[key]}
+                     player={players[key]}
                   />
                ))}
             </div>
