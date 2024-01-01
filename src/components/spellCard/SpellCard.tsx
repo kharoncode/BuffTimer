@@ -10,6 +10,8 @@ const SpellContainer = styled.div`
    border-radius: 5px;
    display: flex;
    justify-content: space-between;
+   align-items: center;
+   text-align: center;
    width: 100%;
    height: 100%;
    background-color: ${({ color }) => color};
@@ -66,7 +68,11 @@ const SpellCard: React.FC<data> = (data) => {
    return (
       <div className={styles.container}>
          <SpellContainer color={color}>
-            <img src={`/pictures/spells/${id}.gif`} alt={`${name}`}></img>
+            <img
+               className={styles.spellPicture}
+               src={`/pictures/spells/${id}.gif`}
+               alt={`${name}`}
+            ></img>
             <div className={styles.title}>{name}</div>
             <Timer date={date} setIsOver={setIsOver} />
             <img

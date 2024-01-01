@@ -32,7 +32,7 @@ function Home() {
             {
                id: 'grandeBenedictionDeKeldar',
                name: 'Grd Bénédiction de Keldar',
-               date: null,
+               date: 1705566668827,
             },
             {
                id: 'lameDeJustice',
@@ -47,7 +47,7 @@ function Home() {
             {
                id: 'regenerationMineure',
                name: 'Régénération Mineure',
-               date: 1801122802779,
+               date: 1705566668827,
             },
             {
                id: 'resistance',
@@ -67,7 +67,7 @@ function Home() {
             {
                id: 'capriceDuDestin',
                name: 'Caprice du Destin',
-               date: 1801122802779,
+               date: 1705566668827,
             },
             {
                id: 'chatiment',
