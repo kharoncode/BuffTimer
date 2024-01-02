@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 import { getAuth, getProfile } from '@/router/selectors';
 import { store } from '@/router/store';
 import { loginSlice } from '@/pages/login/loginSlice';
+import { playersSlice } from '@/pages/players/playersSlice';
 
 function Header() {
    const navigate = useNavigate();
@@ -13,6 +14,7 @@ function Header() {
 
    const logOut = () => {
       store.dispatch(loginSlice.actions.resetLogin());
+      store.dispatch(playersSlice.actions.resetPlayers());
       navigate('/login');
    };
    //const profile: boolean = false;
