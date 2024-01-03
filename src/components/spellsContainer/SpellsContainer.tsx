@@ -35,6 +35,7 @@ const SpellsContainer = (data: data) => {
                   key={`${player.id}-${index}-spell`}
                   id={el.id}
                   name={el.name}
+                  category={el.category}
                   date={el.date}
                   isOpen={isOpen}
                />

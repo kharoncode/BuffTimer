@@ -1,7 +1,5 @@
 import styles from './spellCard.module.css';
 import styled from 'styled-components';
-import close from '../../assets/icones/close.svg';
-//import ok from '../../assets/ok.svg';
 import { useState } from 'react';
 import Timer from '../timer/Timer';
 
@@ -19,20 +17,6 @@ const SpellContainer = styled.div`
    z-index: 100;
 `;
 
-/* const DeleteContainer = styled.div`
-   position: absolute;
-   display: flex;
-   flex-direction: column;
-   justify-content: center;
-   border-radius: 0 5px 5px 0;
-   height: 100%;
-   width: 50px;
-   background-color: ${({ color }) => color};
-   right: 0;
-   top: 0;
-   z-index: 1;
-`; */
-
 // function removeSpell(id, spell, store, setDeleted) {
 //    store
 //       .edit('spell', {
@@ -49,24 +33,20 @@ const SpellContainer = styled.div`
 type data = {
    id: string;
    name: string;
+   category: string;
    date: number;
    isOpen: boolean;
 };
 
 const SpellCard: React.FC<data> = (data) => {
-   const { id, name, date, isOpen } = data;
-   //const [deleted, setDeleted] = useState(false);
-   const [toBeDeleted, setToBeDeleted] = useState(false);
+   const { id, name, category, date, isOpen } = data;
    const [isOver, setIsOver] = useState(false);
-   const [time, setTime] = useState('');
    if (isOver) {
       console.log('over');
    }
 
-   const color = 'rgba(255, 186, 83, 1)';
-   // category === 'justice' ? 'rgba(255, 186, 83, 1)' : 'rgba(4, 215, 251, 1)';
-
-   // const delColor = deleted ? '#66ff57' : 'red';
+   const color =
+      category === 'justice' ? 'rgba(255, 186, 83, 1)' : 'rgba(4, 215, 251, 1)';
    return (
       <div className={styles.container}>
          {isOpen ? (
@@ -78,32 +58,10 @@ const SpellCard: React.FC<data> = (data) => {
                ></img>
 
                <div className={styles.title}>{name}</div>
-               <Timer
-                  date={date}
-                  setIsOver={setIsOver}
-                  setTime={setTime}
-                  isOpen={isOpen}
-               />
-               <img
-                  className={styles.close}
-                  src={close}
-                  alt="close"
-                  onClick={() => {
-                     toBeDeleted ? setToBeDeleted(false) : setToBeDeleted(true);
-                  }}
-               />
+               <Timer date={date} setIsOver={setIsOver} />
             </SpellContainer>
          ) : (
-            <span
-               className={styles.spellPictureRound}
-               title={`${name} : ${time}`}
-            >
-               <Timer
-                  date={date}
-                  setIsOver={setIsOver}
-                  setTime={setTime}
-                  isOpen={isOpen}
-               />
+            <span className={styles.spellPictureRound} title={`${name}`}>
                <img
                   className={styles.spellPictureRound}
                   src={`/pictures/spells/${id}.gif`}
@@ -111,17 +69,6 @@ const SpellCard: React.FC<data> = (data) => {
                ></img>
             </span>
          )}
-
-         {/* <DeleteContainer color={delColor}>
-            <img
-               className={styles.deleteButton}
-               src={deleted ? ok : close}
-               alt="deleted ? valide : close"
-               // onClick={() => {
-               //    removeSpell(id, name, store, setDeleted);
-               // }}
-            />
-         </DeleteContainer> */}
       </div>
    );
 };

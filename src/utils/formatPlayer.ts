@@ -22,6 +22,7 @@ export type data = dataEl[];
 type spell = {
    id: string;
    name: string;
+   category: string;
    date: null | number;
 };
 
@@ -42,24 +43,35 @@ export type players = { [key: string]: player };
 
 const formatPlayer = (el: dataEl) => {
    const spellsName = {
-      benedictionDeKeldar: 'Bénédiction de Keldar',
-      attaqueSacree: 'Attaque Sacrée',
-      grandeBenedictionDeKeldar: 'Grd Bénédiction de Keldar',
-      lameDeJustice: 'Lame de Justice',
-      transcendance: 'Transcendance',
-      regenerationMineure: 'Régénération Mineure',
-      resistance: 'Résistance',
-      salutDuDivin: 'Salut du Divin',
-      regeneration: 'Régénération',
-      capriceDuDestin: 'Caprice du Destin',
-      chatiment: 'Chatiment',
+      benedictionDeKeldar: {
+         name: 'Bénédiction de Keldar',
+         category: 'justice',
+      },
+      attaqueSacree: { name: 'Attaque Sacrée', category: 'justice' },
+      grandeBenedictionDeKeldar: {
+         name: 'Grd Bénédiction de Keldar',
+         category: 'justice',
+      },
+      lameDeJustice: { name: 'Lame de Justice', category: 'justice' },
+      transcendance: { name: 'Transcendance', category: 'justice' },
+      regenerationMineure: {
+         name: 'Régénération Mineure',
+         category: 'protection',
+      },
+      resistance: { name: 'Résistance', category: 'protection' },
+      salutDuDivin: { name: 'Salut du Divin', category: 'protection' },
+      regeneration: { name: 'Régénération', category: 'protection' },
+      capriceDuDestin: { name: 'Caprice du Destin', category: 'protection' },
+      chatiment: { name: 'Chatiment', category: 'protection' },
    };
 
    const spells: spells = [];
    for (let i = 5; i < Object.keys(el).length; i++) {
       spells.push({
          id: Object.keys(el)[i],
-         name: spellsName[Object.keys(el)[i] as keyof typeof spellsName],
+         name: spellsName[Object.keys(el)[i] as keyof typeof spellsName].name,
+         category:
+            spellsName[Object.keys(el)[i] as keyof typeof spellsName].category,
          date:
             Object.values(el)[i] === 'null'
                ? null
