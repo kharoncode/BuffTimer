@@ -1,5 +1,5 @@
 import { formatPlayers } from '@/utils/formatPlayer';
-import type { players } from '@/utils/formatPlayer';
+import type { data, players } from '@/utils/formatPlayer';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
 export type playersState = {
@@ -19,7 +19,7 @@ export const fetchPlayers = createAsyncThunk(
          },
       })
          .then((result) => result.json())
-         .then((data) => {
+         .then((data: data) => {
             return formatPlayers(data);
          });
    }

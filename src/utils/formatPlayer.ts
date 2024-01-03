@@ -17,7 +17,7 @@ type dataEl = {
    chatiment: string;
 };
 
-type data = dataEl[];
+export type data = dataEl[];
 
 type spell = {
    id: string;
