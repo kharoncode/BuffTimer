@@ -2,6 +2,7 @@ import styles from './home.module.css';
 import { store } from '@/router/store';
 import { playersSlice } from '@/pages/players/playersSlice';
 import PlayersContainer from '@/components/playersContainer/PlayersContainer';
+import { useState } from 'react';
 
 function Home() {
    const reset = () => {
@@ -89,10 +90,13 @@ function Home() {
       },
    };
 
+   const [modale, setModale] = useState({});
+   console.log(modale);
+
    return (
       <div className={styles.container}>
          Home
-         <PlayersContainer players={players} />
+         <PlayersContainer players={players} setModale={setModale} />
          <button onClick={() => reset()}>Reset</button>
       </div>
    );
