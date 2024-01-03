@@ -4,14 +4,7 @@ import type { players } from '@/utils/formatPlayer';
 
 export type profile = {
    id: string;
-   password: string;
-   name: string;
-   intelligence: number;
-   favoris: [string];
-};
-
-export type profileFormat = {
-   id: string;
+   password?: string;
    name: string;
    intelligence: number;
    favoris: [string];
@@ -19,7 +12,7 @@ export type profileFormat = {
 
 type loginState = {
    loading: boolean;
-   profile: null | profileFormat;
+   profile: null | profile;
    error: null | string | undefined;
    auth: boolean;
    favoris: players;
