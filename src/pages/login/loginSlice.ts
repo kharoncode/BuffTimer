@@ -10,9 +10,16 @@ export type profile = {
    favoris: [string];
 };
 
+export type profileFormat = {
+   id: string;
+   name: string;
+   intelligence: number;
+   favoris: [string];
+};
+
 type loginState = {
    loading: boolean;
-   profile: null | profile;
+   profile: null | profileFormat;
    error: null | string | undefined;
    auth: boolean;
    favoris: players;
@@ -39,7 +46,12 @@ export const fetchProfile = createAsyncThunk(
                return el.id === log.login && el.password === log.password;
             });
             if (filter.length !== 0) {
-               return filter[0];
+               return {
+                  id: filter[0].id,
+                  name: filter[0].name,
+                  intelligence: filter[0].intelligence,
+                  favoris: filter[0].favoris,
+               };
             } else {
                return rejectWithValue({
                   error: 'Login Failed: Your user ID or password is incorrect',
@@ -53,7 +65,6 @@ const initialState: loginState = {
    loading: false,
    profile: {
       id: '',
-      password: '',
       name: '',
       intelligence: 0,
       favoris: [''],
