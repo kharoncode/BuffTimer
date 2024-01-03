@@ -50,10 +50,11 @@ type data = {
    id: string;
    name: string;
    date: number;
+   isOpen: boolean;
 };
 
 const SpellCard: React.FC<data> = (data) => {
-   const { id, name, date } = data;
+   const { id, name, date, isOpen } = data;
    //const [deleted, setDeleted] = useState(false);
    const [toBeDeleted, setToBeDeleted] = useState(false);
    const [isOver, setIsOver] = useState(false);
@@ -67,23 +68,33 @@ const SpellCard: React.FC<data> = (data) => {
    // const delColor = deleted ? '#66ff57' : 'red';
    return (
       <div className={styles.container}>
-         <SpellContainer color={color}>
+         {isOpen ? (
+            <SpellContainer color={color}>
+               <img
+                  className={styles.spellPicture}
+                  src={`/pictures/spells/${id}.gif`}
+                  alt={`${name}`}
+               ></img>
+
+               <div className={styles.title}>{name}</div>
+               <Timer date={date} setIsOver={setIsOver} />
+               <img
+                  className={styles.close}
+                  src={close}
+                  alt="close"
+                  onClick={() => {
+                     toBeDeleted ? setToBeDeleted(false) : setToBeDeleted(true);
+                  }}
+               />
+            </SpellContainer>
+         ) : (
             <img
-               className={styles.spellPicture}
+               className={styles.spellPictureRound}
                src={`/pictures/spells/${id}.gif`}
                alt={`${name}`}
             ></img>
-            <div className={styles.title}>{name}</div>
-            <Timer date={date} setIsOver={setIsOver} />
-            <img
-               className={styles.close}
-               src={close}
-               alt="close"
-               onClick={() => {
-                  toBeDeleted ? setToBeDeleted(false) : setToBeDeleted(true);
-               }}
-            />
-         </SpellContainer>
+         )}
+
          {/* <DeleteContainer color={delColor}>
             <img
                className={styles.deleteButton}

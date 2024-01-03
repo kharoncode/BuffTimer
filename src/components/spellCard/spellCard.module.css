@@ -19,6 +19,11 @@
    height: 100%;
 }
 
+.spellPictureRound {
+   border-radius: 5px;
+   height: 100%;
+}
+
 .close {
    margin-right: 5px;
    width: 15px;

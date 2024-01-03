@@ -1,5 +1,12 @@
 import styled from 'styled-components';
 
+type life = {
+   life: {
+      currentLife: number;
+      maxLife: number;
+   };
+};
+
 const LifeElt = styled.div`
    font-weight: 500;
    display: flex;
@@ -17,12 +24,6 @@ const LifeElt = styled.div`
       rgba(255, 0, 83, 1) 100%
    );
 `;
-type life = {
-   life: {
-      currentLife: number;
-      maxLife: number;
-   };
-};
 
 export default function LifeBar(life: life) {
    const lifeInfo = life.life;

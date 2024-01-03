@@ -5,6 +5,7 @@ import { playersState } from '../players/playersSlice';
 import PlayerCard from '@/components/playerCard/PlayerCard';
 import { loginSlice } from '../login/loginSlice';
 import formatFavoris from '@/utils/formatFavoris';
+import { useEffect } from 'react';
 
 function Profile() {
    const store = useStore();
@@ -12,11 +13,13 @@ function Profile() {
    const { loading, players, error }: playersState = useSelector(getPlayers);
 
    const favorisFormated = useSelector(getFavoris);
-   if (Object.keys(favorisFormated).length === 0) {
-      store.dispatch(
-         loginSlice.actions.addFavoris(formatFavoris(favoris, players))
-      );
-   }
+   useEffect(() => {
+      if (Object.keys(favorisFormated).length === 0) {
+         store.dispatch(
+            loginSlice.actions.addFavoris(formatFavoris(favoris, players))
+         );
+      }
+   }, []);
 
    return (
       <div className={styles.container}>

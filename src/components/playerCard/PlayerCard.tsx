@@ -1,7 +1,7 @@
 import LifeBar from '@components/lifeBar/lifeBar';
-import SpellCard from '@components/spellCard/SpellCard';
 import styles from './playerCard.module.css';
 import type { player } from '@/utils/formatPlayer';
+import SpellsContainer from '../spellsContainer/SpellsContainer';
 
 type data = { player: player };
 
@@ -18,20 +18,7 @@ const PlayerCard: React.FC<data> = (data: data) => {
             <div className={styles.title}>{player.name}</div>
             <LifeBar life={player.life} />
          </div>
-         <div className={styles.spellContainer}>
-            {player.spells.map((el, index: number) =>
-               el.date === null ? (
-                  ''
-               ) : (
-                  <SpellCard
-                     key={`${player.id}-${index}-spell`}
-                     id={el.id}
-                     name={el.name}
-                     date={el.date}
-                  />
-               )
-            )}
-         </div>
+         <SpellsContainer player={player} />
       </div>
    );
 };
