@@ -58,6 +58,7 @@ const SpellCard: React.FC<data> = (data) => {
    //const [deleted, setDeleted] = useState(false);
    const [toBeDeleted, setToBeDeleted] = useState(false);
    const [isOver, setIsOver] = useState(false);
+   const [time, setTime] = useState('');
    if (isOver) {
       console.log('over');
    }
@@ -77,7 +78,12 @@ const SpellCard: React.FC<data> = (data) => {
                ></img>
 
                <div className={styles.title}>{name}</div>
-               <Timer date={date} setIsOver={setIsOver} />
+               <Timer
+                  date={date}
+                  setIsOver={setIsOver}
+                  setTime={setTime}
+                  isOpen={isOpen}
+               />
                <img
                   className={styles.close}
                   src={close}
@@ -88,11 +94,22 @@ const SpellCard: React.FC<data> = (data) => {
                />
             </SpellContainer>
          ) : (
-            <img
+            <span
                className={styles.spellPictureRound}
-               src={`/pictures/spells/${id}.gif`}
-               alt={`${name}`}
-            ></img>
+               title={`${name} : ${time}`}
+            >
+               <Timer
+                  date={date}
+                  setIsOver={setIsOver}
+                  setTime={setTime}
+                  isOpen={isOpen}
+               />
+               <img
+                  className={styles.spellPictureRound}
+                  src={`/pictures/spells/${id}.gif`}
+                  alt={`${name}`}
+               ></img>
+            </span>
          )}
 
          {/* <DeleteContainer color={delColor}>
