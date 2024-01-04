@@ -6,7 +6,7 @@ import { useDispatch, useSelector, useStore } from 'react-redux';
 import { getPlayers, getProfile } from '@/router/selectors';
 import { loginSlice, uptadeProfile } from '@/pages/login/loginSlice';
 import formatFavoris from '@/utils/formatFavoris';
-import { playersSlice } from '@/pages/players/playersSlice';
+import { playersSlice, uptadePlayersLife } from '@/pages/players/playersSlice';
 
 type data = {
    setModale: React.Dispatch<React.SetStateAction<modale>>;
@@ -15,7 +15,8 @@ type data = {
 const EditProfileModale: FunctionComponent<data> = (data) => {
    const dispatch = useDispatch();
    const store = useStore();
-   const [isLoading, setLoading] = useState(false);
+   const [isLoadingEdit, setLoadingEdit] = useState(false);
+   const [isLoadingLife, setLoadingLife] = useState(false);
    const { setModale } = data;
    const { players } = useSelector(getPlayers);
    const { id, name, email, intelligence, favoris } = useSelector(getProfile);
@@ -23,7 +24,7 @@ const EditProfileModale: FunctionComponent<data> = (data) => {
 
    const handleSubmitUpdateProfile = (e: FormEvent<HTMLFormElement>) => {
       e.preventDefault();
-      setLoading(true);
+      setLoadingEdit(true);
       const result = {
          id: id,
          email: e.currentTarget.email.value,
@@ -37,12 +38,13 @@ const EditProfileModale: FunctionComponent<data> = (data) => {
                formatFavoris(result.favoris, players)
             )
          );
-         setLoading(false);
+         setLoadingEdit(false);
       });
    };
 
    const handleSubmitUpdateLife = (e: FormEvent<HTMLFormElement>) => {
       e.preventDefault();
+      setLoadingLife(true);
       const result = {
          id: id,
          life: {
@@ -50,9 +52,10 @@ const EditProfileModale: FunctionComponent<data> = (data) => {
             maxLife: parseInt(e.currentTarget.maxLife.value),
          },
       };
-      dispatch(uptadePlayerLife(result)).then(() => {
+      dispatch(uptadePlayersLife(result)).then(() => {
          store.dispatch(playersSlice.actions.updateLife(result));
       });
+      setLoadingLife(false);
    };
 
    return (
@@ -98,7 +101,7 @@ const EditProfileModale: FunctionComponent<data> = (data) => {
                />
             </div>
             <button type="submit" className={styles.button}>
-               {isLoading ? 'Loading ...' : 'Envoyer'}
+               {isLoadingEdit ? 'Loading ...' : 'Envoyer'}
             </button>
          </form>
          <form
@@ -125,7 +128,7 @@ const EditProfileModale: FunctionComponent<data> = (data) => {
                />
             </div>
             <button type="submit" className={styles.button}>
-               {isLoading ? 'Loading ...' : 'Envoyer'}
+               {isLoadingLife ? 'Loading ...' : 'Envoyer'}
             </button>
          </form>
       </div>
