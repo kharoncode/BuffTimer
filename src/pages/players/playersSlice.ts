@@ -25,16 +25,69 @@ export const fetchPlayers = createAsyncThunk(
    }
 );
 
+type newLife = {
+   id: string;
+   life: {
+      currentLife: number;
+      maxLife: number;
+   };
+};
+
+export const uptadePlayersLife = createAsyncThunk(
+   'players/uptadePlayersLife',
+   async (newLife: newLife) => {
+      const { id, life } = newLife;
+      const body = {
+         condition: { id: id },
+         set: {
+            currentLife: life.currentLife,
+            maxLife: life.maxLife,
+         },
+      };
+      //return fetch(`${import.meta.env.VITE_MOCKURL}profiles.json`, {
+      return fetch(`${import.meta.env.VITE_API}/players`, {
+         method: 'put',
+         headers: {
+            'Content-Type': 'application/json',
+         },
+         body: JSON.stringify(body),
+      })
+         .then((result) => result.json())
+         .then((data) => {
+            console.log(data);
+            return {
+               id: id,
+               life: {
+                  currentLife: life.currentLife,
+                  maxLife: life.maxLife,
+               },
+            };
+         });
+   }
+);
+
 const initialState: playersState = {
    loading: false,
    players: {},
    error: null,
 };
 
+type action = {
+   payload: newLife;
+   type: string;
+};
+
 export const playersSlice = createSlice({
    name: 'players',
    initialState,
    reducers: {
+      updateLife: (state, action: action) => {
+         const { id, life } = action.payload;
+         const player = { ...state.players[id], life: life };
+         const players = { ...state.players };
+         players[id] = player;
+         return { ...state, players: players };
+      },
       resetPlayers: () => {
          return initialState;
       },

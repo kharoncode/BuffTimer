@@ -2,7 +2,7 @@ import type { players } from './formatPlayer';
 
 const formatFavoris = (list: string, players: players) => {
    const favoris: players = {};
-   if (list === '') {
+   if (list === 'null') {
       return favoris;
    }
    const favorisIds = list.split(' ');
