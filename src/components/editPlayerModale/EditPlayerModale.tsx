@@ -86,21 +86,27 @@ const EditPlayerModale: FunctionComponent<data> = (data) => {
 
    const handleSubmitNew = (e: FormEvent<HTMLFormElement>, id: string) => {
       e.preventDefault();
+      const spell = e.currentTarget.spellListNew.value;
       const submitData = {
-         spell: e.currentTarget.spellListNew.value,
+         spell: spell,
          int: intelligence,
          critic: e.currentTarget.critic.checked,
       };
-      const result = { id: id, date: spellDate(submitData) };
+      const result = { id: id, spell: spell, date: spellDate(submitData) };
       console.log(result);
    };
 
    const handleSubmitOld = (e: FormEvent<HTMLFormElement>, id: string) => {
       e.preventDefault();
+      const spell = e.currentTarget.spellListOld.value;
       const day = parseInt(e.currentTarget.day.value) * 86400000;
       const houre = parseInt(e.currentTarget.hour.value) * 3600000;
       const minute = parseInt(e.currentTarget.minute.value) * 60000;
-      const result = { id: id, date: day + houre + minute + Date.now() };
+      const result = {
+         id: id,
+         spell: spell,
+         date: day + houre + minute + Date.now(),
+      };
       console.log(result);
    };
 
