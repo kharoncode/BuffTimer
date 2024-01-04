@@ -16,6 +16,12 @@
    width: 25px;
 }
 
+.formContainer {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+}
+
 .form {
    display: flex;
    flex-direction: column;
@@ -54,4 +60,16 @@
 .select {
    text-align: center;
    margin-top: 20px;
+}
+
+.error {
+   width: 150px;
+   padding: 5px;
+   display: flex;
+   justify-content: center;
+   text-align: center;
+   background-color: rgba(255, 0, 0, 0.1);
+   border: solid 2px #dd1919;
+   border-radius: 5px;
+   color: black;
 }

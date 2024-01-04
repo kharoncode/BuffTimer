@@ -22,6 +22,7 @@ const EditProfileModale: FunctionComponent<data> = (data) => {
    const dispatch = useDispatch<AppDispatch>();
    const store = useStore();
    const [isLoading, setLoading] = useState(false);
+   const [error, setError] = useState(false);
    const [choice, setChoice] = useState('Default');
    const { setModale } = data;
    const { players } = useSelector(getPlayers);
@@ -72,6 +73,9 @@ const EditProfileModale: FunctionComponent<data> = (data) => {
             password: newPassword,
          };
          dispatch(uptadeProfilePassword(result)).then(() => setLoading(false));
+      } else {
+         setLoading(false);
+         setError(true);
       }
    };
 
@@ -99,78 +103,82 @@ const EditProfileModale: FunctionComponent<data> = (data) => {
             <option value="Password">Modifier le mot de passe</option>
          </select>
          {choice === 'Profile' ? (
-            <form
-               className={styles.form}
-               onSubmit={(e) => {
-                  handleSubmitUpdateProfile(e);
-               }}
-            >
-               <div className={styles.inputLabel}>
-                  <h3>Modifier le profile</h3>
+            <div className={styles.formContainer}>
+               <form
+                  className={styles.form}
+                  onSubmit={(e) => {
+                     handleSubmitUpdateProfile(e);
+                  }}
+               >
+                  <div className={styles.inputLabel}>
+                     <h3>Modifier le profile</h3>
 
-                  <label htmlFor={`email`}>Email</label>
-                  <input
-                     type="text"
-                     id={`email`}
-                     required
-                     defaultValue={email}
-                  />
-                  <label htmlFor={`characterName`}>Nom</label>
-                  <input
-                     type="text"
-                     id={`characterName`}
-                     required
-                     defaultValue={name}
-                  />
-                  <label htmlFor={`intelligence`}>Intelligence</label>
-                  <input
-                     type="text"
-                     id={`intelligence`}
-                     required
-                     defaultValue={intelligence}
-                  />
-                  <label htmlFor={`favoris`}>Favoris</label>
-                  <input
-                     type="text"
-                     id={`favoris`}
-                     required
-                     defaultValue={favoris}
-                  />
-               </div>
-               <button type="submit" className={styles.button}>
-                  {isLoading ? 'Loading ...' : 'Envoyer'}
-               </button>
-            </form>
+                     <label htmlFor={`email`}>Email</label>
+                     <input
+                        type="text"
+                        id={`email`}
+                        required
+                        defaultValue={email}
+                     />
+                     <label htmlFor={`characterName`}>Nom</label>
+                     <input
+                        type="text"
+                        id={`characterName`}
+                        required
+                        defaultValue={name}
+                     />
+                     <label htmlFor={`intelligence`}>Intelligence</label>
+                     <input
+                        type="text"
+                        id={`intelligence`}
+                        required
+                        defaultValue={intelligence}
+                     />
+                     <label htmlFor={`favoris`}>Favoris</label>
+                     <input
+                        type="text"
+                        id={`favoris`}
+                        required
+                        defaultValue={favoris}
+                     />
+                  </div>
+                  <button type="submit" className={styles.button}>
+                     {isLoading ? 'Loading ...' : 'Envoyer'}
+                  </button>
+               </form>
+            </div>
          ) : choice === 'Life' ? (
-            <form
-               className={styles.form}
-               onSubmit={(e) => {
-                  handleSubmitUpdateLife(e);
-               }}
-            >
-               <div className={styles.inputLabel}>
-                  <h3>Modifier la vie</h3>
-                  <label htmlFor={`currentLife`}>Life</label>
-                  <input
-                     type="text"
-                     id={`currentLife`}
-                     required
-                     defaultValue={life.currentLife}
-                  />
-                  <label htmlFor={`maxLife`}>MaxLife</label>
-                  <input
-                     type="text"
-                     id={`maxLife`}
-                     required
-                     defaultValue={life.maxLife}
-                  />
-               </div>
-               <button type="submit" className={styles.button}>
-                  {isLoading ? 'Loading ...' : 'Envoyer'}
-               </button>
-            </form>
+            <div className={styles.formContainer}>
+               <form
+                  className={styles.form}
+                  onSubmit={(e) => {
+                     handleSubmitUpdateLife(e);
+                  }}
+               >
+                  <div className={styles.inputLabel}>
+                     <h3>Modifier la vie</h3>
+                     <label htmlFor={`currentLife`}>Life</label>
+                     <input
+                        type="text"
+                        id={`currentLife`}
+                        required
+                        defaultValue={life.currentLife}
+                     />
+                     <label htmlFor={`maxLife`}>MaxLife</label>
+                     <input
+                        type="text"
+                        id={`maxLife`}
+                        required
+                        defaultValue={life.maxLife}
+                     />
+                  </div>
+                  <button type="submit" className={styles.button}>
+                     {isLoading ? 'Loading ...' : 'Envoyer'}
+                  </button>
+               </form>
+            </div>
          ) : choice === 'Password' ? (
-            <div>
+            <div className={styles.formContainer}>
                <h3>Modifier le Mot de Passe</h3>
                <form
                   className={styles.form}
@@ -190,6 +198,13 @@ const EditProfileModale: FunctionComponent<data> = (data) => {
                      {isLoading ? 'Loading ...' : 'Envoyer'}
                   </button>
                </form>
+               {error ? (
+                  <div className={styles.error}>
+                     Les mots de passes ne sont pas identique !
+                  </div>
+               ) : (
+                  ''
+               )}
             </div>
          ) : (
             <></>
