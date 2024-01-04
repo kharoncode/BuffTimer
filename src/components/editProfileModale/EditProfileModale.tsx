@@ -4,19 +4,20 @@ import styles from './editProfileModale.module.css';
 import close from '@assets/icones/close.svg';
 import { useDispatch, useSelector, useStore } from 'react-redux';
 import { getPlayers, getProfile } from '@/router/selectors';
-import { loginSlice, uptadeProfile } from '@/pages/login/loginSlice';
+import { loginSlice, newData, uptadeProfile } from '@/pages/login/loginSlice';
 import formatFavoris from '@/utils/formatFavoris';
-import { playersSlice, uptadePlayersLife } from '@/pages/players/playersSlice';
+import { uptadePlayersLife } from '@/pages/players/playersSlice';
+import { AppDispatch } from '@/router/store';
 
 type data = {
    setModale: React.Dispatch<React.SetStateAction<modale>>;
 };
 
 const EditProfileModale: FunctionComponent<data> = (data) => {
-   const dispatch = useDispatch();
+   const dispatch = useDispatch<AppDispatch>();
    const store = useStore();
-   const [isLoadingEdit, setLoadingEdit] = useState(false);
-   const [isLoadingLife, setLoadingLife] = useState(false);
+   const [isLoading, setLoading] = useState(false);
+   const [choice, setChoice] = useState('Default');
    const { setModale } = data;
    const { players } = useSelector(getPlayers);
    const { id, name, email, intelligence, favoris } = useSelector(getProfile);
@@ -24,8 +25,8 @@ const EditProfileModale: FunctionComponent<data> = (data) => {
 
    const handleSubmitUpdateProfile = (e: FormEvent<HTMLFormElement>) => {
       e.preventDefault();
-      setLoadingEdit(true);
-      const result = {
+      setLoading(true);
+      const result: newData = {
          id: id,
          email: e.currentTarget.email.value,
          name: e.currentTarget.characterName.value,
@@ -38,13 +39,13 @@ const EditProfileModale: FunctionComponent<data> = (data) => {
                formatFavoris(result.favoris, players)
             )
          );
-         setLoadingEdit(false);
+         setLoading(false);
       });
    };
 
    const handleSubmitUpdateLife = (e: FormEvent<HTMLFormElement>) => {
       e.preventDefault();
-      setLoadingLife(true);
+      setLoading(true);
       const result = {
          id: id,
          life: {
@@ -52,10 +53,8 @@ const EditProfileModale: FunctionComponent<data> = (data) => {
             maxLife: parseInt(e.currentTarget.maxLife.value),
          },
       };
-      dispatch(uptadePlayersLife(result)).then(() => {
-         store.dispatch(playersSlice.actions.updateLife(result));
-      });
-      setLoadingLife(false);
+      dispatch(uptadePlayersLife(result));
+      setLoading(false);
    };
 
    return (
@@ -68,69 +67,97 @@ const EditProfileModale: FunctionComponent<data> = (data) => {
                setModale({ id: '', isOpen: false });
             }}
          />
-         <form
-            className={styles.form}
-            onSubmit={(e) => {
-               handleSubmitUpdateProfile(e);
+         <select
+            className={styles.select}
+            name="choice"
+            id={`choice`}
+            onChange={(e) => {
+               setChoice(e.target.value);
             }}
          >
-            <div className={styles.inputLabel}>
-               <h3>Modifier le profile</h3>
-               <label htmlFor={`email`}>Email</label>
-               <input type="text" id={`email`} required defaultValue={email} />
-               <label htmlFor={`characterName`}>Nom</label>
-               <input
-                  type="text"
-                  id={`characterName`}
-                  required
-                  defaultValue={name}
-               />
-               <label htmlFor={`intelligence`}>Intelligence</label>
-               <input
-                  type="text"
-                  id={`intelligence`}
-                  required
-                  defaultValue={intelligence}
-               />
-               <label htmlFor={`favoris`}>Favoris</label>
-               <input
-                  type="text"
-                  id={`favoris`}
-                  required
-                  defaultValue={favoris}
-               />
+            <option value="Default">Vous souhaitez :</option>
+            <option value="Profile">Modifier le Profile</option>
+            <option value="Life">Modifier la vie</option>
+            <option value="Password">Modifier le mot de passe</option>
+         </select>
+         {choice === 'Profile' ? (
+            <form
+               className={styles.form}
+               onSubmit={(e) => {
+                  handleSubmitUpdateProfile(e);
+               }}
+            >
+               <div className={styles.inputLabel}>
+                  <h3>Modifier le profile</h3>
+
+                  <label htmlFor={`email`}>Email</label>
+                  <input
+                     type="text"
+                     id={`email`}
+                     required
+                     defaultValue={email}
+                  />
+                  <label htmlFor={`characterName`}>Nom</label>
+                  <input
+                     type="text"
+                     id={`characterName`}
+                     required
+                     defaultValue={name}
+                  />
+                  <label htmlFor={`intelligence`}>Intelligence</label>
+                  <input
+                     type="text"
+                     id={`intelligence`}
+                     required
+                     defaultValue={intelligence}
+                  />
+                  <label htmlFor={`favoris`}>Favoris</label>
+                  <input
+                     type="text"
+                     id={`favoris`}
+                     required
+                     defaultValue={favoris}
+                  />
+               </div>
+               <button type="submit" className={styles.button}>
+                  {isLoading ? 'Loading ...' : 'Envoyer'}
+               </button>
+            </form>
+         ) : choice === 'Life' ? (
+            <form
+               className={styles.form}
+               onSubmit={(e) => {
+                  handleSubmitUpdateLife(e);
+               }}
+            >
+               <div className={styles.inputLabel}>
+                  <h3>Modifier la vie</h3>
+                  <label htmlFor={`currentLife`}>Life</label>
+                  <input
+                     type="text"
+                     id={`currentLife`}
+                     required
+                     defaultValue={life.currentLife}
+                  />
+                  <label htmlFor={`maxLife`}>MaxLife</label>
+                  <input
+                     type="text"
+                     id={`maxLife`}
+                     required
+                     defaultValue={life.maxLife}
+                  />
+               </div>
+               <button type="submit" className={styles.button}>
+                  {isLoading ? 'Loading ...' : 'Envoyer'}
+               </button>
+            </form>
+         ) : choice === 'Password' ? (
+            <div>
+               <h3>Modifier le Mot de Passe</h3>
             </div>
-            <button type="submit" className={styles.button}>
-               {isLoadingEdit ? 'Loading ...' : 'Envoyer'}
-            </button>
-         </form>
-         <form
-            className={styles.form}
-            onSubmit={(e) => {
-               handleSubmitUpdateLife(e);
-            }}
-         >
-            <div className={styles.inputLabel}>
-               Modifier la vie
-               <label htmlFor={`currentLife`}>Life</label>
-               <input
-                  type="text"
-                  id={`currentLife`}
-                  required
-                  defaultValue={life.currentLife}
-               />
-               <label htmlFor={`maxLife`}>MaxLife</label>
-               <input
-                  type="text"
-                  id={`maxLife`}
-                  required
-                  defaultValue={life.maxLife}
-               />
-            </div>
-            <button type="submit" className={styles.button}>
-               {isLoadingLife ? 'Loading ...' : 'Envoyer'}
-            </button>
-         </form>
+         ) : (
+            <></>
+         )}
       </div>
    );
 };

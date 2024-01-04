@@ -50,3 +50,8 @@
    border-radius: 5px;
    font-weight: 700;
 }
+
+.select {
+   text-align: center;
+   margin-top: 20px;
+}

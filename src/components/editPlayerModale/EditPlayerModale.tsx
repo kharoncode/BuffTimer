@@ -2,9 +2,10 @@ import { type FormEvent, type FunctionComponent } from 'react';
 import type { modale } from '@/pages/players/Players';
 import styles from './editPlayerModale.module.css';
 import close from '@assets/icones/close.svg';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { getIntelligence, getPlayers } from '@/router/selectors';
 import { useState } from 'react';
+import { AppDispatch } from '@/router/store';
 
 type data = {
    modale: modale;
@@ -78,6 +79,7 @@ const SpellSelect = (data: spellType) => {
 };
 
 const EditPlayerModale: FunctionComponent<data> = (data) => {
+   const dispatch = useDispatch<AppDispatch>();
    const [isLoading, setLoading] = useState(false);
    const [choice, setChoice] = useState('Default');
    const { setModale, modale } = data;
@@ -138,9 +140,7 @@ const EditPlayerModale: FunctionComponent<data> = (data) => {
             <option value="New">Ajouter un nouveau sort</option>
             <option value="Old">Ajouter un sort en cours</option>
          </select>
-         {choice === 'Default' ? (
-            <></>
-         ) : choice === 'New' ? (
+         {choice === 'New' ? (
             <form
                className={styles.form}
                onSubmit={(e) => {
@@ -156,7 +156,7 @@ const EditPlayerModale: FunctionComponent<data> = (data) => {
                   {isLoading ? 'Loading ...' : 'Ajouter un sort'}
                </button>
             </form>
-         ) : (
+         ) : choice === 'Old' ? (
             <form
                className={styles.form}
                onSubmit={(e) => {
@@ -192,6 +192,8 @@ const EditPlayerModale: FunctionComponent<data> = (data) => {
                   {isLoading ? 'Loading ...' : 'Ajouter un sort'}
                </button>
             </form>
+         ) : (
+            <></>
          )}
       </div>
    );

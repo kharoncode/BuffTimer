@@ -66,28 +66,50 @@ export const uptadePlayersLife = createAsyncThunk(
    }
 );
 
+type newSpell = {
+   id: string;
+   spell: string;
+   date: number;
+};
+
+type set = { [key: string]: number };
+
+export const uptadePlayersBuff = createAsyncThunk(
+   'players/uptadePlayersBuff',
+   async (newSpell: newSpell) => {
+      const { id, spell, date } = newSpell;
+      const set: set = {};
+      set[spell] = date;
+      const body = {
+         condition: { id: id },
+         set: set,
+      };
+      //return fetch(`${import.meta.env.VITE_MOCKURL}profiles.json`, {
+      return fetch(`${import.meta.env.VITE_API}/players`, {
+         method: 'put',
+         headers: {
+            'Content-Type': 'application/json',
+         },
+         body: JSON.stringify(body),
+      })
+         .then((result) => result.json())
+         .then((data) => {
+            console.log(data);
+            return newSpell;
+         });
+   }
+);
+
 const initialState: playersState = {
    loading: false,
    players: {},
    error: null,
 };
 
-type action = {
-   payload: newLife;
-   type: string;
-};
-
 export const playersSlice = createSlice({
    name: 'players',
    initialState,
    reducers: {
-      updateLife: (state, action: action) => {
-         const { id, life } = action.payload;
-         const player = { ...state.players[id], life: life };
-         const players = { ...state.players };
-         players[id] = player;
-         return { ...state, players: players };
-      },
       resetPlayers: () => {
          return initialState;
       },
@@ -107,6 +129,22 @@ export const playersSlice = createSlice({
          console.log('error');
          state.loading = false;
          state.players = {};
+         state.error = action.error.message;
+      });
+      builder.addCase(uptadePlayersLife.pending, (state) => {
+         console.log('pending');
+         state.loading = true;
+      });
+      builder.addCase(uptadePlayersLife.fulfilled, (state, action) => {
+         console.log('fulfilled');
+         const { id, life } = action.payload;
+         state.loading = false;
+         state.players[id].life = life;
+         state.error = null;
+      });
+      builder.addCase(uptadePlayersLife.rejected, (state, action) => {
+         console.log('error');
+         state.loading = false;
          state.error = action.error.message;
       });
    },

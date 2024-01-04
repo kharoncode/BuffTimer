@@ -45,7 +45,7 @@ export const fetchProfile = createAsyncThunk(
                   id: filter[0].id,
                   email: filter[0].email,
                   name: filter[0].name,
-                  intelligence: filter[0].intelligence,
+                  intelligence: parseInt(filter[0].intelligence),
                   favoris: filter[0].favoris,
                };
             } else {
@@ -57,7 +57,7 @@ export const fetchProfile = createAsyncThunk(
    }
 );
 
-type newData = {
+export type newData = {
    id: string;
    email: string;
    name: string;
