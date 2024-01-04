@@ -6,6 +6,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getIntelligence, getPlayers } from '@/router/selectors';
 import { useState } from 'react';
 import { AppDispatch } from '@/router/store';
+import { spell } from '@/utils/formatPlayer';
+import { uptadePlayersBuff } from '@/pages/players/playersSlice';
 
 type data = {
    modale: modale;
@@ -87,6 +89,10 @@ const EditPlayerModale: FunctionComponent<data> = (data) => {
    const player = players[modale.id];
    const intelligence = useSelector(getIntelligence);
 
+   const spellIndex = (spell: string) => {
+      return player.spells.findIndex((el: spell) => el.id === spell);
+   };
+
    const handleSubmitNew = (e: FormEvent<HTMLFormElement>, id: string) => {
       e.preventDefault();
       setLoading(true);
@@ -96,9 +102,13 @@ const EditPlayerModale: FunctionComponent<data> = (data) => {
          int: intelligence,
          critic: e.currentTarget.critic.checked,
       };
-      const result = { id: id, spell: spell, date: spellDate(submitData) };
-      console.log(result);
-      setLoading(false);
+      const result = {
+         index: spellIndex(spell),
+         id: id,
+         spell: spell,
+         date: spellDate(submitData),
+      };
+      dispatch(uptadePlayersBuff(result)).then(() => setLoading(false));
    };
 
    const handleSubmitOld = (e: FormEvent<HTMLFormElement>, id: string) => {
@@ -109,12 +119,12 @@ const EditPlayerModale: FunctionComponent<data> = (data) => {
       const houre = parseInt(e.currentTarget.hour.value) * 3600000;
       const minute = parseInt(e.currentTarget.minute.value) * 60000;
       const result = {
+         index: spellIndex(spell),
          id: id,
          spell: spell,
          date: day + houre + minute + Date.now(),
       };
-      console.log(result);
-      setLoading(false);
+      dispatch(uptadePlayersBuff(result)).then(() => setLoading(false));
    };
 
    return (
@@ -172,6 +182,7 @@ const EditPlayerModale: FunctionComponent<data> = (data) => {
                      type="text"
                      id={`day`}
                      required
+                     defaultValue={0}
                   />
                   <label htmlFor={`hour`}>Heure</label>
                   <input
@@ -179,6 +190,7 @@ const EditPlayerModale: FunctionComponent<data> = (data) => {
                      type="text"
                      id={`hour`}
                      required
+                     defaultValue={0}
                   />
                   <label htmlFor={`minute`}>Minute</label>
                   <input
@@ -186,6 +198,7 @@ const EditPlayerModale: FunctionComponent<data> = (data) => {
                      type="text"
                      id={`minute`}
                      required
+                     defaultValue={1}
                   />
                </div>
                <button type="submit" className={styles.button}>

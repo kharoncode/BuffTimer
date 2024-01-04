@@ -53,8 +53,7 @@ const EditProfileModale: FunctionComponent<data> = (data) => {
             maxLife: parseInt(e.currentTarget.maxLife.value),
          },
       };
-      dispatch(uptadePlayersLife(result));
-      setLoading(false);
+      dispatch(uptadePlayersLife(result)).then(() => setLoading(false));
    };
 
    return (

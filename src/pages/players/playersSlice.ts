@@ -11,8 +11,8 @@ export type playersState = {
 export const fetchPlayers = createAsyncThunk(
    'players/fetchPlayers',
    async () => {
-      return fetch(`${import.meta.env.VITE_MOCKURL}players.json`, {
-         //return fetch(`${import.meta.env.VITE_API}/players`, {
+      //return fetch(`${import.meta.env.VITE_MOCKURL}players.json`, {
+      return fetch(`${import.meta.env.VITE_API}/players`, {
          method: 'get',
          headers: {
             'Content-Type': 'application/json',
@@ -53,8 +53,7 @@ export const uptadePlayersLife = createAsyncThunk(
          body: JSON.stringify(body),
       })
          .then((result) => result.json())
-         .then((data) => {
-            console.log(data);
+         .then(() => {
             return {
                id: id,
                life: {
@@ -67,6 +66,7 @@ export const uptadePlayersLife = createAsyncThunk(
 );
 
 type newSpell = {
+   index: number;
    id: string;
    spell: string;
    date: number;
@@ -93,8 +93,7 @@ export const uptadePlayersBuff = createAsyncThunk(
          body: JSON.stringify(body),
       })
          .then((result) => result.json())
-         .then((data) => {
-            console.log(data);
+         .then(() => {
             return newSpell;
          });
    }
@@ -145,6 +144,19 @@ export const playersSlice = createSlice({
       builder.addCase(uptadePlayersLife.rejected, (state, action) => {
          console.log('error');
          state.loading = false;
+         state.error = action.error.message;
+      });
+      builder.addCase(uptadePlayersBuff.pending, () => {
+         console.log('pending');
+      });
+      builder.addCase(uptadePlayersBuff.fulfilled, (state, action) => {
+         console.log('fulfilled');
+         const { index, id, date } = action.payload;
+         state.players[id].spells[index].date = date;
+         state.error = null;
+      });
+      builder.addCase(uptadePlayersBuff.rejected, (state, action) => {
+         console.log('error');
          state.error = action.error.message;
       });
    },
