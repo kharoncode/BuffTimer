@@ -23,7 +23,7 @@ function Home() {
                id: 'benedictionDeKeldar',
                name: 'Bénédiction de Keldar',
                category: 'justice',
-               date: null,
+               date: 1704502738989,
             },
             {
                id: 'attaqueSacree',
@@ -71,7 +71,7 @@ function Home() {
                id: 'regeneration',
                name: 'Régénération',
                category: 'protection',
-               date: null,
+               date: 1704438358763,
             },
             {
                id: 'capriceDuDestin',

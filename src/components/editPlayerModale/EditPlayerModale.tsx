@@ -11,9 +11,46 @@ type data = {
    setModale: React.Dispatch<React.SetStateAction<modale>>;
 };
 
-type resultNew = { id: string; critic: boolean; int: number; spell: string };
+type submitData = { critic: boolean; int: number; spell: string };
 
 type spellType = { type: string };
+
+function formatDate(time: number, critic: boolean) {
+   const date = Date.now() + (critic ? time * 1.5 : time);
+   return date;
+}
+
+function spellDate(data: submitData) {
+   const { int, critic, spell } = data;
+   const turn = 93600000;
+   const hour = 3600000;
+   switch (spell) {
+      case 'benedictionDeKeldar':
+         return formatDate(Math.floor((int / 12) * turn), critic);
+      case 'attaqueSacree':
+         return formatDate(Math.floor((int / 2) * hour), critic);
+      case 'grandeBenedictionDeKeldar':
+         return formatDate(Math.floor((int / 12) * turn), critic);
+      case 'lameDeJustice':
+         return formatDate(Math.floor((int / 12) * turn), critic);
+      case 'transcendance':
+         return formatDate(Math.floor((int / 1.25) * hour), critic);
+      case 'regenerationMineure':
+         return formatDate(Math.floor((int / 12) * turn), critic);
+      case 'resistance':
+         return formatDate(Math.floor((int / 20) * turn), critic);
+      case 'salutDuDivin':
+         return formatDate(Math.floor((int / 12) * turn), critic);
+      case 'regeneration':
+         return formatDate(Math.floor((int / 24) * turn), critic);
+      case 'capriceDuDestin':
+         return formatDate(Math.floor((int / 48) * turn), critic);
+      case 'chatiment':
+         return formatDate(Math.floor((int / 20) * turn), critic);
+      default:
+         return Date.now();
+   }
+}
 
 const SpellSelect = (data: spellType) => {
    const { type } = data;
@@ -49,12 +86,12 @@ const EditPlayerModale: FunctionComponent<data> = (data) => {
 
    const handleSubmitNew = (e: FormEvent<HTMLFormElement>, id: string) => {
       e.preventDefault();
-      const result: resultNew = {
-         id: id,
+      const submitData = {
          spell: e.currentTarget.spellListNew.value,
          int: intelligence,
          critic: e.currentTarget.critic.checked,
       };
+      const result = { id: id, date: spellDate(submitData) };
       console.log(result);
    };
 
@@ -63,7 +100,7 @@ const EditPlayerModale: FunctionComponent<data> = (data) => {
       const day = parseInt(e.currentTarget.day.value) * 86400000;
       const houre = parseInt(e.currentTarget.hour.value) * 3600000;
       const minute = parseInt(e.currentTarget.minute.value) * 60000;
-      const result = { id: id, newDate: day + houre + minute + Date.now() };
+      const result = { id: id, date: day + houre + minute + Date.now() };
       console.log(result);
    };
 
