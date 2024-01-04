@@ -6,7 +6,7 @@ import type { modale } from '@/pages/players/Players';
 
 type data = {
    player: player;
-   setModale: React.Dispatch<React.SetStateAction<modale>>;
+   setModale?: React.Dispatch<React.SetStateAction<modale>>;
 };
 
 const PlayerCard: React.FC<data> = (data: data) => {
@@ -16,7 +16,9 @@ const PlayerCard: React.FC<data> = (data: data) => {
          <div
             className={styles.status}
             onClick={() => {
-               setModale({ id: player.id, isOpen: true });
+               if (setModale) {
+                  setModale({ id: player.id, isOpen: true });
+               }
             }}
          >
             <img

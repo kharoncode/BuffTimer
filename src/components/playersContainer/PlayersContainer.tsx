@@ -5,7 +5,7 @@ import type { modale } from '@/pages/players/Players';
 
 type data = {
    players: players;
-   setModale: React.Dispatch<React.SetStateAction<modale>>;
+   setModale?: React.Dispatch<React.SetStateAction<modale>>;
 };
 
 const PlayersContainer = (data: data) => {

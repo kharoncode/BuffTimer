@@ -11,7 +11,7 @@ type data = {
    setModale: React.Dispatch<React.SetStateAction<modale>>;
 };
 
-type resultNew = { critic: boolean; int: number; spell: string };
+type resultNew = { id: string; critic: boolean; int: number; spell: string };
 
 type spellType = { type: string };
 
@@ -47,9 +47,10 @@ const EditPlayerModale: FunctionComponent<data> = (data) => {
    const player = players[modale.id];
    const intelligence = useSelector(getIntelligence);
 
-   const handleSubmitNew = (e: FormEvent<HTMLFormElement>) => {
+   const handleSubmitNew = (e: FormEvent<HTMLFormElement>, id: string) => {
       e.preventDefault();
       const result: resultNew = {
+         id: id,
          spell: e.currentTarget.spellListNew.value,
          int: intelligence,
          critic: e.currentTarget.critic.checked,
@@ -57,12 +58,12 @@ const EditPlayerModale: FunctionComponent<data> = (data) => {
       console.log(result);
    };
 
-   const handleSubmitOld = (e: FormEvent<HTMLFormElement>) => {
+   const handleSubmitOld = (e: FormEvent<HTMLFormElement>, id: string) => {
       e.preventDefault();
       const day = parseInt(e.currentTarget.day.value) * 86400000;
       const houre = parseInt(e.currentTarget.hour.value) * 3600000;
       const minute = parseInt(e.currentTarget.minute.value) * 60000;
-      const result = day + houre + minute + Date.now();
+      const result = { id: id, newDate: day + houre + minute + Date.now() };
       console.log(result);
    };
 
@@ -95,7 +96,7 @@ const EditPlayerModale: FunctionComponent<data> = (data) => {
             <form
                className={styles.form}
                onSubmit={(e) => {
-                  handleSubmitNew(e);
+                  handleSubmitNew(e, player.id);
                }}
             >
                <SpellSelect type={choice} />
@@ -115,7 +116,7 @@ const EditPlayerModale: FunctionComponent<data> = (data) => {
             <form
                className={styles.form}
                onSubmit={(e) => {
-                  handleSubmitOld(e);
+                  handleSubmitOld(e, player.id);
                }}
             >
                <SpellSelect type={choice} />
