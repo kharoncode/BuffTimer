@@ -87,8 +87,7 @@ export const uptadeProfile = createAsyncThunk(
          body: JSON.stringify(body),
       })
          .then((result) => result.json())
-         .then((data) => {
-            console.log(data);
+         .then(() => {
             return {
                id: id,
                email: email,
@@ -97,6 +96,32 @@ export const uptadeProfile = createAsyncThunk(
                favoris: favoris,
             };
          });
+   }
+);
+
+type newPassword = {
+   id: string;
+   password: string;
+};
+
+export const uptadeProfilePassword = createAsyncThunk(
+   'login/uptadeProfilePassword',
+   async (newPassword: newPassword) => {
+      const { id, password } = newPassword;
+      const body = {
+         condition: { id: id },
+         set: {
+            password: password,
+         },
+      };
+      //return fetch(`${import.meta.env.VITE_MOCKURL}profiles.json`, {
+      return fetch(`${import.meta.env.VITE_API}/profiles`, {
+         method: 'put',
+         headers: {
+            'Content-Type': 'application/json',
+         },
+         body: JSON.stringify(body),
+      });
    }
 );
 

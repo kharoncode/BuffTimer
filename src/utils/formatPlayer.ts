@@ -19,7 +19,7 @@ type dataEl = {
 
 export type data = dataEl[];
 
-type spell = {
+export type spell = {
    id: string;
    name: string;
    category: string;

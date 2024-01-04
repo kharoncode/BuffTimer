@@ -130,20 +130,17 @@ export const playersSlice = createSlice({
          state.players = {};
          state.error = action.error.message;
       });
-      builder.addCase(uptadePlayersLife.pending, (state) => {
+      builder.addCase(uptadePlayersLife.pending, () => {
          console.log('pending');
-         state.loading = true;
       });
       builder.addCase(uptadePlayersLife.fulfilled, (state, action) => {
          console.log('fulfilled');
          const { id, life } = action.payload;
-         state.loading = false;
          state.players[id].life = life;
          state.error = null;
       });
       builder.addCase(uptadePlayersLife.rejected, (state, action) => {
          console.log('error');
-         state.loading = false;
          state.error = action.error.message;
       });
       builder.addCase(uptadePlayersBuff.pending, () => {

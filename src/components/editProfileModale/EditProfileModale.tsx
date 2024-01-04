@@ -4,7 +4,12 @@ import styles from './editProfileModale.module.css';
 import close from '@assets/icones/close.svg';
 import { useDispatch, useSelector, useStore } from 'react-redux';
 import { getPlayers, getProfile } from '@/router/selectors';
-import { loginSlice, newData, uptadeProfile } from '@/pages/login/loginSlice';
+import {
+   loginSlice,
+   newData,
+   uptadeProfile,
+   uptadeProfilePassword,
+} from '@/pages/login/loginSlice';
 import formatFavoris from '@/utils/formatFavoris';
 import { uptadePlayersLife } from '@/pages/players/playersSlice';
 import { AppDispatch } from '@/router/store';
@@ -54,6 +59,20 @@ const EditProfileModale: FunctionComponent<data> = (data) => {
          },
       };
       dispatch(uptadePlayersLife(result)).then(() => setLoading(false));
+   };
+
+   const handleSubmitUpdatePassword = (e: FormEvent<HTMLFormElement>) => {
+      e.preventDefault();
+      setLoading(true);
+      const newPassword = e.currentTarget.newPassword.value;
+      const passwordBis = e.currentTarget.passwordBis.value;
+      if (newPassword === passwordBis) {
+         const result = {
+            id: id,
+            password: newPassword,
+         };
+         dispatch(uptadeProfilePassword(result)).then(() => setLoading(false));
+      }
    };
 
    return (
@@ -153,6 +172,24 @@ const EditProfileModale: FunctionComponent<data> = (data) => {
          ) : choice === 'Password' ? (
             <div>
                <h3>Modifier le Mot de Passe</h3>
+               <form
+                  className={styles.form}
+                  onSubmit={(e) => {
+                     handleSubmitUpdatePassword(e);
+                  }}
+               >
+                  <div className={styles.inputLabel}>
+                     <label htmlFor={`newPassword`}>Nouveau Mot de Passe</label>
+                     <input type="password" id={`newPassword`} required />
+                     <label htmlFor={`passwordBis`}>
+                        Confirmer le Mot de Passe
+                     </label>
+                     <input type="password" id={`passwordBis`} required />
+                  </div>
+                  <button type="submit" className={styles.button}>
+                     {isLoading ? 'Loading ...' : 'Envoyer'}
+                  </button>
+               </form>
             </div>
          ) : (
             <></>
