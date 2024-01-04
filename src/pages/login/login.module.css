@@ -1,16 +1,50 @@
 .main {
    display: flex;
    justify-content: center;
+   padding: 50px;
 }
 
 .container {
+   width: 210px;
+   padding: 10px;
+   border: solid 5px #5d557c;
+   border-radius: 25px;
+   background-color: white;
    display: flex;
    flex-direction: column;
    align-items: center;
+   gap: 10px;
 }
 
 .form {
    display: flex;
    flex-direction: column;
    align-items: center;
+   gap: 10px;
+}
+
+.inputContainer {
+   width: 150px;
+   display: flex;
+   flex-direction: column;
+}
+
+.button {
+   background-color: #5d557c;
+   color: white;
+   padding: 5px;
+   border-radius: 5px;
+   font-weight: 700;
+}
+
+.error {
+   width: 150px;
+   padding: 5px;
+   display: flex;
+   justify-content: center;
+   text-align: center;
+   background-color: rgba(255, 0, 0, 0.1);
+   border: solid 2px #dd1919;
+   border-radius: 5px;
+   color: black;
 }

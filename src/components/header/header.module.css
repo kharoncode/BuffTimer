@@ -4,6 +4,22 @@
    display: flex;
    justify-content: space-between;
    align-items: center;
+   background-color: #5d557c;
+   color: white;
+   text-transform: uppercase;
+   font-weight: 700;
+}
+
+.header a {
+   color: white;
+}
+
+.header a:hover {
+   color: orange;
+}
+
+.logout:hover {
+   color: orange;
 }
 
 .menu {

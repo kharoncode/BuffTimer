@@ -41,7 +41,9 @@ function Header() {
                <div className={styles.settings}>
                   <Link to="/profile">Profile</Link>
                   <span>/</span>
-                  <div onClick={() => logOut()}>LogOut</div>
+                  <div className={styles.logout} onClick={() => logOut()}>
+                     LogOut
+                  </div>
                </div>
             ) : (
                <Link to="/login">LogIn</Link>

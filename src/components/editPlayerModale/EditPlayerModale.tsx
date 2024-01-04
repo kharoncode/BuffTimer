@@ -78,6 +78,7 @@ const SpellSelect = (data: spellType) => {
 };
 
 const EditPlayerModale: FunctionComponent<data> = (data) => {
+   const [isLoading, setLoading] = useState(false);
    const [choice, setChoice] = useState('Default');
    const { setModale, modale } = data;
    const { players } = useSelector(getPlayers);
@@ -86,6 +87,7 @@ const EditPlayerModale: FunctionComponent<data> = (data) => {
 
    const handleSubmitNew = (e: FormEvent<HTMLFormElement>, id: string) => {
       e.preventDefault();
+      setLoading(true);
       const spell = e.currentTarget.spellListNew.value;
       const submitData = {
          spell: spell,
@@ -94,10 +96,12 @@ const EditPlayerModale: FunctionComponent<data> = (data) => {
       };
       const result = { id: id, spell: spell, date: spellDate(submitData) };
       console.log(result);
+      setLoading(false);
    };
 
    const handleSubmitOld = (e: FormEvent<HTMLFormElement>, id: string) => {
       e.preventDefault();
+      setLoading(true);
       const spell = e.currentTarget.spellListOld.value;
       const day = parseInt(e.currentTarget.day.value) * 86400000;
       const houre = parseInt(e.currentTarget.hour.value) * 3600000;
@@ -108,6 +112,7 @@ const EditPlayerModale: FunctionComponent<data> = (data) => {
          date: day + houre + minute + Date.now(),
       };
       console.log(result);
+      setLoading(false);
    };
 
    return (
@@ -120,7 +125,7 @@ const EditPlayerModale: FunctionComponent<data> = (data) => {
                setModale({ id: '', isOpen: false });
             }}
          />
-         Edit Modale Player : {player.name}
+         <h3>Editer : {player.name}</h3>
          <select
             className={styles.select}
             name="choice"
@@ -143,17 +148,13 @@ const EditPlayerModale: FunctionComponent<data> = (data) => {
                }}
             >
                <SpellSelect type={choice} />
-               <div className={styles.inputLabel}>
+               <div className={styles.inputCritic}>
                   <label htmlFor={`critic`}>Réussite Critique ?</label>
                   <input type="checkbox" id={`critic`} />
                </div>
-               <div className={styles.submitContainer}>
-                  <input
-                     className={styles.button}
-                     type="submit"
-                     value="Ajouter un sort"
-                  />
-               </div>
+               <button type="submit" className={styles.button}>
+                  {isLoading ? 'Loading ...' : 'Ajouter un sort'}
+               </button>
             </form>
          ) : (
             <form
@@ -166,19 +167,30 @@ const EditPlayerModale: FunctionComponent<data> = (data) => {
                <div className={styles.inputLabel}>
                   Entrez la durée:
                   <label htmlFor={`day`}>Jour</label>
-                  <input type="text" id={`day`} required />
-                  <label htmlFor={`hour`}>Heure</label>
-                  <input type="text" id={`hour`} required />
-                  <label htmlFor={`minute`}>Minute</label>
-                  <input type="text" id={`minute`} required />
-               </div>
-               <div className={styles.submitContainer}>
                   <input
-                     className={styles.button}
-                     type="submit"
-                     value="Ajouter un sort"
+                     className={styles.inputText}
+                     type="text"
+                     id={`day`}
+                     required
+                  />
+                  <label htmlFor={`hour`}>Heure</label>
+                  <input
+                     className={styles.inputText}
+                     type="text"
+                     id={`hour`}
+                     required
+                  />
+                  <label htmlFor={`minute`}>Minute</label>
+                  <input
+                     className={styles.inputText}
+                     type="text"
+                     id={`minute`}
+                     required
                   />
                </div>
+               <button type="submit" className={styles.button}>
+                  {isLoading ? 'Loading ...' : 'Ajouter un sort'}
+               </button>
             </form>
          )}
       </div>

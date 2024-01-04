@@ -34,16 +34,26 @@ export const Login: FunctionComponent = () => {
    return (
       <main className={styles.main}>
          <div className={styles.container}>
-            <h3>Login</h3>
+            <h2>Connexion</h2>
             <form className={styles.form} onSubmit={(e) => handleSubmit(e)}>
-               <label htmlFor="login"></label>
-               <input type="text" id="login" name="login" />
-               <label htmlFor="password"></label>
-               <input type="password" id="password" name="password" />
-               <button type="submit">
+               <div className={styles.inputContainer}>
+                  <label htmlFor="login">Login</label>
+                  <input type="text" id="login" name="login" />
+               </div>
+               <div className={styles.inputContainer}>
+                  <label htmlFor="password">Mot de Passe</label>
+                  <input type="password" id="password" name="password" />
+               </div>
+               <button type="submit" className={styles.button}>
                   {loading ? 'Loading ...' : 'Connect'}
                </button>
-               {error ? <div>Error</div> : ''}
+               {error ? (
+                  <div className={styles.error}>
+                     Login ou Mot de passe incorrect !
+                  </div>
+               ) : (
+                  ''
+               )}
             </form>
          </div>
       </main>

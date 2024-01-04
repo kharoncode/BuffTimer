@@ -1,4 +1,4 @@
-import { type FormEvent, type FunctionComponent } from 'react';
+import { useState, type FormEvent, type FunctionComponent } from 'react';
 import type { modale } from '@/pages/players/Players';
 import styles from './editProfileModale.module.css';
 import close from '@assets/icones/close.svg';
@@ -15,6 +15,7 @@ type data = {
 const EditProfileModale: FunctionComponent<data> = (data) => {
    const dispatch = useDispatch();
    const store = useStore();
+   const [isLoading, setLoading] = useState(false);
    const { setModale } = data;
    const { players } = useSelector(getPlayers);
    const { id, name, email, intelligence, favoris } = useSelector(getProfile);
@@ -22,6 +23,7 @@ const EditProfileModale: FunctionComponent<data> = (data) => {
 
    const handleSubmitUpdateProfile = (e: FormEvent<HTMLFormElement>) => {
       e.preventDefault();
+      setLoading(true);
       const result = {
          id: id,
          email: e.currentTarget.email.value,
@@ -35,6 +37,7 @@ const EditProfileModale: FunctionComponent<data> = (data) => {
                formatFavoris(result.favoris, players)
             )
          );
+         setLoading(false);
       });
    };
 
@@ -69,7 +72,7 @@ const EditProfileModale: FunctionComponent<data> = (data) => {
             }}
          >
             <div className={styles.inputLabel}>
-               Modifier le profile
+               <h3>Modifier le profile</h3>
                <label htmlFor={`email`}>Email</label>
                <input type="text" id={`email`} required defaultValue={email} />
                <label htmlFor={`characterName`}>Nom</label>
@@ -94,9 +97,9 @@ const EditProfileModale: FunctionComponent<data> = (data) => {
                   defaultValue={favoris}
                />
             </div>
-            <div className={styles.submitContainer}>
-               <input className={styles.button} type="submit" value="Envoyer" />
-            </div>
+            <button type="submit" className={styles.button}>
+               {isLoading ? 'Loading ...' : 'Envoyer'}
+            </button>
          </form>
          <form
             className={styles.form}
@@ -121,9 +124,9 @@ const EditProfileModale: FunctionComponent<data> = (data) => {
                   defaultValue={life.maxLife}
                />
             </div>
-            <div className={styles.submitContainer}>
-               <input className={styles.button} type="submit" value="Envoyer" />
-            </div>
+            <button type="submit" className={styles.button}>
+               {isLoading ? 'Loading ...' : 'Envoyer'}
+            </button>
          </form>
       </div>
    );
