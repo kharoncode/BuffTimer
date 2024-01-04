@@ -19,3 +19,7 @@ export function getPlayers(state: RootState) {
 export function getProfile(state: RootState) {
    return getLogin(state).profile;
 }
+
+export function getIntelligence(state: RootState) {
+   return parseInt(getProfile(state).intelligence);
+}
