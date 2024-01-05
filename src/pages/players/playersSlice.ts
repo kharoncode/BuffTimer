@@ -65,6 +65,36 @@ export const uptadePlayersLife = createAsyncThunk(
    }
 );
 
+type newMessage = {
+   id: string;
+   message: string;
+};
+
+export const uptadePlayersMessage = createAsyncThunk(
+   'players/uptadePlayersMessage',
+   async (newMessage: newMessage) => {
+      const { id, message } = newMessage;
+      const body = {
+         condition: { id: id },
+         set: {
+            message: message,
+         },
+      };
+      //return fetch(`${import.meta.env.VITE_MOCKURL}profiles.json`, {
+      return fetch(`${import.meta.env.VITE_API}/players`, {
+         method: 'put',
+         headers: {
+            'Content-Type': 'application/json',
+         },
+         body: JSON.stringify(body),
+      })
+         .then((result) => result.json())
+         .then(() => {
+            return newMessage;
+         });
+   }
+);
+
 type newSpell = {
    index: number;
    id: string;
@@ -173,6 +203,19 @@ export const playersSlice = createSlice({
          state.error = null;
       });
       builder.addCase(uptadePlayersLife.rejected, (state, action) => {
+         console.log('error');
+         state.error = action.error.message;
+      });
+      builder.addCase(uptadePlayersMessage.pending, () => {
+         console.log('pending');
+      });
+      builder.addCase(uptadePlayersMessage.fulfilled, (state, action) => {
+         console.log('fulfilled');
+         const { id, message } = action.payload;
+         state.players[id].message = message;
+         state.error = null;
+      });
+      builder.addCase(uptadePlayersMessage.rejected, (state, action) => {
          console.log('error');
          state.error = action.error.message;
       });

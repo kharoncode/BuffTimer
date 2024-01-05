@@ -8,7 +8,10 @@ import {
    uptadeProfileFavoris,
    uptadeProfilePassword,
 } from '@/pages/login/loginSlice';
-import { uptadePlayersLife } from '@/pages/players/playersSlice';
+import {
+   uptadePlayersLife,
+   uptadePlayersMessage,
+} from '@/pages/players/playersSlice';
 import { AppDispatch } from '@/router/store';
 
 const EditProfileModale: FunctionComponent = () => {
@@ -17,7 +20,7 @@ const EditProfileModale: FunctionComponent = () => {
    const [error, setError] = useState(false);
    const players = useSelector(getPlayersList);
    const { id, name, email, intelligence, favoris } = useSelector(getProfile);
-   const { life } = players[id];
+   const { life, message } = players[id];
 
    const handleSubmitUpdateProfile = (e: FormEvent<HTMLFormElement>) => {
       e.preventDefault();
@@ -45,6 +48,16 @@ const EditProfileModale: FunctionComponent = () => {
          },
       };
       dispatch(uptadePlayersLife(result)).then(() => setLoading(false));
+   };
+
+   const handleSubmitMessage = (e: FormEvent<HTMLFormElement>) => {
+      e.preventDefault();
+      setLoading(true);
+      const result = {
+         id: id,
+         message: e.currentTarget.message.value,
+      };
+      dispatch(uptadePlayersMessage(result)).then(() => setLoading(false));
    };
 
    const handleSubmitUpdatePassword = (e: FormEvent<HTMLFormElement>) => {
@@ -143,6 +156,24 @@ const EditProfileModale: FunctionComponent = () => {
                      required
                      defaultValue={life.maxLife}
                   />
+               </div>
+               <button type="submit" className={styles.button}>
+                  {isLoading ? 'Loading ...' : 'Envoyer'}
+               </button>
+            </form>
+         </div>
+
+         <div className={styles.formContainer}>
+            <form
+               className={styles.form}
+               onSubmit={(e) => {
+                  handleSubmitMessage(e);
+               }}
+            >
+               <div className={styles.inputLabel}>
+                  <h3>Modifier son MdJ</h3>
+                  <label htmlFor={`message`}></label>
+                  <textarea id={`message`} required defaultValue={message} />
                </div>
                <button type="submit" className={styles.button}>
                   {isLoading ? 'Loading ...' : 'Envoyer'}
