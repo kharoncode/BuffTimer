@@ -63,6 +63,21 @@ const EditProfileModale: FunctionComponent = () => {
       }
    };
 
+   const handleSubmitFavoris = (e: FormEvent<HTMLFormElement>) => {
+      e.preventDefault();
+      setLoading(true);
+      const list = [];
+      const target = e.target.favorisCheckbox;
+      for (let i = 0; i < target.length; i++) {
+         if (target[i].checked) {
+            list.push(target[i].id);
+         }
+      }
+      const result = list.join(' ');
+      console.log(result);
+      setLoading(false);
+   };
+
    return (
       <div className={styles.container}>
          <div className={styles.formContainer}>
@@ -167,6 +182,46 @@ const EditProfileModale: FunctionComponent = () => {
             ) : (
                ''
             )}
+         </div>
+
+         <div className={styles.formContainer}>
+            <h3>Modifier la liste des Favoris</h3>
+            <form
+               className={styles.form}
+               onSubmit={(e) => {
+                  handleSubmitFavoris(e);
+               }}
+            >
+               <div className={styles.checkboxContainer}>
+                  {Object.keys(players).map((key) => (
+                     <div
+                        key={`${players[key].id}-checkbox`}
+                        className={styles.inputContainer}
+                     >
+                        <label htmlFor={`${players[key].id}Input`}>
+                           {players[key].name}
+                        </label>
+                        {favoris.split(' ').includes(players[key].id) ? (
+                           <input
+                              type="checkbox"
+                              id={`${players[key].id}`}
+                              name="favorisCheckbox"
+                              defaultChecked
+                           />
+                        ) : (
+                           <input
+                              type="checkbox"
+                              id={`${players[key].id}`}
+                              name="favorisCheckbox"
+                           />
+                        )}
+                     </div>
+                  ))}
+               </div>
+               <button type="submit" className={styles.button}>
+                  {isLoading ? 'Loading ...' : 'Envoyer'}
+               </button>
+            </form>
          </div>
       </div>
    );

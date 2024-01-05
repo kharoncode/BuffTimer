@@ -7,7 +7,6 @@ import EditPlayerModale from '@/components/editPlayerModale/EditPlayerModale';
 
 function Favoris() {
    const favoris = useSelector(getFavoris);
-   console.log(favoris);
    const [modale, setModale] = useState({ id: '', isOpen: false });
    return (
       <div className={styles.container}>

@@ -1,9 +1,8 @@
 .container {
    position: relative;
-   width: 300px;
    padding: 20px;
    display: flex;
-   flex-direction: column;
+   flex-wrap: wrap;
    background-color: white;
    border: solid 5px #5d557c;
    gap: 20px;
@@ -72,4 +71,16 @@
    border: solid 2px #dd1919;
    border-radius: 5px;
    color: black;
+}
+
+.checkboxContainer {
+   padding: 5px;
+   display: flex;
+   flex-wrap: wrap;
+   gap: 20px;
+}
+
+.inputContainer {
+   display: flex;
+   gap: 3px;
 }
