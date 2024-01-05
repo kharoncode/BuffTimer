@@ -34,13 +34,10 @@ function Header() {
                <></>
             )}
          </nav>
-         <div className={styles.profile}>
-            {auth ? <h2>{profile.name}</h2> : <></>}
-         </div>
          <div>
             {auth ? (
                <div className={styles.settings}>
-                  <Link to="/profile">Profile</Link>
+                  <Link to="/profile">Profile ({profile.name})</Link>
                   <span>/</span>
                   <div className={styles.logout} onClick={() => logOut()}>
                      LogOut
