@@ -5,9 +5,7 @@ import styled from 'styled-components';
 
 type data = { player: player };
 
-type container = { flex: string };
-
-const Container = styled.div<container>`
+const Container = styled.div<{ flex: string }>`
    align-self: flex-end;
    width: 85%;
    display: flex;

@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { useState } from 'react';
 import Timer from '../timer/Timer';
 
-const SpellContainer = styled.div`
+const SpellContainer = styled.div<{ color: string }>`
    position: relative;
    border-radius: 5px;
    display: flex;
