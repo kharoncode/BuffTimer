@@ -3,12 +3,9 @@ import { getPlayers, getProfile } from '@/router/selectors';
 import { useSelector } from 'react-redux';
 import { playersState } from '../players/playersSlice';
 import PlayerCard from '@/components/playerCard/PlayerCard';
-import { useState } from 'react';
 import EditProfileModale from '@/components/editProfileModale/EditProfileModale';
 
 function Profile() {
-   const [modale, setModale] = useState({ id: '', isOpen: false });
-
    const { id } = useSelector(getProfile);
    const { loading, players, error }: playersState = useSelector(getPlayers);
 
@@ -20,10 +17,10 @@ function Profile() {
             ) : loading ? (
                <div>Loading ...</div>
             ) : (
-               <PlayerCard player={players[id]} setModale={setModale} />
+               <PlayerCard player={players[id]} />
             )}
          </div>
-         {modale.isOpen ? <EditProfileModale setModale={setModale} /> : <></>}
+         <EditProfileModale />
       </div>
    );
 }

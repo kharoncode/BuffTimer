@@ -1,7 +1,5 @@
 import { useState, type FormEvent, type FunctionComponent } from 'react';
-import type { modale } from '@/pages/players/Players';
 import styles from './editProfileModale.module.css';
-import close from '@assets/icones/close.svg';
 import { useDispatch, useSelector } from 'react-redux';
 import { getPlayers, getProfile } from '@/router/selectors';
 import {
@@ -12,16 +10,10 @@ import {
 import { uptadePlayersLife } from '@/pages/players/playersSlice';
 import { AppDispatch } from '@/router/store';
 
-type data = {
-   setModale: React.Dispatch<React.SetStateAction<modale>>;
-};
-
-const EditProfileModale: FunctionComponent<data> = (data) => {
+const EditProfileModale: FunctionComponent = () => {
    const dispatch = useDispatch<AppDispatch>();
    const [isLoading, setLoading] = useState(false);
    const [error, setError] = useState(false);
-   const [choice, setChoice] = useState('Default');
-   const { setModale } = data;
    const { players } = useSelector(getPlayers);
    const { id, name, email, intelligence, favoris } = useSelector(getProfile);
    const { life } = players[id];
@@ -73,134 +65,109 @@ const EditProfileModale: FunctionComponent<data> = (data) => {
 
    return (
       <div className={styles.container}>
-         <img
-            className={styles.close}
-            src={close}
-            alt="Fermer"
-            onClick={() => {
-               setModale({ id: '', isOpen: false });
-            }}
-         />
-         <select
-            className={styles.select}
-            name="choice"
-            id={`choice`}
-            onChange={(e) => {
-               setChoice(e.target.value);
-            }}
-         >
-            <option value="Default">Vous souhaitez :</option>
-            <option value="Profile">Modifier le Profile</option>
-            <option value="Life">Modifier la vie</option>
-            <option value="Password">Modifier le mot de passe</option>
-         </select>
-         {choice === 'Profile' ? (
-            <div className={styles.formContainer}>
-               <form
-                  className={styles.form}
-                  onSubmit={(e) => {
-                     handleSubmitUpdateProfile(e);
-                  }}
-               >
-                  <div className={styles.inputLabel}>
-                     <h3>Modifier le profile</h3>
+         <div className={styles.formContainer}>
+            <form
+               className={styles.form}
+               onSubmit={(e) => {
+                  handleSubmitUpdateProfile(e);
+               }}
+            >
+               <div className={styles.inputLabel}>
+                  <h3>Modifier le profile</h3>
 
-                     <label htmlFor={`email`}>Email</label>
-                     <input
-                        type="text"
-                        id={`email`}
-                        required
-                        defaultValue={email}
-                     />
-                     <label htmlFor={`characterName`}>Nom</label>
-                     <input
-                        type="text"
-                        id={`characterName`}
-                        required
-                        defaultValue={name}
-                     />
-                     <label htmlFor={`intelligence`}>Intelligence</label>
-                     <input
-                        type="text"
-                        id={`intelligence`}
-                        required
-                        defaultValue={intelligence}
-                     />
-                     <label htmlFor={`favoris`}>Favoris</label>
-                     <input
-                        type="text"
-                        id={`favoris`}
-                        required
-                        defaultValue={favoris}
-                     />
-                  </div>
-                  <button type="submit" className={styles.button}>
-                     {isLoading ? 'Loading ...' : 'Envoyer'}
-                  </button>
-               </form>
-            </div>
-         ) : choice === 'Life' ? (
-            <div className={styles.formContainer}>
-               <form
-                  className={styles.form}
-                  onSubmit={(e) => {
-                     handleSubmitUpdateLife(e);
-                  }}
-               >
-                  <div className={styles.inputLabel}>
-                     <h3>Modifier la vie</h3>
-                     <label htmlFor={`currentLife`}>Life</label>
-                     <input
-                        type="text"
-                        id={`currentLife`}
-                        required
-                        defaultValue={life.currentLife}
-                     />
-                     <label htmlFor={`maxLife`}>MaxLife</label>
-                     <input
-                        type="text"
-                        id={`maxLife`}
-                        required
-                        defaultValue={life.maxLife}
-                     />
-                  </div>
-                  <button type="submit" className={styles.button}>
-                     {isLoading ? 'Loading ...' : 'Envoyer'}
-                  </button>
-               </form>
-            </div>
-         ) : choice === 'Password' ? (
-            <div className={styles.formContainer}>
-               <h3>Modifier le Mot de Passe</h3>
-               <form
-                  className={styles.form}
-                  onSubmit={(e) => {
-                     handleSubmitUpdatePassword(e);
-                  }}
-               >
-                  <div className={styles.inputLabel}>
-                     <label htmlFor={`newPassword`}>Nouveau Mot de Passe</label>
-                     <input type="password" id={`newPassword`} required />
-                     <label htmlFor={`passwordBis`}>
-                        Confirmer le Mot de Passe
-                     </label>
-                     <input type="password" id={`passwordBis`} required />
-                  </div>
-                  <button type="submit" className={styles.button}>
-                     {isLoading ? 'Loading ...' : 'Envoyer'}
-                  </button>
-               </form>
-               {error ? (
-                  <div className={styles.error}>
-                     Les mots de passes ne sont pas identique !
-                  </div>
-               ) : (
-                  ''
-               )}
-            </div>
-         ) : (
-            <></>
-         )}
+                  <label htmlFor={`email`}>Email</label>
+                  <input
+                     type="text"
+                     id={`email`}
+                     required
+                     defaultValue={email}
+                  />
+                  <label htmlFor={`characterName`}>Nom</label>
+                  <input
+                     type="text"
+                     id={`characterName`}
+                     required
+                     defaultValue={name}
+                  />
+                  <label htmlFor={`intelligence`}>Intelligence</label>
+                  <input
+                     type="text"
+                     id={`intelligence`}
+                     required
+                     defaultValue={intelligence}
+                  />
+                  <label htmlFor={`favoris`}>Favoris</label>
+                  <input
+                     type="text"
+                     id={`favoris`}
+                     required
+                     defaultValue={favoris}
+                  />
+               </div>
+               <button type="submit" className={styles.button}>
+                  {isLoading ? 'Loading ...' : 'Envoyer'}
+               </button>
+            </form>
+         </div>
+
+         <div className={styles.formContainer}>
+            <form
+               className={styles.form}
+               onSubmit={(e) => {
+                  handleSubmitUpdateLife(e);
+               }}
+            >
+               <div className={styles.inputLabel}>
+                  <h3>Modifier la vie</h3>
+                  <label htmlFor={`currentLife`}>Life</label>
+                  <input
+                     type="text"
+                     id={`currentLife`}
+                     required
+                     defaultValue={life.currentLife}
+                  />
+                  <label htmlFor={`maxLife`}>MaxLife</label>
+                  <input
+                     type="text"
+                     id={`maxLife`}
+                     required
+                     defaultValue={life.maxLife}
+                  />
+               </div>
+               <button type="submit" className={styles.button}>
+                  {isLoading ? 'Loading ...' : 'Envoyer'}
+               </button>
+            </form>
+         </div>
+
+         <div className={styles.formContainer}>
+            <h3>Modifier le Mot de Passe</h3>
+            <form
+               className={styles.form}
+               onSubmit={(e) => {
+                  handleSubmitUpdatePassword(e);
+               }}
+            >
+               <div className={styles.inputLabel}>
+                  <label htmlFor={`newPassword`}>Nouveau Mot de Passe</label>
+                  <input type="password" id={`newPassword`} required />
+                  <label htmlFor={`passwordBis`}>
+                     Confirmer le Mot de Passe
+                  </label>
+                  <input type="password" id={`passwordBis`} required />
+               </div>
+               <button type="submit" className={styles.button}>
+                  {isLoading ? 'Loading ...' : 'Envoyer'}
+               </button>
+            </form>
+            {error ? (
+               <div className={styles.error}>
+                  Les mots de passes ne sont pas identique !
+               </div>
+            ) : (
+               ''
+            )}
+         </div>
       </div>
    );
 };
