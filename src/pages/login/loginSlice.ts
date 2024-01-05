@@ -7,6 +7,7 @@ export type profile = {
    email: string;
    name: string;
    intelligence: number;
+   favoris: string;
    error?: string;
 };
 
@@ -117,6 +118,36 @@ export const uptadeProfilePassword = createAsyncThunk(
    }
 );
 
+type favorisData = {
+   id: string;
+   list: string;
+};
+
+export const uptadeProfileFavoris = createAsyncThunk(
+   'login/uptadeProfileFavoris',
+   async (favorisData: favorisData) => {
+      const { id, list } = favorisData;
+      const body = {
+         condition: { id: id },
+         set: {
+            favoris: list,
+         },
+      };
+      //return fetch(`${import.meta.env.VITE_MOCKURL}profiles.json`, {
+      return fetch(`${import.meta.env.VITE_API}/profiles`, {
+         method: 'put',
+         headers: {
+            'Content-Type': 'application/json',
+         },
+         body: JSON.stringify(body),
+      })
+         .then((result) => result.json())
+         .then(() => {
+            return list;
+         });
+   }
+);
+
 const initialState: loginState = {
    loading: false,
    profile: {
@@ -124,6 +155,7 @@ const initialState: loginState = {
       name: '',
       email: '',
       intelligence: 0,
+      favoris: '',
    },
    error: null,
    auth: false,
@@ -166,6 +198,22 @@ export const loginSlice = createSlice({
          state.error = null;
       });
       builder.addCase(uptadeProfile.rejected, (state, action) => {
+         console.log('error');
+         state.loading = false;
+         state.profile = null;
+         state.error = action.error.message;
+      });
+      builder.addCase(uptadeProfileFavoris.pending, (state) => {
+         console.log('pending');
+         state.loading = true;
+      });
+      builder.addCase(uptadeProfileFavoris.fulfilled, (state, action) => {
+         console.log('fulfilled');
+         state.loading = false;
+         state.profile.favoris = action.payload;
+         state.error = null;
+      });
+      builder.addCase(uptadeProfileFavoris.rejected, (state, action) => {
          console.log('error');
          state.loading = false;
          state.profile = null;

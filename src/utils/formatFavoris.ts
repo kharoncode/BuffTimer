@@ -2,7 +2,6 @@ import type { players } from './formatPlayer';
 
 const formatFavoris = (list: string, players: players) => {
    const favoris: players = {};
-   console.log(players);
    if (list === 'null') {
       return favoris;
    }

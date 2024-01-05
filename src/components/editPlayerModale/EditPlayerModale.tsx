@@ -3,7 +3,7 @@ import type { modale } from '@/pages/players/Players';
 import styles from './editPlayerModale.module.css';
 import close from '@assets/icones/close.svg';
 import { useDispatch, useSelector } from 'react-redux';
-import { getIntelligence, getPlayers } from '@/router/selectors';
+import { getIntelligence, getPlayersList } from '@/router/selectors';
 import { useState } from 'react';
 import { AppDispatch } from '@/router/store';
 import { spell } from '@/utils/formatPlayer';
@@ -85,7 +85,7 @@ const EditPlayerModale: FunctionComponent<data> = (data) => {
    const [isLoading, setLoading] = useState(false);
    const [choice, setChoice] = useState('Default');
    const { setModale, modale } = data;
-   const { players } = useSelector(getPlayers);
+   const players = useSelector(getPlayersList);
    const player = players[modale.id];
    const intelligence = useSelector(getIntelligence);
 

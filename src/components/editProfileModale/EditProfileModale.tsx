@@ -1,10 +1,11 @@
 import { useState, type FormEvent, type FunctionComponent } from 'react';
 import styles from './editProfileModale.module.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { getPlayers, getProfile } from '@/router/selectors';
+import { getPlayersList, getProfile } from '@/router/selectors';
 import {
    newData,
    uptadeProfile,
+   uptadeProfileFavoris,
    uptadeProfilePassword,
 } from '@/pages/login/loginSlice';
 import { uptadePlayersLife } from '@/pages/players/playersSlice';
@@ -14,7 +15,7 @@ const EditProfileModale: FunctionComponent = () => {
    const dispatch = useDispatch<AppDispatch>();
    const [isLoading, setLoading] = useState(false);
    const [error, setError] = useState(false);
-   const { players } = useSelector(getPlayers);
+   const players = useSelector(getPlayersList);
    const { id, name, email, intelligence, favoris } = useSelector(getProfile);
    const { life } = players[id];
 
@@ -26,7 +27,7 @@ const EditProfileModale: FunctionComponent = () => {
          email: e.currentTarget.email.value,
          name: e.currentTarget.characterName.value,
          intelligence: e.currentTarget.intelligence.value,
-         favoris: e.currentTarget.favoris.value,
+         favoris: favoris,
       };
       dispatch(uptadeProfile(result)).then(() => {
          setLoading(false);
@@ -73,9 +74,10 @@ const EditProfileModale: FunctionComponent = () => {
             list.push(target[i].id);
          }
       }
-      const result = list.join(' ');
-      console.log(result);
-      setLoading(false);
+      const result = { id: id, list: list.join(' ') };
+      dispatch(uptadeProfileFavoris(result)).then(() => {
+         setLoading(false);
+      });
    };
 
    return (
@@ -110,13 +112,6 @@ const EditProfileModale: FunctionComponent = () => {
                      id={`intelligence`}
                      required
                      defaultValue={intelligence}
-                  />
-                  <label htmlFor={`favoris`}>Favoris</label>
-                  <input
-                     type="text"
-                     id={`favoris`}
-                     required
-                     defaultValue={favoris}
                   />
                </div>
                <button type="submit" className={styles.button}>
