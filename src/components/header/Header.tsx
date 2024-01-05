@@ -26,8 +26,9 @@ function Header() {
             </Link>
             {auth ? (
                <div className={styles.categories}>
-                  <Link to="/players">Général</Link>
+                  <Link to="/players">Joueurs</Link>
                   <Link to="/favoris">Favoris</Link>
+                  <Link to="/info">Info</Link>
                </div>
             ) : (
                <></>

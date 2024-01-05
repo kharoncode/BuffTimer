@@ -25,7 +25,7 @@ export const Login: FunctionComponent = () => {
       dispatch(fetchProfile(dataLog)).then((data) => {
          if (data.payload.error === undefined) {
             dispatch(fetchPlayers()).then(() => {
-               navigate('/profile');
+               navigate('/info');
             });
          }
       });
