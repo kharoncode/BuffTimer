@@ -2,15 +2,13 @@ import { useState, type FormEvent, type FunctionComponent } from 'react';
 import type { modale } from '@/pages/players/Players';
 import styles from './editProfileModale.module.css';
 import close from '@assets/icones/close.svg';
-import { useDispatch, useSelector, useStore } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { getPlayers, getProfile } from '@/router/selectors';
 import {
-   loginSlice,
    newData,
    uptadeProfile,
    uptadeProfilePassword,
 } from '@/pages/login/loginSlice';
-import formatFavoris from '@/utils/formatFavoris';
 import { uptadePlayersLife } from '@/pages/players/playersSlice';
 import { AppDispatch } from '@/router/store';
 
@@ -20,7 +18,6 @@ type data = {
 
 const EditProfileModale: FunctionComponent<data> = (data) => {
    const dispatch = useDispatch<AppDispatch>();
-   const store = useStore();
    const [isLoading, setLoading] = useState(false);
    const [error, setError] = useState(false);
    const [choice, setChoice] = useState('Default');
@@ -40,11 +37,6 @@ const EditProfileModale: FunctionComponent<data> = (data) => {
          favoris: e.currentTarget.favoris.value,
       };
       dispatch(uptadeProfile(result)).then(() => {
-         store.dispatch(
-            loginSlice.actions.addFavoris(
-               formatFavoris(result.favoris, players)
-            )
-         );
          setLoading(false);
       });
    };

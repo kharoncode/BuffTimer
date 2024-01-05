@@ -1,6 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { loginData } from './Login';
-import type { players } from '@/utils/formatPlayer';
 
 export type profile = {
    id: string;
@@ -8,7 +7,6 @@ export type profile = {
    email: string;
    name: string;
    intelligence: number;
-   favoris: [string] | string;
    error?: string;
 };
 
@@ -17,12 +15,6 @@ type loginState = {
    profile: null | profile;
    error: null | string | undefined;
    auth: boolean;
-   favoris: players;
-};
-
-type action = {
-   payload: players;
-   type: string;
 };
 
 export const fetchProfile = createAsyncThunk(
@@ -132,21 +124,15 @@ const initialState: loginState = {
       name: '',
       email: '',
       intelligence: 0,
-      favoris: [''],
    },
    error: null,
    auth: false,
-   favoris: {},
 };
 
 export const loginSlice = createSlice({
    name: 'login',
    initialState,
    reducers: {
-      addFavoris: (state, action: action) => {
-         const favoris = action.payload;
-         return { ...state, favoris: favoris };
-      },
       resetLogin: () => {
          return initialState;
       },
