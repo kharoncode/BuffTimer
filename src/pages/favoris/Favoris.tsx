@@ -17,7 +17,7 @@ function Favoris() {
          {Object.keys(favoris).length !== 0 ? (
             <PlayersContainer players={favoris} setModale={setModale} />
          ) : (
-            'Empty'
+            `Vous n'avez pas de joueurs en favoris.`
          )}
          {modale.isOpen ? (
             <EditPlayerModale setModale={setModale} modale={modale} />
