@@ -2,6 +2,9 @@ import styles from './spellCard.module.css';
 import styled from 'styled-components';
 import { useState } from 'react';
 import Timer from '../timer/Timer';
+import { useDispatch } from 'react-redux';
+import { deletePlayerBuff } from '@/pages/players/playersSlice';
+import { AppDispatch } from '@/router/store';
 
 const SpellContainer = styled.div<{ color: string }>`
    position: relative;
@@ -32,6 +35,8 @@ const SpellContainer = styled.div<{ color: string }>`
 
 type data = {
    id: string;
+   playerId: string;
+   index: number;
    name: string;
    category: string;
    date: number;
@@ -39,10 +44,12 @@ type data = {
 };
 
 const SpellCard: React.FC<data> = (data) => {
-   const { id, name, category, date, isOpen } = data;
+   const dispatch = useDispatch<AppDispatch>();
+   const { id, playerId, index, name, category, date, isOpen } = data;
    const [isOver, setIsOver] = useState(false);
    if (isOver) {
-      console.log('over');
+      const result = { index: index, id: playerId, spell: id };
+      dispatch(deletePlayerBuff(result));
    }
 
    const color =

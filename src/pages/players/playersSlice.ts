@@ -72,13 +72,13 @@ type newSpell = {
    date: number;
 };
 
-type set = { [key: string]: number };
+type setAdd = { [key: string]: number };
 
 export const uptadePlayersBuff = createAsyncThunk(
    'players/uptadePlayersBuff',
    async (newSpell: newSpell) => {
       const { id, spell, date } = newSpell;
-      const set: set = {};
+      const set: setAdd = {};
       set[spell] = date;
       const body = {
          condition: { id: id },
@@ -95,6 +95,39 @@ export const uptadePlayersBuff = createAsyncThunk(
          .then((result) => result.json())
          .then(() => {
             return newSpell;
+         });
+   }
+);
+
+type spellId = {
+   index: number;
+   id: string;
+   spell: string;
+};
+
+type setDelete = { [key: string]: null };
+
+export const deletePlayerBuff = createAsyncThunk(
+   'players/deletePlayerBuff',
+   async (removeSpell: spellId) => {
+      const { id, spell } = removeSpell;
+      const set: setDelete = {};
+      set[spell] = null;
+      const body = {
+         condition: { id: id },
+         set: set,
+      };
+      //return fetch(`${import.meta.env.VITE_MOCKURL}profiles.json`, {
+      return fetch(`${import.meta.env.VITE_API}/players`, {
+         method: 'put',
+         headers: {
+            'Content-Type': 'application/json',
+         },
+         body: JSON.stringify(body),
+      })
+         .then((result) => result.json())
+         .then(() => {
+            return removeSpell;
          });
    }
 );
@@ -153,6 +186,19 @@ export const playersSlice = createSlice({
          state.error = null;
       });
       builder.addCase(uptadePlayersBuff.rejected, (state, action) => {
+         console.log('error');
+         state.error = action.error.message;
+      });
+      builder.addCase(deletePlayerBuff.pending, () => {
+         console.log('pending');
+      });
+      builder.addCase(deletePlayerBuff.fulfilled, (state, action) => {
+         console.log('fulfilled');
+         const { id, index } = action.payload;
+         state.players[id].spells[index].date = null;
+         state.error = null;
+      });
+      builder.addCase(deletePlayerBuff.rejected, (state, action) => {
          console.log('error');
          state.error = action.error.message;
       });

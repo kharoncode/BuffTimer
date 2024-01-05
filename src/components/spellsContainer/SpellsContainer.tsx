@@ -32,6 +32,8 @@ const SpellsContainer = (data: data) => {
                <SpellCard
                   key={`${player.id}-${index}-spell`}
                   id={el.id}
+                  playerId={player.id}
+                  index={index}
                   name={el.name}
                   category={el.category}
                   date={el.date}
