@@ -1,0 +1,12 @@
+.container {
+   padding: 10px;
+   display: flex;
+   flex-direction: column;
+   background-color: white;
+   border: solid 2px #5d557c;
+   border-radius: 0 10px 0 10px;
+}
+
+.message {
+   font-style: italic;
+}

@@ -1,15 +1,18 @@
 import { useSelector } from 'react-redux';
 import styles from './info.module.css';
 import { getPlayersList } from '@/router/selectors';
+import MessageCard from '@/components/messageCard/MessageCard';
 
 const Info = () => {
    const players = useSelector(getPlayersList);
    return (
       <div className={styles.container}>
          {Object.keys(players).map((key) => (
-            <div key={`${players[key].id}-message`}>
-               {players[key].name} : {players[key].message}
-            </div>
+            <MessageCard
+               key={`${players[key].id}-message`}
+               name={players[key].name}
+               message={players[key].message}
+            />
          ))}
       </div>
    );
