@@ -12,11 +12,14 @@ const Timer: React.FC<data> = (data) => {
    const [hours, setHours] = useState(0);
    const [minutes, setMinutes] = useState(0);
    //const [seconds, setSeconds] = useState(0);
+   const [last, setLast] = useState(false);
 
    useEffect(() => {
       const getTime = (date: number) => {
          const time = date - Date.now();
-         if (time < 0) {
+         if (time < 60000 && time > 0) {
+            setLast(true);
+         } else if (time < 0) {
             setIsOver(true);
          }
 
@@ -35,7 +38,7 @@ const Timer: React.FC<data> = (data) => {
 
    return (
       <div className={styles.container}>
-         {days}d {hours}h {minutes}m
+         {last ? `< 1min` : `${days}d ${hours}h ${minutes}m`}
       </div>
    );
 };
