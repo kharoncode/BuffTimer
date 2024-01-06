@@ -20,19 +20,6 @@ const SpellContainer = styled.div<{ color: string }>`
    z-index: 100;
 `;
 
-// function removeSpell(id, spell, store, setDeleted) {
-//    store
-//       .edit('spell', {
-//          search: { id: `${id}`, spell: `${spell}` },
-//          set: { date: 'null' },
-//       })
-//       .then((res) => {
-//          //console.log(res);
-//          setDeleted(true);
-//          console.log(`Le buff ${spell} de ${id} a été supprimé.`);
-//       });
-// }
-
 type data = {
    id: string;
    playerId: string;
