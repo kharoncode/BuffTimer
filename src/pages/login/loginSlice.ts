@@ -167,30 +167,30 @@ export const loginSlice = createSlice({
    },
    extraReducers: (builder) => {
       builder.addCase(fetchProfile.pending, (state) => {
-         console.log('pending');
+         console.log('fetchProfile:pending');
          state.loading = true;
       });
       builder.addCase(fetchProfile.fulfilled, (state, action) => {
-         console.log('fulfilled');
+         console.log('fetchProfile:fulfilled');
          state.loading = false;
          state.profile = action.payload;
          state.error = null;
          state.auth = true;
       });
       builder.addCase(fetchProfile.rejected, (state, action) => {
-         console.log('error');
+         console.log('fetchProfile:error');
          state.loading = false;
          state.profile = initialState.profile;
          state.error = action.error.message;
          state.auth = false;
       });
       builder.addCase(uptadeProfile.pending, (state) => {
-         console.log('pending');
+         console.log('uptadeProfile:pending');
          state.loading = true;
       });
       builder.addCase(uptadeProfile.fulfilled, (state, action) => {
          const { login, email, intelligence } = action.payload;
-         console.log('fulfilled');
+         console.log('uptadeProfile:fulfilled');
          state.loading = false;
          state.profile.login = login;
          state.profile.email = email;
@@ -198,23 +198,23 @@ export const loginSlice = createSlice({
          state.error = null;
       });
       builder.addCase(uptadeProfile.rejected, (state, action) => {
-         console.log('error');
+         console.log('uptadeProfile:error');
          state.loading = false;
          state.profile = initialState.profile;
          state.error = action.error.message;
       });
       builder.addCase(uptadeProfileFavoris.pending, (state) => {
-         console.log('pending');
+         console.log('uptadeProfileFavoris:pending');
          state.loading = true;
       });
       builder.addCase(uptadeProfileFavoris.fulfilled, (state, action) => {
-         console.log('fulfilled');
+         console.log('uptadeProfileFavoris:fulfilled');
          state.loading = false;
          state.profile.favoris = action.payload;
          state.error = null;
       });
       builder.addCase(uptadeProfileFavoris.rejected, (state, action) => {
-         console.log('error');
+         console.log('uptadeProfileFavoris:error');
          state.loading = false;
          state.profile = initialState.profile;
          state.error = action.error.message;
