@@ -1,4 +1,27 @@
 {
+   "pages": {
+      "home": {
+         "fakeProfile": {
+            "id": "keldar",
+            "name": "Keldar",
+            "picture": "el.picture",
+            "life": {
+               "currentLife": "Number(el.currentLife)",
+               "maxLife": "Number(el.maxLife)"
+            },
+            "message": "el.message",
+            "spells": {}
+         },
+         "title": "Bienvenu sur BuffTimer",
+         "articles": {
+            "whatIsBuffTimer": {
+               "title": "Qu'est-ce que 'BuffTimer' ?",
+               "article": "C'est une application pour visualiser facilement quel Buff est actif et sur qui. Il permet aussi de connaître l'état de santé des joueurs ainsi que leurs besoins."
+            }
+         }
+      }
+   },
+
    "magie": {
       "gods": {
          "elf": {
