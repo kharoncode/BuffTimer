@@ -3,9 +3,13 @@ import type { modale } from '@/pages/players/Players';
 import styles from './editPlayerModale.module.css';
 import close from '@assets/icones/close.svg';
 import { useDispatch, useSelector } from 'react-redux';
-import { getIntelligence, getPlayersList } from '@/router/selectors';
+import {
+   getIntelligence,
+   getPlayersList,
+   getSpellsStore,
+} from '@/router/selectors';
 import { useState } from 'react';
-import { AppDispatch } from '@/router/store';
+import { AppDispatch, store } from '@/router/store';
 import { spell } from '@/utils/formatPlayer';
 import { uptadePlayersBuff } from '@/pages/players/playersSlice';
 
@@ -25,34 +29,8 @@ function formatDate(time: number, critic: boolean) {
 
 function spellDate(data: submitData) {
    const { int, critic, spell } = data;
-   const turn = 93600000;
-   const hour = 3600000;
-   switch (spell) {
-      case 'benedictionDeKeldar':
-         return formatDate(Math.floor((int / 12) * turn), critic);
-      case 'attaqueSacree':
-         return formatDate(Math.floor((int / 2) * hour), critic);
-      case 'grandeBenedictionDeKeldar':
-         return formatDate(Math.floor((int / 12) * turn), critic);
-      case 'lameDeJustice':
-         return formatDate(Math.floor((int / 12) * turn), critic);
-      case 'transcendance':
-         return formatDate(Math.floor((int / 1.25) * hour), critic);
-      case 'regenerationMineure':
-         return formatDate(Math.floor((int / 12) * turn), critic);
-      case 'resistance':
-         return formatDate(Math.floor((int / 20) * turn), critic);
-      case 'salutDuDivin':
-         return formatDate(Math.floor((int / 12) * turn), critic);
-      case 'regeneration':
-         return formatDate(Math.floor((int / 24) * turn), critic);
-      case 'capriceDuDestin':
-         return formatDate(Math.floor((int / 48) * turn), critic);
-      case 'chatiment':
-         return formatDate(Math.floor((int / 20) * turn), critic);
-      default:
-         return Date.now();
-   }
+   const spellsData = getSpellsStore(store);
+   return formatDate(Math.floor(spellsData[spell].time * int), critic);
 }
 
 const SpellSelect = (data: spellType) => {
