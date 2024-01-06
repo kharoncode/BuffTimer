@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { loginData } from './Login';
+import { loginDataType } from './Login';
 
 export type profile = {
    id: string;
@@ -21,7 +21,7 @@ type loginState = {
 
 export const fetchProfile = createAsyncThunk(
    'login/fetchProfile',
-   async (log: loginData, { rejectWithValue }) => {
+   async (log: loginDataType, { rejectWithValue }) => {
       //return fetch(`${import.meta.env.VITE_MOCKURL}profiles.json`, {
       return fetch(`${import.meta.env.VITE_API}/profiles`, {
          method: 'get',
@@ -182,6 +182,7 @@ export const loginSlice = createSlice({
          state.loading = false;
          state.profile = initialState.profile;
          state.error = action.error.message;
+         state.auth = false;
       });
       builder.addCase(uptadeProfile.pending, (state) => {
          console.log('pending');
