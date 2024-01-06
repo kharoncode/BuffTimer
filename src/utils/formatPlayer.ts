@@ -30,7 +30,7 @@ export type spell = {
    date: null | number;
 };
 
-type spells = spell[];
+type spells = { [key: string]: spell };
 
 export type player = {
    id: string;
@@ -49,9 +49,9 @@ export type players = { [key: string]: player };
 const formatPlayer = (el: dataEl) => {
    const spellsData = getSpellsStore(store);
 
-   const spells: spells = [];
+   const spells: spells = {};
    for (let i = 6; i < Object.keys(el).length; i++) {
-      spells.push({
+      spells[Object.keys(el)[i]] = {
          id: Object.keys(el)[i],
          name: spellsData[Object.keys(el)[i] as keyof typeof spellsData].name,
          category:
@@ -60,7 +60,7 @@ const formatPlayer = (el: dataEl) => {
             Object.values(el)[i] === 'null'
                ? null
                : Number(Object.values(el)[i]),
-      });
+      };
    }
 
    return {

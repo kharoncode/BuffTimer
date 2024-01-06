@@ -95,7 +95,6 @@ export const uptadePlayersMessage = createAsyncThunk(
 );
 
 type newSpell = {
-   index: number;
    id: string;
    spell: string;
    date: number;
@@ -128,7 +127,6 @@ export const uptadePlayersBuff = createAsyncThunk(
 );
 
 type spellId = {
-   index: number;
    id: string;
    spell: string;
 };
@@ -221,8 +219,8 @@ export const playersSlice = createSlice({
       });
       builder.addCase(uptadePlayersBuff.fulfilled, (state, action) => {
          console.log('uptadePlayersBuff:fulfilled');
-         const { index, id, date } = action.payload;
-         state.players[id].spells[index].date = date;
+         const { spell, id, date } = action.payload;
+         state.players[id].spells[spell].date = date;
          state.error = null;
       });
       builder.addCase(uptadePlayersBuff.rejected, (state, action) => {
@@ -234,8 +232,8 @@ export const playersSlice = createSlice({
       });
       builder.addCase(deletePlayerBuff.fulfilled, (state, action) => {
          console.log('deletePlayerBuff:fulfilled');
-         const { id, index } = action.payload;
-         state.players[id].spells[index].date = null;
+         const { id, spell } = action.payload;
+         state.players[id].spells[spell].date = null;
          state.error = null;
       });
       builder.addCase(deletePlayerBuff.rejected, (state, action) => {

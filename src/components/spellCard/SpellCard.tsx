@@ -23,7 +23,6 @@ const SpellContainer = styled.div<{ color: string }>`
 type data = {
    id: string;
    playerId: string;
-   index: number;
    name: string;
    category: string;
    date: number;
@@ -32,10 +31,10 @@ type data = {
 
 const SpellCard: React.FC<data> = (data) => {
    const dispatch = useDispatch<AppDispatch>();
-   const { id, playerId, index, name, category, date, isOpen } = data;
+   const { id, playerId, name, category, date, isOpen } = data;
    const [isOver, setIsOver] = useState(false);
    if (isOver) {
-      const result = { index: index, id: playerId, spell: id };
+      const result = { id: playerId, spell: id };
       dispatch(deletePlayerBuff(result));
    }
 

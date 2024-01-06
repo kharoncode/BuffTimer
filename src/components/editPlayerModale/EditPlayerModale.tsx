@@ -10,7 +10,6 @@ import {
 } from '@/router/selectors';
 import { useState } from 'react';
 import { AppDispatch, store } from '@/router/store';
-import { spell } from '@/utils/formatPlayer';
 import { uptadePlayersBuff } from '@/pages/players/playersSlice';
 
 type data = {
@@ -69,10 +68,6 @@ const EditPlayerModale: FunctionComponent<data> = (data) => {
    const player = players[modale.id];
    const intelligence = useSelector(getIntelligence);
 
-   const spellIndex = (spell: string) => {
-      return player.spells.findIndex((el: spell) => el.id === spell);
-   };
-
    const handleSubmitNew = (e: FormEvent<HTMLFormElement>, id: string) => {
       e.preventDefault();
       setLoading(true);
@@ -83,7 +78,6 @@ const EditPlayerModale: FunctionComponent<data> = (data) => {
          critic: e.currentTarget.critic.checked,
       };
       const result = {
-         index: spellIndex(spell),
          id: id,
          spell: spell,
          date: spellDate(submitData),
@@ -99,7 +93,6 @@ const EditPlayerModale: FunctionComponent<data> = (data) => {
       const houre = parseInt(e.currentTarget.hour.value) * 3600000;
       const minute = parseInt(e.currentTarget.minute.value) * 60000;
       const result = {
-         index: spellIndex(spell),
          id: id,
          spell: spell,
          date: day + houre + minute + Date.now(),

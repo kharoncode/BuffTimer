@@ -25,15 +25,14 @@ const SpellsContainer = (data: data) => {
          }}
          $flex={flexDirection}
       >
-         {player.spells.map((el, index: number) =>
+         {Object.values(player.spells).map((el) =>
             el.date === null ? (
                ''
             ) : (
                <SpellCard
-                  key={`${player.id}-${index}-spell`}
+                  key={`${player.id}-${el.id}-spell`}
                   id={el.id}
                   playerId={player.id}
-                  index={index}
                   name={el.name}
                   category={el.category}
                   date={el.date}
