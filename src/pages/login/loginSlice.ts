@@ -3,6 +3,7 @@ import { loginData } from './Login';
 
 export type profile = {
    id: string;
+   login: string;
    password?: string;
    email: string;
    name: string;
@@ -13,7 +14,7 @@ export type profile = {
 
 type loginState = {
    loading: boolean;
-   profile: null | profile;
+   profile: profile;
    error: null | string | undefined;
    auth: boolean;
 };
@@ -36,6 +37,7 @@ export const fetchProfile = createAsyncThunk(
             if (filter.length !== 0) {
                return {
                   id: filter[0].id,
+                  login: filter[0].login,
                   email: filter[0].email,
                   name: filter[0].name,
                   intelligence: parseInt(filter[0].intelligence),
@@ -52,26 +54,23 @@ export const fetchProfile = createAsyncThunk(
 
 export type newData = {
    id: string;
+   login: string;
    email: string;
-   name: string;
    intelligence: number;
-   favoris: string;
 };
 
 export const uptadeProfile = createAsyncThunk(
    'login/uptadeProfile',
    async (newData: newData) => {
-      const { id, email, name, intelligence, favoris } = newData;
+      const { id, login, email, intelligence } = newData;
       const body = {
          condition: { id: id },
          set: {
             email: email,
-            name: name,
+            login: login,
             intelligence: intelligence,
-            favoris: favoris,
          },
       };
-      //return fetch(`${import.meta.env.VITE_MOCKURL}profiles.json`, {
       return fetch(`${import.meta.env.VITE_API}/profiles`, {
          method: 'put',
          headers: {
@@ -82,11 +81,9 @@ export const uptadeProfile = createAsyncThunk(
          .then((result) => result.json())
          .then(() => {
             return {
-               id: id,
+               login: login,
                email: email,
-               name: name,
                intelligence: intelligence,
-               favoris: favoris,
             };
          });
    }
@@ -107,7 +104,6 @@ export const uptadeProfilePassword = createAsyncThunk(
             password: password,
          },
       };
-      //return fetch(`${import.meta.env.VITE_MOCKURL}profiles.json`, {
       return fetch(`${import.meta.env.VITE_API}/profiles`, {
          method: 'put',
          headers: {
@@ -133,7 +129,6 @@ export const uptadeProfileFavoris = createAsyncThunk(
             favoris: list,
          },
       };
-      //return fetch(`${import.meta.env.VITE_MOCKURL}profiles.json`, {
       return fetch(`${import.meta.env.VITE_API}/profiles`, {
          method: 'put',
          headers: {
@@ -152,6 +147,7 @@ const initialState: loginState = {
    loading: false,
    profile: {
       id: '',
+      login: '',
       name: '',
       email: '',
       intelligence: 0,
@@ -184,7 +180,7 @@ export const loginSlice = createSlice({
       builder.addCase(fetchProfile.rejected, (state, action) => {
          console.log('error');
          state.loading = false;
-         state.profile = null;
+         state.profile = initialState.profile;
          state.error = action.error.message;
       });
       builder.addCase(uptadeProfile.pending, (state) => {
@@ -192,15 +188,18 @@ export const loginSlice = createSlice({
          state.loading = true;
       });
       builder.addCase(uptadeProfile.fulfilled, (state, action) => {
+         const { login, email, intelligence } = action.payload;
          console.log('fulfilled');
          state.loading = false;
-         state.profile = action.payload;
+         state.profile.login = login;
+         state.profile.email = email;
+         state.profile.intelligence = intelligence;
          state.error = null;
       });
       builder.addCase(uptadeProfile.rejected, (state, action) => {
          console.log('error');
          state.loading = false;
-         state.profile = null;
+         state.profile = initialState.profile;
          state.error = action.error.message;
       });
       builder.addCase(uptadeProfileFavoris.pending, (state) => {
@@ -216,7 +215,7 @@ export const loginSlice = createSlice({
       builder.addCase(uptadeProfileFavoris.rejected, (state, action) => {
          console.log('error');
          state.loading = false;
-         state.profile = null;
+         state.profile = initialState.profile;
          state.error = action.error.message;
       });
    },
