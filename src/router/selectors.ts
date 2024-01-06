@@ -1,3 +1,4 @@
+//useSelector
 import { RootState } from './store';
 
 export function getLogin(state: RootState) {
@@ -38,4 +39,9 @@ export function getMagie(state: RootState) {
 
 export function getSpells(state: RootState) {
    return getMagie(state).spells;
+}
+
+//store.getState()
+export function getSpellsStore(store: RootState) {
+   return store.getState().data.data.magie.spells;
 }
