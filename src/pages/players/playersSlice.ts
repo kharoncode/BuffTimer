@@ -80,7 +80,6 @@ export const uptadePlayersMessage = createAsyncThunk(
             message: message,
          },
       };
-      //return fetch(`${import.meta.env.VITE_MOCKURL}profiles.json`, {
       return fetch(`${import.meta.env.VITE_API}/players`, {
          method: 'put',
          headers: {
@@ -114,7 +113,6 @@ export const uptadePlayersBuff = createAsyncThunk(
          condition: { id: id },
          set: set,
       };
-      //return fetch(`${import.meta.env.VITE_MOCKURL}profiles.json`, {
       return fetch(`${import.meta.env.VITE_API}/players`, {
          method: 'put',
          headers: {
@@ -147,7 +145,6 @@ export const deletePlayerBuff = createAsyncThunk(
          condition: { id: id },
          set: set,
       };
-      //return fetch(`${import.meta.env.VITE_MOCKURL}profiles.json`, {
       return fetch(`${import.meta.env.VITE_API}/players`, {
          method: 'put',
          headers: {
