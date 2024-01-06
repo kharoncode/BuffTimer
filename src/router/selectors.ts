@@ -29,13 +29,13 @@ export function getIntelligence(state: RootState) {
 }
 
 export function getData(state: RootState) {
-   return state?.data;
+   return state?.data.data;
 }
 
 export function getMagie(state: RootState) {
    return getData(state).magie;
 }
 
-export function getSpellss(state: RootState) {
+export function getSpells(state: RootState) {
    return getMagie(state).spells;
 }
