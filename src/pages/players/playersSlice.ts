@@ -175,71 +175,71 @@ export const playersSlice = createSlice({
    },
    extraReducers: (builder) => {
       builder.addCase(fetchPlayers.pending, (state) => {
-         console.log('pending');
+         console.log('fetchPlayers:pending');
          state.loading = true;
       });
       builder.addCase(fetchPlayers.fulfilled, (state, action) => {
-         console.log('fulfilled');
+         console.log('fetchPlayers:fulfilled');
          state.loading = false;
          state.players = action.payload;
          state.error = null;
       });
       builder.addCase(fetchPlayers.rejected, (state, action) => {
-         console.log('error');
+         console.log('fetchPlayers:error');
          state.loading = false;
          state.players = {};
          state.error = action.error.message;
       });
       builder.addCase(uptadePlayersLife.pending, () => {
-         console.log('pending');
+         console.log('uptadePlayersLife:pending');
       });
       builder.addCase(uptadePlayersLife.fulfilled, (state, action) => {
-         console.log('fulfilled');
+         console.log('uptadePlayersLife:fulfilled');
          const { id, life } = action.payload;
          state.players[id].life = life;
          state.error = null;
       });
       builder.addCase(uptadePlayersLife.rejected, (state, action) => {
-         console.log('error');
+         console.log('uptadePlayersLife:error');
          state.error = action.error.message;
       });
       builder.addCase(uptadePlayersMessage.pending, () => {
-         console.log('pending');
+         console.log('uptadePlayersMessage:pending');
       });
       builder.addCase(uptadePlayersMessage.fulfilled, (state, action) => {
-         console.log('fulfilled');
+         console.log('uptadePlayersMessage:fulfilled');
          const { id, message } = action.payload;
          state.players[id].message = message;
          state.error = null;
       });
       builder.addCase(uptadePlayersMessage.rejected, (state, action) => {
-         console.log('error');
+         console.log('uptadePlayersMessage:error');
          state.error = action.error.message;
       });
       builder.addCase(uptadePlayersBuff.pending, () => {
-         console.log('pending');
+         console.log('uptadePlayersBuff:pending');
       });
       builder.addCase(uptadePlayersBuff.fulfilled, (state, action) => {
-         console.log('fulfilled');
+         console.log('uptadePlayersBuff:fulfilled');
          const { index, id, date } = action.payload;
          state.players[id].spells[index].date = date;
          state.error = null;
       });
       builder.addCase(uptadePlayersBuff.rejected, (state, action) => {
-         console.log('error');
+         console.log('uptadePlayersBuff:error');
          state.error = action.error.message;
       });
       builder.addCase(deletePlayerBuff.pending, () => {
-         console.log('pending');
+         console.log('deletePlayerBuff:pending');
       });
       builder.addCase(deletePlayerBuff.fulfilled, (state, action) => {
-         console.log('fulfilled');
+         console.log('deletePlayerBuff:fulfilled');
          const { id, index } = action.payload;
          state.players[id].spells[index].date = null;
          state.error = null;
       });
       builder.addCase(deletePlayerBuff.rejected, (state, action) => {
-         console.log('error');
+         console.log('deletePlayerBuff:error');
          state.error = action.error.message;
       });
    },
