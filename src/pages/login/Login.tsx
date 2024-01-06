@@ -6,6 +6,7 @@ import { AppDispatch } from '@/router/store';
 import { useNavigate } from 'react-router-dom';
 import { fetchPlayers } from '../players/playersSlice';
 import { getLogin } from '@/router/selectors';
+import { fetchData } from '@/router/dataSlice';
 
 export type loginData = {
    login: string;
@@ -24,6 +25,7 @@ export const Login: FunctionComponent = () => {
       const dataLog: loginData = { login, password };
       dispatch(fetchProfile(dataLog)).then((data) => {
          if (data.payload.error === undefined) {
+            dispatch(fetchData());
             dispatch(fetchPlayers()).then(() => {
                navigate('/info');
             });

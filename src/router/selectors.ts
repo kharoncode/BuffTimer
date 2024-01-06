@@ -27,3 +27,15 @@ export function getFavoris(state: RootState) {
 export function getIntelligence(state: RootState) {
    return parseInt(getProfile(state).intelligence);
 }
+
+export function getData(state: RootState) {
+   return state?.data;
+}
+
+export function getMagie(state: RootState) {
+   return getData(state).magie;
+}
+
+export function getSpellss(state: RootState) {
+   return getMagie(state).spells;
+}

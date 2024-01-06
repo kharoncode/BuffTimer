@@ -5,6 +5,7 @@ import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 import { persistStore, persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import { thunk } from 'redux-thunk';
+import { dataSlice } from './dataSlice';
 
 const persistConfig = {
    key: 'root',
@@ -14,6 +15,7 @@ const persistConfig = {
 const reducers = combineReducers({
    login: loginSlice.reducer,
    players: playersSlice.reducer,
+   data: dataSlice.reducer,
 });
 
 const store = configureStore({
