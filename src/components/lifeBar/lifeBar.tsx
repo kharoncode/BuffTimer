@@ -7,7 +7,7 @@ type life = {
    };
 };
 
-const LifeElt = styled.div<{ stop: string; color: string }>`
+const LifeElt = styled.div<{ $stop: string; color: string }>`
    font-weight: 500;
    display: flex;
    justify-content: center;
@@ -19,8 +19,8 @@ const LifeElt = styled.div<{ stop: string; color: string }>`
    height: 25px;
    background-image: linear-gradient(
       90deg,
-      ${({ color }) => color} ${({ stop }) => stop}%,
-      rgb(230, 230, 230) ${({ stop }) => stop}%,
+      ${({ color }) => color} ${({ $stop }) => $stop}%,
+      rgb(230, 230, 230) ${({ $stop }) => $stop}%,
       rgb(230, 230, 230) 100%
    );
 `;
@@ -40,7 +40,7 @@ export default function LifeBar(life: life) {
          : 'rgba(102, 255, 87, 1)';
 
    return (
-      <LifeElt stop={stop.toString()} color={color}>
+      <LifeElt $stop={stop.toString()} color={color}>
          {lifeInfo.currentLife}/{lifeInfo.maxLife}
       </LifeElt>
    );

@@ -5,11 +5,11 @@ import styled from 'styled-components';
 
 type data = { player: player };
 
-const Container = styled.div<{ flex: string }>`
+const Container = styled.div<{ $flex: string }>`
    align-self: flex-end;
    width: 85%;
    display: flex;
-   flex-direction: ${({ flex }) => flex};
+   flex-direction: ${({ $flex }) => $flex};
    align-items: center;
    gap: 5px;
 `;
@@ -23,7 +23,7 @@ const SpellsContainer = (data: data) => {
          onClick={() => {
             setOpen(!isOpen);
          }}
-         flex={flexDirection}
+         $flex={flexDirection}
       >
          {player.spells.map((el, index: number) =>
             el.date === null ? (
