@@ -4,10 +4,11 @@ import { useState, useEffect } from 'react';
 type data = {
    date: number;
    setIsOver: React.Dispatch<React.SetStateAction<boolean>>;
+   isOpen?: boolean;
 };
 
 const Timer: React.FC<data> = (data) => {
-   const { date, setIsOver } = data;
+   const { date, setIsOver, isOpen } = data;
    const [days, setDays] = useState(0);
    const [hours, setHours] = useState(0);
    const [minutes, setMinutes] = useState(0);
@@ -36,10 +37,12 @@ const Timer: React.FC<data> = (data) => {
       };
    }, [date, setIsOver]);
 
-   return (
+   return isOpen ? (
       <div className={styles.container}>
          {last ? `< 1min` : `${days}d ${hours}h ${minutes}m`}
       </div>
+   ) : (
+      <></>
    );
 };
 

@@ -65,7 +65,7 @@ const SpellCard: React.FC<data> = (data) => {
                ></img>
 
                <div className={styles.title}>{name}</div>
-               <Timer date={date} setIsOver={setIsOver} />
+               <Timer date={date} setIsOver={setIsOver} isOpen={isOpen} />
             </SpellContainer>
          ) : (
             <span className={styles.spellPictureRound} title={`${name}`}>
@@ -74,6 +74,7 @@ const SpellCard: React.FC<data> = (data) => {
                   src={`/pictures/spells/${id}.gif`}
                   alt={`${name}`}
                ></img>
+               <Timer date={date} setIsOver={setIsOver} isOpen={isOpen} />
             </span>
          )}
       </div>

@@ -135,14 +135,14 @@ type spellId = {
    spell: string;
 };
 
-type setDelete = { [key: string]: null };
+type setDelete = { [key: string]: 'null' };
 
 export const deletePlayerBuff = createAsyncThunk(
    'players/deletePlayerBuff',
    async (removeSpell: spellId) => {
       const { id, spell } = removeSpell;
       const set: setDelete = {};
-      set[spell] = null;
+      set[spell] = 'null';
       const body = {
          condition: { id: id },
          set: set,
