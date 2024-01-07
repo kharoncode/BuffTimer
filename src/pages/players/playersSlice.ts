@@ -33,8 +33,8 @@ type newLife = {
    };
 };
 
-export const uptadePlayersLife = createAsyncThunk(
-   'players/uptadePlayersLife',
+export const uptadeUserPlayerLife = createAsyncThunk(
+   'players/uptadeUserPlayerLife',
    async (newLife: newLife) => {
       const { id, life } = newLife;
       const body = {
@@ -44,7 +44,6 @@ export const uptadePlayersLife = createAsyncThunk(
             maxLife: life.maxLife,
          },
       };
-      //return fetch(`${import.meta.env.VITE_MOCKURL}profiles.json`, {
       return fetch(`${import.meta.env.VITE_API}/players`, {
          method: 'put',
          headers: {
@@ -70,8 +69,8 @@ type newMessage = {
    message: string;
 };
 
-export const uptadePlayersMessage = createAsyncThunk(
-   'players/uptadePlayersMessage',
+export const uptadeUserPlayerMessage = createAsyncThunk(
+   'players/uptadeUserPlayerMessage',
    async (newMessage: newMessage) => {
       const { id, message } = newMessage;
       const body = {
@@ -188,30 +187,30 @@ export const playersSlice = createSlice({
          state.players = {};
          state.error = action.error.message;
       });
-      builder.addCase(uptadePlayersLife.pending, () => {
-         console.log('uptadePlayersLife:pending');
+      builder.addCase(uptadeUserPlayerLife.pending, () => {
+         console.log('uptadeUserPlayerLife:pending');
       });
-      builder.addCase(uptadePlayersLife.fulfilled, (state, action) => {
-         console.log('uptadePlayersLife:fulfilled');
+      builder.addCase(uptadeUserPlayerLife.fulfilled, (state, action) => {
+         console.log('uptadeUserPlayerLife:fulfilled');
          const { id, life } = action.payload;
          state.players[id].life = life;
          state.error = null;
       });
-      builder.addCase(uptadePlayersLife.rejected, (state, action) => {
-         console.log('uptadePlayersLife:error');
+      builder.addCase(uptadeUserPlayerLife.rejected, (state, action) => {
+         console.log('uptadeUserPlayerLife:error');
          state.error = action.error.message;
       });
-      builder.addCase(uptadePlayersMessage.pending, () => {
-         console.log('uptadePlayersMessage:pending');
+      builder.addCase(uptadeUserPlayerMessage.pending, () => {
+         console.log('uptadeUserPlayerMessage:pending');
       });
-      builder.addCase(uptadePlayersMessage.fulfilled, (state, action) => {
-         console.log('uptadePlayersMessage:fulfilled');
+      builder.addCase(uptadeUserPlayerMessage.fulfilled, (state, action) => {
+         console.log('uptadeUserPlayerMessage:fulfilled');
          const { id, message } = action.payload;
          state.players[id].message = message;
          state.error = null;
       });
-      builder.addCase(uptadePlayersMessage.rejected, (state, action) => {
-         console.log('uptadePlayersMessage:error');
+      builder.addCase(uptadeUserPlayerMessage.rejected, (state, action) => {
+         console.log('uptadeUserPlayerMessage:error');
          state.error = action.error.message;
       });
       builder.addCase(uptadePlayersBuff.pending, () => {

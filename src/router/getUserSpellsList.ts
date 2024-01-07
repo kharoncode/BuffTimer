@@ -5,7 +5,7 @@ const getUserSpellsList = () => {
    const userSpellsList: { [key: string]: { [key: string]: string } } = {};
    const dataSpheres = store.getState().data.data.magie.spheres;
    const dataSpells = store.getState().data.data.magie.spells;
-   const userSpheres = store.getState().login.profile.spheres;
+   const userSpheres = store.getState().login.user.spheres;
 
    userSpheres.split(' ').map((el: string) => {
       dataSpheres[el]

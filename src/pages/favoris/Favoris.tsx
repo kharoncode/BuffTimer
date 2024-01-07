@@ -1,13 +1,13 @@
 import PlayersContainer from '@/components/playersContainer/PlayersContainer';
 import styles from './favoris.module.css';
-import { getFavoris, getPlayersList } from '@/router/selectors';
+import { getUserFavoris, getPlayersList } from '@/router/selectors';
 import { useSelector } from 'react-redux';
 import { useState } from 'react';
 import EditPlayerModale from '@/components/editPlayerModale/EditPlayerModale';
 import formatFavoris from '@/utils/formatFavoris';
 
 function Favoris() {
-   const favorisS = useSelector(getFavoris);
+   const favorisS = useSelector(getUserFavoris);
    const players = useSelector(getPlayersList);
    const favoris = formatFavoris(favorisS, players);
 

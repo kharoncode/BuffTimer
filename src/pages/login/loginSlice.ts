@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { loginDataType } from './Login';
 
-export type profile = {
+export type user = {
    id: string;
    login: string;
    password?: string;
@@ -16,16 +16,16 @@ export type profile = {
 
 type loginState = {
    loading: boolean;
-   profile: profile;
+   user: user;
    error: null | string | undefined;
    auth: boolean;
 };
 
-export const fetchProfile = createAsyncThunk(
-   'login/fetchProfile',
+export const fetchUser = createAsyncThunk(
+   'login/fetchUser',
    async (log: loginDataType, { rejectWithValue }) => {
-      //return fetch(`${import.meta.env.VITE_MOCKURL}profiles.json`, {
-      return fetch(`${import.meta.env.VITE_API}/profiles`, {
+      //return fetch(`${import.meta.env.VITE_MOCKURL}users.json`, {
+      return fetch(`${import.meta.env.VITE_API}/users`, {
          method: 'get',
          headers: {
             'Content-Type': 'application/json',
@@ -33,11 +33,11 @@ export const fetchProfile = createAsyncThunk(
       })
          .then((result) => result.json())
          .then((data) => {
-            const filter = data.filter(function (el: profile) {
+            const filter = data.filter(function (el: user) {
                return el.id === log.login && el.password === log.password;
             });
             if (filter.length !== 0) {
-               const profile: profile = {
+               const user: user = {
                   id: filter[0].id,
                   login: filter[0].login,
                   email: filter[0].email,
@@ -47,7 +47,7 @@ export const fetchProfile = createAsyncThunk(
                   realm: filter[0].realm,
                   spheres: filter[0].spheres,
                };
-               return profile;
+               return user;
             } else {
                return rejectWithValue({
                   error: 'Login Failed: Your user ID or password is incorrect',
@@ -65,8 +65,8 @@ export type newData = {
    spheres: string;
 };
 
-export const uptadeProfile = createAsyncThunk(
-   'login/uptadeProfile',
+export const uptadeUser = createAsyncThunk(
+   'login/uptadeUser',
    async (newData: newData) => {
       const { id, login, email, intelligence, spheres } = newData;
       const body = {
@@ -78,7 +78,7 @@ export const uptadeProfile = createAsyncThunk(
             spheres: spheres,
          },
       };
-      return fetch(`${import.meta.env.VITE_API}/profiles`, {
+      return fetch(`${import.meta.env.VITE_API}/users`, {
          method: 'put',
          headers: {
             'Content-Type': 'application/json',
@@ -102,8 +102,8 @@ type newPassword = {
    password: string;
 };
 
-export const uptadeProfilePassword = createAsyncThunk(
-   'login/uptadeProfilePassword',
+export const uptadeUserPassword = createAsyncThunk(
+   'login/uptadeUserPassword',
    async (newPassword: newPassword) => {
       const { id, password } = newPassword;
       const body = {
@@ -112,7 +112,7 @@ export const uptadeProfilePassword = createAsyncThunk(
             password: password,
          },
       };
-      return fetch(`${import.meta.env.VITE_API}/profiles`, {
+      return fetch(`${import.meta.env.VITE_API}/users`, {
          method: 'put',
          headers: {
             'Content-Type': 'application/json',
@@ -127,8 +127,8 @@ type favorisData = {
    list: string;
 };
 
-export const uptadeProfileFavoris = createAsyncThunk(
-   'login/uptadeProfileFavoris',
+export const uptadeUserFavoris = createAsyncThunk(
+   'login/uptadeUserFavoris',
    async (favorisData: favorisData) => {
       const { id, list } = favorisData;
       const body = {
@@ -137,7 +137,7 @@ export const uptadeProfileFavoris = createAsyncThunk(
             favoris: list,
          },
       };
-      return fetch(`${import.meta.env.VITE_API}/profiles`, {
+      return fetch(`${import.meta.env.VITE_API}/users`, {
          method: 'put',
          headers: {
             'Content-Type': 'application/json',
@@ -153,7 +153,7 @@ export const uptadeProfileFavoris = createAsyncThunk(
 
 const initialState: loginState = {
    loading: false,
-   profile: {
+   user: {
       id: '',
       login: '',
       name: '',
@@ -176,58 +176,58 @@ export const loginSlice = createSlice({
       },
    },
    extraReducers: (builder) => {
-      builder.addCase(fetchProfile.pending, (state) => {
-         console.log('fetchProfile:pending');
+      builder.addCase(fetchUser.pending, (state) => {
+         console.log('fetchUser:pending');
          state.loading = true;
       });
-      builder.addCase(fetchProfile.fulfilled, (state, action) => {
-         console.log('fetchProfile:fulfilled');
+      builder.addCase(fetchUser.fulfilled, (state, action) => {
+         console.log('fetchUser:fulfilled');
          state.loading = false;
-         state.profile = action.payload;
+         state.user = action.payload;
          state.error = null;
          state.auth = true;
       });
-      builder.addCase(fetchProfile.rejected, (state, action) => {
-         console.log('fetchProfile:error');
+      builder.addCase(fetchUser.rejected, (state, action) => {
+         console.log('fetchUser:error');
          state.loading = false;
-         state.profile = initialState.profile;
+         state.user = initialState.user;
          state.error = action.error.message;
          state.auth = false;
       });
-      builder.addCase(uptadeProfile.pending, (state) => {
-         console.log('uptadeProfile:pending');
+      builder.addCase(uptadeUser.pending, (state) => {
+         console.log('uptadeUser:pending');
          state.loading = true;
       });
-      builder.addCase(uptadeProfile.fulfilled, (state, action) => {
+      builder.addCase(uptadeUser.fulfilled, (state, action) => {
          const { login, email, intelligence, spheres } = action.payload;
-         console.log('uptadeProfile:fulfilled');
+         console.log('uptadeUser:fulfilled');
          state.loading = false;
-         state.profile.login = login;
-         state.profile.email = email;
-         state.profile.intelligence = intelligence;
-         state.profile.spheres = spheres;
+         state.user.login = login;
+         state.user.email = email;
+         state.user.intelligence = intelligence;
+         state.user.spheres = spheres;
          state.error = null;
       });
-      builder.addCase(uptadeProfile.rejected, (state, action) => {
-         console.log('uptadeProfile:error');
+      builder.addCase(uptadeUser.rejected, (state, action) => {
+         console.log('uptadeUser:error');
          state.loading = false;
-         state.profile = initialState.profile;
+         state.user = initialState.user;
          state.error = action.error.message;
       });
-      builder.addCase(uptadeProfileFavoris.pending, (state) => {
-         console.log('uptadeProfileFavoris:pending');
+      builder.addCase(uptadeUserFavoris.pending, (state) => {
+         console.log('uptadeUserFavoris:pending');
          state.loading = true;
       });
-      builder.addCase(uptadeProfileFavoris.fulfilled, (state, action) => {
-         console.log('uptadeProfileFavoris:fulfilled');
+      builder.addCase(uptadeUserFavoris.fulfilled, (state, action) => {
+         console.log('uptadeUserFavoris:fulfilled');
          state.loading = false;
-         state.profile.favoris = action.payload;
+         state.user.favoris = action.payload;
          state.error = null;
       });
-      builder.addCase(uptadeProfileFavoris.rejected, (state, action) => {
-         console.log('uptadeProfileFavoris:error');
+      builder.addCase(uptadeUserFavoris.rejected, (state, action) => {
+         console.log('uptadeUserFavoris:error');
          state.loading = false;
-         state.profile = initialState.profile;
+         state.user = initialState.user;
          state.error = action.error.message;
       });
    },

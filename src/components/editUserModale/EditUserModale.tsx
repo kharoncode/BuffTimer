@@ -4,28 +4,28 @@ import {
    type FunctionComponent,
    ChangeEvent,
 } from 'react';
-import styles from './editProfileModale.module.css';
+import styles from './editUserModale.module.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { getDataSpheres, getPlayersList, getProfile } from '@/router/selectors';
+import { getDataSpheres, getPlayersList, getUser } from '@/router/selectors';
 import {
    newData,
-   uptadeProfile,
-   uptadeProfileFavoris,
-   uptadeProfilePassword,
+   uptadeUser,
+   uptadeUserFavoris,
+   uptadeUserPassword,
 } from '@/pages/login/loginSlice';
 import {
-   uptadePlayersLife,
-   uptadePlayersMessage,
+   uptadeUserPlayerLife,
+   uptadeUserPlayerMessage,
 } from '@/pages/players/playersSlice';
 import { AppDispatch } from '@/router/store';
 
-const EditProfileModale: FunctionComponent = () => {
+const EditUserModale: FunctionComponent = () => {
    const dispatch = useDispatch<AppDispatch>();
    const [isLoading, setLoading] = useState(false);
    const [error, setError] = useState(false);
    const players = useSelector(getPlayersList);
    const { id, login, email, intelligence, favoris, spheres } =
-      useSelector(getProfile);
+      useSelector(getUser);
    const spheresList = useSelector(getDataSpheres);
    const { life, message } = players[id];
    const [spheresCheckedList, setspheresCheckedList] = useState(
@@ -35,7 +35,7 @@ const EditProfileModale: FunctionComponent = () => {
       favoris.split(' ')
    );
 
-   const handleSubmitUpdateProfile = (e: FormEvent<HTMLFormElement>) => {
+   const handleSubmitUpdateUser = (e: FormEvent<HTMLFormElement>) => {
       e.preventDefault();
       setLoading(true);
       const result: newData = {
@@ -45,12 +45,12 @@ const EditProfileModale: FunctionComponent = () => {
          intelligence: e.currentTarget.intelligence.value,
          spheres: spheresCheckedList.join(' '),
       };
-      dispatch(uptadeProfile(result)).then(() => {
+      dispatch(uptadeUser(result)).then(() => {
          setLoading(false);
       });
    };
 
-   const handleSubmitUpdateLife = (e: FormEvent<HTMLFormElement>) => {
+   const handleSubmitUpdateUserLife = (e: FormEvent<HTMLFormElement>) => {
       e.preventDefault();
       setLoading(true);
       const result = {
@@ -60,20 +60,20 @@ const EditProfileModale: FunctionComponent = () => {
             maxLife: parseInt(e.currentTarget.maxLife.value),
          },
       };
-      dispatch(uptadePlayersLife(result)).then(() => setLoading(false));
+      dispatch(uptadeUserPlayerLife(result)).then(() => setLoading(false));
    };
 
-   const handleSubmitMessage = (e: FormEvent<HTMLFormElement>) => {
+   const handleSubmitUpdateUserMessage = (e: FormEvent<HTMLFormElement>) => {
       e.preventDefault();
       setLoading(true);
       const result = {
          id: id,
          message: e.currentTarget.message.value,
       };
-      dispatch(uptadePlayersMessage(result)).then(() => setLoading(false));
+      dispatch(uptadeUserPlayerMessage(result)).then(() => setLoading(false));
    };
 
-   const handleSubmitUpdatePassword = (e: FormEvent<HTMLFormElement>) => {
+   const handleSubmitUpdateUserPassword = (e: FormEvent<HTMLFormElement>) => {
       e.preventDefault();
       setLoading(true);
       const newPassword = e.currentTarget.newPassword.value;
@@ -83,7 +83,7 @@ const EditProfileModale: FunctionComponent = () => {
             id: id,
             password: newPassword,
          };
-         dispatch(uptadeProfilePassword(result)).then(() => setLoading(false));
+         dispatch(uptadeUserPassword(result)).then(() => setLoading(false));
       } else {
          setLoading(false);
          setError(true);
@@ -125,7 +125,7 @@ const EditProfileModale: FunctionComponent = () => {
          id: id,
          list: favorisCheckedList.join(' '),
       };
-      dispatch(uptadeProfileFavoris(result)).then(() => {
+      dispatch(uptadeUserFavoris(result)).then(() => {
          setLoading(false);
       });
    };
@@ -136,7 +136,7 @@ const EditProfileModale: FunctionComponent = () => {
             <form
                className={styles.form}
                onSubmit={(e) => {
-                  handleSubmitUpdateProfile(e);
+                  handleSubmitUpdateUser(e);
                }}
             >
                <div className={styles.inputLabel}>
@@ -206,7 +206,7 @@ const EditProfileModale: FunctionComponent = () => {
             <form
                className={styles.form}
                onSubmit={(e) => {
-                  handleSubmitUpdateLife(e);
+                  handleSubmitUpdateUserLife(e);
                }}
             >
                <div className={styles.inputLabel}>
@@ -236,7 +236,7 @@ const EditProfileModale: FunctionComponent = () => {
             <form
                className={styles.form}
                onSubmit={(e) => {
-                  handleSubmitMessage(e);
+                  handleSubmitUpdateUserMessage(e);
                }}
             >
                <div className={styles.inputLabel}>
@@ -255,7 +255,7 @@ const EditProfileModale: FunctionComponent = () => {
             <form
                className={styles.form}
                onSubmit={(e) => {
-                  handleSubmitUpdatePassword(e);
+                  handleSubmitUpdateUserPassword(e);
                }}
             >
                <div className={styles.inputLabel}>
@@ -328,4 +328,4 @@ const EditProfileModale: FunctionComponent = () => {
    );
 };
 
-export default EditProfileModale;
+export default EditUserModale;

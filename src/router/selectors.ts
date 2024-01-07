@@ -19,25 +19,25 @@ export function getPlayersList(state: RootState) {
    return getPlayers(state).players;
 }
 
-// profile
-export function getProfile(state: RootState) {
-   return getLogin(state).profile;
+// user
+export function getUser(state: RootState) {
+   return getLogin(state).user;
 }
 
-export function getFavoris(state: RootState) {
-   return getProfile(state).favoris;
+export function getUserFavoris(state: RootState) {
+   return getUser(state).favoris;
 }
 
-export function getIntelligence(state: RootState) {
-   return parseInt(getProfile(state).intelligence);
+export function getUserIntelligence(state: RootState) {
+   return parseInt(getUser(state).intelligence);
 }
 
 export function getUserRealm(state: RootState) {
-   return getProfile(state).realm;
+   return getUser(state).realm;
 }
 
 export function getUserSpheres(state: RootState) {
-   return getProfile(state).spheres;
+   return getUser(state).spheres;
 }
 
 // data

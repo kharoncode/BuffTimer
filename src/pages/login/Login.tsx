@@ -1,6 +1,6 @@
 import { type FormEvent, type FunctionComponent } from 'react';
 import styles from './login.module.css';
-import { fetchProfile } from './loginSlice';
+import { fetchUser } from './loginSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch } from '@/router/store';
 import { useNavigate } from 'react-router-dom';
@@ -23,7 +23,7 @@ export const Login: FunctionComponent = () => {
       const login: string = e.currentTarget.login.value;
       const password: string = e.currentTarget.password.value;
       const dataLog: loginDataType = { login, password };
-      dispatch(fetchProfile(dataLog)).then((data) => {
+      dispatch(fetchUser(dataLog)).then((data) => {
          if (data.meta.requestStatus === 'fulfilled') {
             dispatch(fetchData());
             dispatch(fetchPlayers()).then(() => {

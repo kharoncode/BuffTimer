@@ -1,7 +1,7 @@
 {
    "pages": {
       "home": {
-         "fakeProfile": {
+         "fakeUser": {
             "id": "keldar",
             "name": "Keldar",
             "picture": "el.picture",

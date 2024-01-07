@@ -1,12 +1,12 @@
 import styles from './profile.module.css';
-import { getPlayers, getProfile } from '@/router/selectors';
+import { getPlayers, getUser } from '@/router/selectors';
 import { useSelector } from 'react-redux';
 import { playersState } from '../players/playersSlice';
 import PlayerCard from '@/components/playerCard/PlayerCard';
-import EditProfileModale from '@/components/editProfileModale/EditProfileModale';
+import EditUserModale from '@/components/editUserModale/EditUserModale';
 
 function Profile() {
-   const { id } = useSelector(getProfile);
+   const { id } = useSelector(getUser);
    const { loading, players, error }: playersState = useSelector(getPlayers);
 
    return (
@@ -20,7 +20,7 @@ function Profile() {
                <PlayerCard player={players[id]} />
             )}
          </div>
-         <EditProfileModale />
+         <EditUserModale />
       </div>
    );
 }

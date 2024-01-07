@@ -4,7 +4,7 @@ import styles from './editPlayerModale.module.css';
 import close from '@assets/icones/close.svg';
 import { useDispatch, useSelector } from 'react-redux';
 import {
-   getIntelligence,
+   getUserIntelligence,
    getPlayersList,
    getDataSpellsStore,
 } from '@/router/selectors';
@@ -62,7 +62,7 @@ const EditPlayerModale: FunctionComponent<data> = (data) => {
    const { setModale, modale } = data;
    const players = useSelector(getPlayersList);
    const player = players[modale.id];
-   const intelligence = useSelector(getIntelligence);
+   const intelligence = useSelector(getUserIntelligence);
 
    const handleSubmitNew = (e: FormEvent<HTMLFormElement>, id: string) => {
       e.preventDefault();
