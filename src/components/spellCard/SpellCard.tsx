@@ -39,7 +39,15 @@ const SpellCard: React.FC<data> = (data) => {
    }
 
    const color =
-      category === 'justice' ? 'rgba(255, 186, 83, 1)' : 'rgba(4, 215, 251, 1)';
+      category === 'justice'
+         ? 'rgba(255, 186, 83, 1)'
+         : category === 'protection'
+         ? 'rgb(237, 244, 236)'
+         : category === 'negation'
+         ? 'rgb(210, 210, 210)'
+         : category === 'vitalite'
+         ? 'rgb(114, 244, 103)'
+         : 'rgb(255, 72, 23)';
    return (
       <div className={styles.container}>
          {isOpen ? (

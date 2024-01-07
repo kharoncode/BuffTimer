@@ -137,7 +137,7 @@
          "protection": "regenerationMineure resistance salutDuDivin regeneration capriceDuDestin chatiment",
          "vitalite": "vigueur restauration vitesse convulsions peauDePierre verdoyance agilite plenitude",
          "destruction": "corrosion toucherAcide brulureDeMana nappeDeBrume",
-         "negation": "oeilPourOeil malediction cicatrisation entraves decomposition",
+         "negation": "oeilPourOeil malediction entraves decomposition",
          "alteration": "flou invisibilite bombeDeLumiere cecite champDeantimagie imageMiroir silence distortionTemporelle visionUltime",
          "justice": "benedictionDeKeldar attaqueSacree grandeBenedictionDeKeldar lameDeJustice transcendance"
       },
@@ -146,89 +146,91 @@
             "name": "Bénédiction de Keldar",
             "category": "justice",
             "arcane": 1,
-            "profane": false,
-            "god": "keldar",
             "time": 7800000
          },
          "attaqueSacree": {
             "name": "Attaque Sacrée",
             "category": "justice",
             "arcane": 2,
-            "profane": false,
-            "god": "keldar",
             "time": 1800000
          },
          "grandeBenedictionDeKeldar": {
             "name": "Grd Bénédiction de Keldar",
             "category": "justice",
             "arcane": 3,
-            "profane": false,
-            "god": "keldar",
             "time": 7800000
          },
          "lameDeJustice": {
             "name": "Lame de Justice",
             "category": "justice",
             "arcane": 4,
-            "profane": false,
-            "god": "keldar",
             "time": 7800000
          },
          "transcendance": {
             "name": "Transcendance",
             "category": "justice",
             "arcane": 5,
-            "profane": false,
-            "god": "keldar",
             "time": 2880000
          },
          "regenerationMineure": {
             "name": "Régénération Mineure",
             "category": "protection",
             "arcane": 1,
-            "profane": false,
-            "god": "all",
             "time": 7800000
          },
          "resistance": {
             "name": "Résistance",
             "category": "protection",
             "arcane": 2,
-            "profane": false,
-            "god": "all",
             "time": 4680000
          },
          "salutDuDivin": {
             "name": "Salut du Divin",
             "category": "protection",
             "arcane": 2,
-            "profane": false,
-            "god": "all",
             "time": 7800000
          },
          "regeneration": {
             "name": "Régénération",
             "category": "protection",
             "arcane": 3,
-            "profane": false,
-            "god": "all",
             "time": 3900000
          },
          "capriceDuDestin": {
             "name": "Caprice du Destin",
             "category": "protection",
             "arcane": 4,
-            "profane": false,
-            "god": "all",
             "time": 1950000
          },
          "chatiment": {
             "name": "Chatiment",
             "category": "protection",
             "arcane": 5,
-            "profane": false,
-            "god": "all",
             "time": 4680000
+         },
+         "oeilPourOeil": {
+            "name": "Oeil pour oeil",
+            "category": "negation",
+            "arcane": 2,
+            "time": 1800000
+         },
+         "malediction": {
+            "name": "Malediction",
+            "category": "negation",
+            "arcane": 3,
+            "time": 3600000
+         },
+         "entraves": {
+            "name": "Entraves",
+            "category": "negation",
+            "arcane": 4,
+            "time": 3600000
+         },
+         "decomposition": {
+            "name": "Décomposition",
+            "category": "negation",
+            "arcane": 5,
+            "time": 1800000
          }
       }
    }
