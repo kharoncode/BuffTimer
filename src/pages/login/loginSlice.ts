@@ -62,18 +62,20 @@ export type newData = {
    login: string;
    email: string;
    intelligence: number;
+   spheres: string;
 };
 
 export const uptadeProfile = createAsyncThunk(
    'login/uptadeProfile',
    async (newData: newData) => {
-      const { id, login, email, intelligence } = newData;
+      const { id, login, email, intelligence, spheres } = newData;
       const body = {
          condition: { id: id },
          set: {
             email: email,
             login: login,
             intelligence: intelligence,
+            spheres: spheres,
          },
       };
       return fetch(`${import.meta.env.VITE_API}/profiles`, {
@@ -89,6 +91,7 @@ export const uptadeProfile = createAsyncThunk(
                login: login,
                email: email,
                intelligence: intelligence,
+               spheres: spheres,
             };
          });
    }
@@ -196,12 +199,13 @@ export const loginSlice = createSlice({
          state.loading = true;
       });
       builder.addCase(uptadeProfile.fulfilled, (state, action) => {
-         const { login, email, intelligence } = action.payload;
+         const { login, email, intelligence, spheres } = action.payload;
          console.log('uptadeProfile:fulfilled');
          state.loading = false;
          state.profile.login = login;
          state.profile.email = email;
          state.profile.intelligence = intelligence;
+         state.profile.spheres = spheres;
          state.error = null;
       });
       builder.addCase(uptadeProfile.rejected, (state, action) => {

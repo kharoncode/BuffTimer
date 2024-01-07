@@ -6,7 +6,7 @@ import {
 } from 'react';
 import styles from './editProfileModale.module.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { getPlayersList, getProfile } from '@/router/selectors';
+import { getDataSpheres, getPlayersList, getProfile } from '@/router/selectors';
 import {
    newData,
    uptadeProfile,
@@ -24,9 +24,16 @@ const EditProfileModale: FunctionComponent = () => {
    const [isLoading, setLoading] = useState(false);
    const [error, setError] = useState(false);
    const players = useSelector(getPlayersList);
-   const { id, login, email, intelligence, favoris } = useSelector(getProfile);
+   const { id, login, email, intelligence, favoris, spheres } =
+      useSelector(getProfile);
+   const spheresList = useSelector(getDataSpheres);
    const { life, message } = players[id];
-   const [checkedList, setCheckedList] = useState(favoris.split(' '));
+   const [spheresCheckedList, setspheresCheckedList] = useState(
+      spheres.split(' ')
+   );
+   const [favorisCheckedList, setfavorisCheckedList] = useState(
+      favoris.split(' ')
+   );
 
    const handleSubmitUpdateProfile = (e: FormEvent<HTMLFormElement>) => {
       e.preventDefault();
@@ -36,6 +43,7 @@ const EditProfileModale: FunctionComponent = () => {
          login: e.currentTarget.login.value,
          email: e.currentTarget.email.value,
          intelligence: e.currentTarget.intelligence.value,
+         spheres: spheresCheckedList.join(' '),
       };
       dispatch(uptadeProfile(result)).then(() => {
          setLoading(false);
@@ -82,24 +90,41 @@ const EditProfileModale: FunctionComponent = () => {
       }
    };
 
-   const handleSelect = (e: ChangeEvent<HTMLInputElement>) => {
+   const handleSelectFavoris = (e: ChangeEvent<HTMLInputElement>) => {
       const value = e.target.id;
       const isChecked = e.target.checked;
 
       if (isChecked) {
-         setCheckedList([...checkedList, value]);
+         setfavorisCheckedList([...favorisCheckedList, value]);
       } else {
-         const filteredList = checkedList.filter(
+         const filteredList = favorisCheckedList.filter(
             (item: string) => item !== value
          );
-         setCheckedList(filteredList);
+         setfavorisCheckedList(filteredList);
+      }
+   };
+
+   const handleSelectSpheres = (e: ChangeEvent<HTMLInputElement>) => {
+      const value = e.target.id;
+      const isChecked = e.target.checked;
+
+      if (isChecked) {
+         setspheresCheckedList([...spheresCheckedList, value]);
+      } else {
+         const filteredList = spheresCheckedList.filter(
+            (item: string) => item !== value
+         );
+         setspheresCheckedList(filteredList);
       }
    };
 
    const handleSubmitFavoris = (e: FormEvent<HTMLFormElement>) => {
       e.preventDefault();
       setLoading(true);
-      const result = { id: id, list: checkedList.join(' ') };
+      const result = {
+         id: id,
+         list: favorisCheckedList.join(' '),
+      };
       dispatch(uptadeProfileFavoris(result)).then(() => {
          setLoading(false);
       });
@@ -138,6 +163,38 @@ const EditProfileModale: FunctionComponent = () => {
                      required
                      defaultValue={intelligence}
                   />
+
+                  <h4>Spheres</h4>
+                  <div className={styles.checkboxContainer}>
+                     {Object.keys(spheresList).map((key) => (
+                        <div
+                           key={`${key}-checkbox`}
+                           className={styles.inputContainer}
+                        >
+                           <label htmlFor={`${key}Input`}>{key}</label>
+                           {spheres.split(' ').includes(key) ? (
+                              <input
+                                 type="checkbox"
+                                 id={`${key}`}
+                                 name="favorisCheckbox"
+                                 defaultChecked
+                                 onChange={(e) => {
+                                    handleSelectSpheres(e);
+                                 }}
+                              />
+                           ) : (
+                              <input
+                                 type="checkbox"
+                                 id={`${key}`}
+                                 name="favorisCheckbox"
+                                 onChange={(e) => {
+                                    handleSelectSpheres(e);
+                                 }}
+                              />
+                           )}
+                        </div>
+                     ))}
+                  </div>
                </div>
                <button type="submit" className={styles.button}>
                   {isLoading ? 'Loading ...' : 'Envoyer'}
@@ -246,7 +303,7 @@ const EditProfileModale: FunctionComponent = () => {
                               name="favorisCheckbox"
                               defaultChecked
                               onChange={(e) => {
-                                 handleSelect(e);
+                                 handleSelectFavoris(e);
                               }}
                            />
                         ) : (
@@ -255,7 +312,7 @@ const EditProfileModale: FunctionComponent = () => {
                               id={`${players[key].id}`}
                               name="favorisCheckbox"
                               onChange={(e) => {
-                                 handleSelect(e);
+                                 handleSelectFavoris(e);
                               }}
                            />
                         )}
