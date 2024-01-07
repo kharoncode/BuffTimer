@@ -57,24 +57,6 @@ export function getDataSpheres(state: RootState) {
    return getDataMagie(state).spheres;
 }
 
-export function getUserSpheres(state: RootState) {
-   return getDataGods(state)[getUserGod(state)].spheres.split(' ');
-}
-
-export function getUserSpellsList(state: RootState) {
-   const userSpellsIdList: string[] = [];
-   getUserSpheres(state).map((el: string) => {
-      getDataSpheres(state)
-         [el].split(' ')
-         .map((spell: string) => userSpellsIdList.push(spell));
-   });
-   const userSpellsList: { [key: string]: { [key: string]: string } } = {};
-   userSpellsIdList.map(
-      (el) => (userSpellsList[el] = getDataSpells(state)[el])
-   );
-   return userSpellsList;
-}
-
 //store.getState()
 export function getDataSpellsStore(store: RootState) {
    return store.getState().data.data.magie.spells;

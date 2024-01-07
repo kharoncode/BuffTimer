@@ -7,11 +7,11 @@ import {
    getIntelligence,
    getPlayersList,
    getDataSpellsStore,
-   getUserSpellsList,
 } from '@/router/selectors';
 import { useState } from 'react';
 import { AppDispatch, store } from '@/router/store';
 import { uptadePlayersBuff } from '@/pages/players/playersSlice';
+import getUserSpellsList from '@/router/getUserSpellsList';
 
 type data = {
    modale: modale;
@@ -36,7 +36,7 @@ function spellDate(data: submitData) {
 }
 
 const SpellSelect = (data: spellType) => {
-   const spheres = useSelector(getUserSpellsList);
+   const spheres = getUserSpellsList();
    const { type } = data;
    return (
       <select
