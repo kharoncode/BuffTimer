@@ -26,7 +26,20 @@
    font-weight: 600;
 }
 
-.img {
+.editButton {
+   position: absolute;
+   top: 13px;
+   right: 15px;
+   width: 15px;
+   cursor: pointer;
+}
+
+.editButton:hover {
+   filter: invert(70%) sepia(51%) saturate(3131%) hue-rotate(358deg)
+      brightness(102%) contrast(106%);
+}
+
+.playerPicture {
    position: absolute;
    top: 50%;
    left: 0;
@@ -55,7 +68,7 @@
       min-width: 300px;
       border-radius: 0 25px 0 0;
    }
-   .img {
+   .playerPicture {
       width: 70px;
       height: 70px;
       border-radius: 25px;
