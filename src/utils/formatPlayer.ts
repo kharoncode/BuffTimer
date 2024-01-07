@@ -1,4 +1,4 @@
-import { getSpellsStore } from '@/router/selectors';
+import { getDataSpellsStore } from '@/router/selectors';
 import { store } from '@/router/store';
 
 type dataEl = {
@@ -47,7 +47,7 @@ export type player = {
 export type players = { [key: string]: player };
 
 const formatPlayer = (el: dataEl) => {
-   const spellsData = getSpellsStore(store);
+   const spellsData = getDataSpellsStore(store);
 
    const spells: spells = {};
    for (let i = 6; i < Object.keys(el).length; i++) {

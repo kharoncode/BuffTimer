@@ -6,7 +6,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import {
    getIntelligence,
    getPlayersList,
-   getSpellsStore,
+   getDataSpellsStore,
+   getUserSpellsList,
 } from '@/router/selectors';
 import { useState } from 'react';
 import { AppDispatch, store } from '@/router/store';
@@ -29,12 +30,13 @@ function formatDate(time: number, critic: boolean) {
 function spellDate(data: submitData) {
    const { int, critic, spell } = data;
    return formatDate(
-      Math.floor(getSpellsStore(store)[spell].time * int),
+      Math.floor(getDataSpellsStore(store)[spell].time * int),
       critic
    );
 }
 
 const SpellSelect = (data: spellType) => {
+   const spheres = useSelector(getUserSpellsList);
    const { type } = data;
    return (
       <select
@@ -42,19 +44,13 @@ const SpellSelect = (data: spellType) => {
          name={`spellsList${type}`}
          id={`spellList${type}`}
       >
-         <option value="benedictionDeKeldar">Bénédiction de Keldar</option>
-         <option value="attaqueSacree">Attaque Sacrée</option>
-         <option value="grandeBenedictionDeKeldar">
-            Grd Bénédiction de Keldar
-         </option>
-         <option value="lameDeJustice">Lame de Justice</option>
-         <option value="transcendance">Transcendance</option>
-         <option value="regenerationMineure">Régénération Mineure</option>
-         <option value="resistance">Résistance</option>
-         <option value="salutDuDivin">Salut du Divin</option>
-         <option value="regeneration">Régénération</option>
-         <option value="capriceDuDestin">Caprice du Destin</option>
-         <option value="chatiment">Chatiment</option>
+         {Object.keys(spheres)
+            .sort()
+            .map((key) => (
+               <option key={key} value={key}>
+                  {spheres[key].name}
+               </option>
+            ))}
       </select>
    );
 };

@@ -24,105 +24,117 @@
 
    "magie": {
       "gods": {
-         "elf": {
-            "elduniel": {
-               "name": "Elduniel",
-               "title": "Déesse de la guerre",
-               "spheres": "protection vitalite negation"
-            },
-            "galmaniel": {
-               "name": "Galmaniel",
-               "title": "Déesse de la nature et de l'art",
-               "spheres": "protection vitalite alteration"
-            },
-            "lorikiel": {
-               "name": "Lorikiel",
-               "title": "Dieu des traditions cérémonies",
-               "spheres": "protection vitalite alteration"
-            },
-            "shadaliel": {
-               "name": "Shadaliel",
-               "title": "Déesse de la nuit",
-               "spheres": "protection negation alteration"
-            },
-            "ulmidiel": {
-               "name": "Ulmidiel",
-               "title": "Dieu du savoir",
-               "spheres": "protection vitalite alteration"
-            },
-            "velaniel": {
-               "name": "Vélaniel",
-               "title": "Dieu oublié de la Magie...",
-               "spheres": "protection destruction"
-            }
+         "elduniel": {
+            "name": "Elduniel",
+            "title": "Déesse de la guerre",
+            "spheres": "protection vitalite negation",
+            "race": "elf"
          },
-         "human": {
-            "aldmenir": {
-               "name": "Aldménir",
-               "title": "Dieu de la Connaissance et de la Nature",
-               "spheres": "protection vitalite alteration"
-            },
-            "azolth": {
-               "name": "Azolth",
-               "title": "Dieu de la Mort",
-               "spheres": "protection negation alteration"
-            },
-            "dallia": {
-               "name": "Dallia",
-               "title": "Déesse de la Vie",
-               "spheres": "protection vitalite alteration"
-            },
-            "delemia": {
-               "name": "Délémia",
-               "title": "Déesse de la manipulation",
-               "spheres": "protection negation alteration"
-            },
-            "karkh": {
-               "name": "Karkh",
-               "title": "Dieu de la Force",
-               "spheres": "protection vitalite negation"
-            },
-            "keldar": {
-               "name": "Keldar",
-               "title": "Dieu de la Justice",
-               "spheres": "justice"
-            }
+         "galmaniel": {
+            "name": "Galmaniel",
+            "title": "Déesse de la nature et de l'art",
+            "spheres": "protection vitalite alteration",
+            "race": "elf"
          },
-         "orc": {
-            "ghornag": {
-               "name": "Ghornag",
-               "title": "Dieu de la guerre",
-               "spheres": "protection vitalite negation"
-            },
-            "khelnor": {
-               "name": "khelnor",
-               "title": "Dieu des héros",
-               "spheres": "protection negation alteration"
-            },
-            "koskhun": {
-               "name": "Koskhûn",
-               "title": "Dieu du chaos",
-               "spheres": "protection negation alteration"
-            },
-            "otharn": {
-               "name": "Otharn",
-               "title": "Dieu des shamans",
-               "spheres": "protection vitalite negation"
-            },
-            "rasgor": {
-               "name": "Rasgor",
-               "title": "Dieu des bêtes et de la sauvagerie",
-               "spheres": "protection vitalite negation"
-            },
-            "sarokha": {
-               "name": "Sarokha",
-               "title": "Déesse de la fécondité",
-               "spheres": "protection negation alteration"
-            }
+         "lorikiel": {
+            "name": "Lorikiel",
+            "title": "Dieu des traditions cérémonies",
+            "spheres": "protection vitalite alteration",
+            "race": "elf"
+         },
+         "shadaliel": {
+            "name": "Shadaliel",
+            "title": "Déesse de la nuit",
+            "spheres": "protection negation alteration",
+            "race": "elf"
+         },
+         "ulmidiel": {
+            "name": "Ulmidiel",
+            "title": "Dieu du savoir",
+            "spheres": "protection vitalite alteration",
+            "race": "elf"
+         },
+         "velaniel": {
+            "name": "Vélaniel",
+            "title": "Dieu oublié de la Magie...",
+            "spheres": "protection destruction",
+            "race": "elf"
+         },
+         "aldmenir": {
+            "name": "Aldménir",
+            "title": "Dieu de la Connaissance et de la Nature",
+            "spheres": "protection vitalite alteration",
+            "race": "human"
+         },
+         "azolth": {
+            "name": "Azolth",
+            "title": "Dieu de la Mort",
+            "spheres": "protection negation alteration",
+            "race": "human"
+         },
+         "dallia": {
+            "name": "Dallia",
+            "title": "Déesse de la Vie",
+            "spheres": "protection vitalite alteration",
+            "race": "human"
+         },
+         "delemia": {
+            "name": "Délémia",
+            "title": "Déesse de la manipulation",
+            "spheres": "protection negation alteration",
+            "race": "human"
+         },
+         "karkh": {
+            "name": "Karkh",
+            "title": "Dieu de la Force",
+            "spheres": "protection vitalite negation",
+            "race": "human"
+         },
+         "keldar": {
+            "name": "Keldar",
+            "title": "Dieu de la Justice",
+            "spheres": "protection justice",
+            "race": "human"
+         },
+         "ghornag": {
+            "name": "Ghornag",
+            "title": "Dieu de la guerre",
+            "spheres": "protection vitalite negation",
+            "race": "orc"
+         },
+         "khelnor": {
+            "name": "khelnor",
+            "title": "Dieu des héros",
+            "spheres": "protection negation alteration",
+            "race": "orc"
+         },
+         "koskhun": {
+            "name": "Koskhûn",
+            "title": "Dieu du chaos",
+            "spheres": "protection negation alteration",
+            "race": "orc"
+         },
+         "otharn": {
+            "name": "Otharn",
+            "title": "Dieu des shamans",
+            "spheres": "protection vitalite negation",
+            "race": "orc"
+         },
+         "rasgor": {
+            "name": "Rasgor",
+            "title": "Dieu des bêtes et de la sauvagerie",
+            "spheres": "protection vitalite negation",
+            "race": "orc"
+         },
+         "sarokha": {
+            "name": "Sarokha",
+            "title": "Déesse de la fécondité",
+            "spheres": "protection negation alteration",
+            "race": "orc"
          }
       },
       "spheres": {
-         "protecion": "regenerationMineure resistance salutDuDivin regeneration capriceDuDestin chatiment",
+         "protection": "regenerationMineure resistance salutDuDivin regeneration capriceDuDestin chatiment",
          "vitalite": "vigueur restauration vitesse convulsions peauDePierre verdoyance agilite plenitude",
          "destruction": "corrosion toucherAcide brulureDeMana nappeDeBrume",
          "negation": "oeilPourOeil malediction cicatrisation entraves decomposition",

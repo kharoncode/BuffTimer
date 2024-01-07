@@ -9,6 +9,8 @@ export type profile = {
    name: string;
    intelligence: number;
    favoris: string;
+   god: string;
+   profane: boolean;
    error?: string;
 };
 
@@ -35,14 +37,17 @@ export const fetchProfile = createAsyncThunk(
                return el.id === log.login && el.password === log.password;
             });
             if (filter.length !== 0) {
-               return {
+               const profile: profile = {
                   id: filter[0].id,
                   login: filter[0].login,
                   email: filter[0].email,
                   name: filter[0].name,
                   intelligence: parseInt(filter[0].intelligence),
                   favoris: filter[0].favoris,
+                  god: filter[0].god,
+                  profane: Boolean(filter[0].profane),
                };
+               return profile;
             } else {
                return rejectWithValue({
                   error: 'Login Failed: Your user ID or password is incorrect',
@@ -152,6 +157,8 @@ const initialState: loginState = {
       email: '',
       intelligence: 0,
       favoris: '',
+      god: '',
+      profane: false,
    },
    error: null,
    auth: false,
