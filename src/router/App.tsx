@@ -11,6 +11,7 @@ import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 import PrivateRoute from '@/utils/PrivateRoute';
 import Info from '@/pages/info/Info';
+import Player from '@/pages/player/Player';
 
 function App() {
    return (
@@ -25,6 +26,7 @@ function App() {
                      <Route path="/user" element={<Profile />} />
                      <Route path="/favoris" element={<Favoris />} />
                      <Route path="/players" element={<Players />} />
+                     <Route path="/player/:playerId" element={<Player />} />
                      <Route path="/info" element={<Info />} />
                   </Route>
                   <Route path="*" element={<Error />} />

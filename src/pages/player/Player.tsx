@@ -1,7 +1,6 @@
-import { type FormEvent, type FunctionComponent } from 'react';
-import type { modale } from '@/pages/players/Players';
-import styles from './editPlayerModale.module.css';
-import close from '@assets/icones/close.svg';
+import { Navigate, useParams } from 'react-router-dom';
+import { type FormEvent } from 'react';
+import styles from './player.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 import {
    getUserIntelligence,
@@ -12,11 +11,6 @@ import { useState } from 'react';
 import { AppDispatch, store } from '@/router/store';
 import { uptadePlayersBuff } from '@/pages/players/playersSlice';
 import getUserSpellsList from '@/router/getUserSpellsList';
-
-type data = {
-   modale: modale;
-   setModale: React.Dispatch<React.SetStateAction<modale>>;
-};
 
 type submitData = { critic: boolean; int: number; spell: string };
 
@@ -49,13 +43,17 @@ const SpellSelect = (data: spellType) => {
    );
 };
 
-const EditPlayerModale: FunctionComponent<data> = (data) => {
+const Player = () => {
+   const { playerId } = useParams();
+   const players = useSelector(getPlayersList);
+   const player = players[playerId];
+   if (player === undefined) {
+      return <Navigate to="/players" />;
+   }
+
    const dispatch = useDispatch<AppDispatch>();
    const [isLoading, setLoading] = useState(false);
    const [choice, setChoice] = useState('Default');
-   const { setModale, modale } = data;
-   const players = useSelector(getPlayersList);
-   const player = players[modale.id];
    const intelligence = useSelector(getUserIntelligence);
 
    const handleSubmitNew = (e: FormEvent<HTMLFormElement>, id: string) => {
@@ -92,14 +90,6 @@ const EditPlayerModale: FunctionComponent<data> = (data) => {
 
    return (
       <div className={styles.container}>
-         <img
-            className={styles.close}
-            src={close}
-            alt="Fermer"
-            onClick={() => {
-               setModale({ id: '', isOpen: false });
-            }}
-         />
          <h3>Editer : {player.name}</h3>
          <select
             className={styles.select}
@@ -175,4 +165,4 @@ const EditPlayerModale: FunctionComponent<data> = (data) => {
    );
 };
 
-export default EditPlayerModale;
+export default Player;

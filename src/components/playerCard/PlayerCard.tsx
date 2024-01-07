@@ -4,6 +4,7 @@ import type { player } from '@/utils/formatPlayer';
 import SpellsContainer from '../spellsContainer/SpellsContainer';
 import type { modale } from '@/pages/players/Players';
 import editIcone from '@assets/icones/edit.svg';
+import { useNavigate } from 'react-router-dom';
 
 type data = {
    player: player;
@@ -11,6 +12,7 @@ type data = {
 };
 
 const PlayerCard: React.FC<data> = (data: data) => {
+   const navigate = useNavigate();
    const { player, setModale } = data;
    return (
       <div id={`${player.id}Card`} className={styles.container}>
@@ -23,6 +25,7 @@ const PlayerCard: React.FC<data> = (data: data) => {
                   if (setModale) {
                      setModale({ id: player.id, isOpen: true });
                   }
+                  navigate(`/player/${player.id}`);
                }}
             />
             <img
