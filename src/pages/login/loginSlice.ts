@@ -10,7 +10,7 @@ export type profile = {
    intelligence: number;
    favoris: string;
    god: string;
-   profane: boolean;
+   spheres: string;
    error?: string;
 };
 
@@ -45,7 +45,7 @@ export const fetchProfile = createAsyncThunk(
                   intelligence: parseInt(filter[0].intelligence),
                   favoris: filter[0].favoris,
                   god: filter[0].god,
-                  profane: Boolean(filter[0].profane),
+                  spheres: filter[0].spheres,
                };
                return profile;
             } else {
@@ -158,7 +158,7 @@ const initialState: loginState = {
       intelligence: 0,
       favoris: '',
       god: '',
-      profane: false,
+      spheres: '',
    },
    error: null,
    auth: false,

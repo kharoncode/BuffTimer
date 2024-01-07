@@ -36,6 +36,10 @@ export function getUserGod(state: RootState) {
    return getProfile(state).god;
 }
 
+export function getUserSpheres(state: RootState) {
+   return getProfile(state).spheres;
+}
+
 // data
 export function getData(state: RootState) {
    return state?.data.data;
