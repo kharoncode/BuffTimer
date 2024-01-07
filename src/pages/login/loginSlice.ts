@@ -9,7 +9,7 @@ export type profile = {
    name: string;
    intelligence: number;
    favoris: string;
-   god: string;
+   realm: string;
    spheres: string;
    error?: string;
 };
@@ -44,7 +44,7 @@ export const fetchProfile = createAsyncThunk(
                   name: filter[0].name,
                   intelligence: parseInt(filter[0].intelligence),
                   favoris: filter[0].favoris,
-                  god: filter[0].god,
+                  realm: filter[0].realm,
                   spheres: filter[0].spheres,
                };
                return profile;
@@ -160,7 +160,7 @@ const initialState: loginState = {
       email: '',
       intelligence: 0,
       favoris: '',
-      god: '',
+      realm: '',
       spheres: '',
    },
    error: null,

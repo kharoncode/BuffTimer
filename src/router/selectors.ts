@@ -32,8 +32,8 @@ export function getIntelligence(state: RootState) {
    return parseInt(getProfile(state).intelligence);
 }
 
-export function getUserGod(state: RootState) {
-   return getProfile(state).god;
+export function getUserRealm(state: RootState) {
+   return getProfile(state).realm;
 }
 
 export function getUserSpheres(state: RootState) {
