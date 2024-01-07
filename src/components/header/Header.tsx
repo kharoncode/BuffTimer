@@ -5,6 +5,8 @@ import { getAuth, getUser } from '@/router/selectors';
 import { store } from '@/router/store';
 import { loginSlice } from '@/pages/login/loginSlice';
 import { playersSlice } from '@/pages/players/playersSlice';
+import userLogo from '@assets/icones/user.svg';
+import logoutLogo from '@assets/icones/logout.svg';
 
 function Header() {
    const navigate = useNavigate();
@@ -36,9 +38,12 @@ function Header() {
          <div>
             {auth ? (
                <div className={styles.settings}>
-                  <Link to="/user">Profile ({user.name})</Link>
-                  <span>/</span>
+                  <Link to="/user">
+                     <img src={userLogo} alt="Profile" />
+                     {user.name}
+                  </Link>
                   <div className={styles.logout} onClick={() => logOut()}>
+                     <img src={logoutLogo} alt="" />
                      LogOut
                   </div>
                </div>
