@@ -29,10 +29,9 @@ function formatDate(time: number, critic: boolean) {
 
 function spellDate(data: submitData) {
    const { int, critic, spell } = data;
-   return formatDate(
-      Math.floor(getDataSpellsStore(store)[spell].time * int),
-      critic
-   );
+   const time = Math.floor(getDataSpellsStore(store)[spell].time * int);
+   const date = Date.now() + (critic ? time * 1.5 : time);
+   return date;
 }
 
 const SpellSelect = (data: spellType) => {
