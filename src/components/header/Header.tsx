@@ -5,8 +5,13 @@ import { getAuth, getUser } from '@/router/selectors';
 import { store } from '@/router/store';
 import { loginSlice } from '@/pages/login/loginSlice';
 import { playersSlice } from '@/pages/players/playersSlice';
-import userLogo from '@assets/icones/user.svg';
-import logoutLogo from '@assets/icones/logout.svg';
+import userIcone from '@assets/icones/user.svg';
+import logoutIcone from '@assets/icones/logout.svg';
+import loginIcone from '@assets/icones/login.svg';
+import playersIcone from '@assets/icones/players.svg';
+import favorisIcone from '@assets/icones/favoris.svg';
+import infoIcone from '@assets/icones/info.svg';
+import home from '@assets/icones/home.svg';
 
 function Header() {
    const navigate = useNavigate();
@@ -21,36 +26,52 @@ function Header() {
    };
    return (
       <header className={styles.header}>
-         <nav className={styles.menu}>
-            <Link to="/">
-               <h1>BUFFTIMER</h1>
+         <nav className={`${styles.menu}`}>
+            <Link to="/" className={styles.authItem}>
+               <h1>
+                  <img src={home} alt="BUFFTIMER" className={styles.phone} />
+                  <p className={styles.desktop}>BUFFTIMER</p>
+               </h1>
             </Link>
             {auth ? (
                <div className={styles.categories}>
-                  <Link to="/players">Joueurs</Link>
-                  <Link to="/favoris">Favoris</Link>
-                  <Link to="/info">Info</Link>
+                  <Link to="/players" className={styles.authItem}>
+                     <img src={playersIcone} alt="playerIcone" />
+                     <p className={styles.desktop}>Joueurs</p>
+                  </Link>
+                  <Link to="/favoris" className={styles.authItem}>
+                     <img src={favorisIcone} alt="favorisIcone" />
+                     <p className={styles.desktop}>Favoris</p>
+                  </Link>
+                  <Link to="/info" className={styles.authItem}>
+                     <img src={infoIcone} alt="infoIcone" />
+                     <p className={styles.desktop}>Info</p>
+                  </Link>
                </div>
             ) : (
                <></>
             )}
          </nav>
-         <div>
-            {auth ? (
-               <div className={styles.settings}>
-                  <Link to="/user">
-                     <img src={userLogo} alt="Profile" />
-                     {user.name}
-                  </Link>
-                  <div className={styles.logout} onClick={() => logOut()}>
-                     <img src={logoutLogo} alt="" />
-                     LogOut
-                  </div>
+
+         {auth ? (
+            <div className={styles.auth}>
+               <Link to="/user" className={styles.authItem}>
+                  <img src={userIcone} alt="Profile" />
+                  <p className={styles.desktop}>{user.name}</p>
+               </Link>
+               <div className={styles.authItem} onClick={() => logOut()}>
+                  <img src={logoutIcone} alt="" />
+                  <p className={styles.desktop}>LogOut</p>
                </div>
-            ) : (
-               <Link to="/login">LogIn</Link>
-            )}
-         </div>
+            </div>
+         ) : (
+            <div className={styles.auth}>
+               <Link to="/login" className={styles.authItem}>
+                  <img src={loginIcone} alt="LogLogo" />
+                  <p className={styles.desktop}>LogIn</p>
+               </Link>
+            </div>
+         )}
       </header>
    );
 }
