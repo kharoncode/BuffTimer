@@ -18,6 +18,7 @@ h3 {
 }
 
 .form label {
+   align-self: flex-start;
    font-size: 1.2em;
    font-weight: 500;
 }
@@ -29,11 +30,12 @@ h3 {
 
 .inputContainer {
    display: flex;
+   flex-direction: column;
    gap: 5px;
 }
 
 .inputContainer input.inputLife {
-   width: 50px;
+   width: 100px;
 }
 
 .button {
@@ -42,13 +44,22 @@ h3 {
    color: white;
    padding: 5px;
    border-radius: 5px;
+   font-size: 1.1em;
    font-weight: 700;
 }
 
 .checkboxContainer {
+   width: 80%;
    padding: 5px;
    display: flex;
-   justify-content: space-between;
+   justify-content: center;
    flex-wrap: wrap;
    gap: 20px;
+}
+
+.checkbox {
+   display: flex;
+   justify-content: center;
+   width: 45%;
+   gap: 5px;
 }

@@ -54,7 +54,7 @@ const EditFavoris = () => {
                {Object.keys(players).map((key) => (
                   <div
                      key={`${players[key].id}-checkbox`}
-                     className={styles.inputContainer}
+                     className={styles.checkbox}
                   >
                      <label htmlFor={`${players[key].id}Input`}>
                         {players[key].name}

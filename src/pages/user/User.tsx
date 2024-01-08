@@ -3,7 +3,6 @@ import { getPlayers, getUser } from '@/router/selectors';
 import { useSelector } from 'react-redux';
 import { playersState } from '../players/playersSlice';
 import PlayerCard from '@/components/playerCard/PlayerCard';
-//import EditUserModale from '@/components/editUserModale/EditUserModale';
 import { Outlet } from 'react-router-dom';
 
 function User() {
