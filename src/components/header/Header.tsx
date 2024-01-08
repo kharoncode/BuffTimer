@@ -55,7 +55,7 @@ function Header() {
 
          {auth ? (
             <div className={styles.auth}>
-               <Link to="/user" className={styles.authItem}>
+               <Link to="/user/menu" className={styles.authItem}>
                   <img src={userIcone} alt="Profile" />
                   <p className={styles.desktop}>{user.name}</p>
                </Link>

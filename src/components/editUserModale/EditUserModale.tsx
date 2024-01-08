@@ -171,7 +171,9 @@ const EditUserModale: FunctionComponent = () => {
                            key={`${key}-checkbox`}
                            className={styles.inputContainer}
                         >
-                           <label htmlFor={`${key}Input`}>{key}</label>
+                           <label htmlFor={`${key}Input`}>
+                              {spheresList[key].name}
+                           </label>
                            {spheres.split(' ').includes(key) ? (
                               <input
                                  type="checkbox"
