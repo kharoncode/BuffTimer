@@ -8,10 +8,12 @@ import closeIcone from '@assets/icones/close.svg';
 import { useDispatch } from 'react-redux';
 import { fetchPlayers } from '@/pages/players/playersSlice';
 import { AppDispatch } from '@/router/store';
+import { useState } from 'react';
 
 const Section = (props: { section: string | undefined }) => {
    const { section } = props;
    const navigate = useNavigate();
+
    return (
       <div className={styles.modale}>
          <img
@@ -41,6 +43,7 @@ export const UserMenu = () => {
    const { section } = useParams();
    const navigate = useNavigate();
    const dispatch = useDispatch<AppDispatch>();
+   const [confirmation, setconfirmation] = useState(false);
    return section === 'menu' ? (
       <div className={styles.container}>
          <button
@@ -67,14 +70,28 @@ export const UserMenu = () => {
          >
             Changer le Mot de Passe
          </button>
-         <button
-            className={styles.buttonReload}
-            onClick={() => {
-               dispatch(fetchPlayers());
-            }}
-         >
-            Recharger les données des joueurs
-         </button>
+         <div className={styles.buttonContainer}>
+            {confirmation ? (
+               <button
+                  className={styles.buttonConfirmation}
+                  onClick={() => {
+                     dispatch(fetchPlayers());
+                     setconfirmation(false);
+                  }}
+               >
+                  Confirmer ?
+               </button>
+            ) : (
+               <button
+                  className={styles.buttonReload}
+                  onClick={() => {
+                     setconfirmation(true);
+                  }}
+               >
+                  Recharger les données des joueurs
+               </button>
+            )}
+         </div>
       </div>
    ) : (
       <Section section={section} />
