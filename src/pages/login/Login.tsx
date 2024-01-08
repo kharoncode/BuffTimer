@@ -20,8 +20,8 @@ export const Login: FunctionComponent = () => {
 
    const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
       e.preventDefault();
-      const login: string = e.currentTarget.login.value;
-      const password: string = e.currentTarget.password.value;
+      const login: string = e.currentTarget.login.value.trim();
+      const password: string = e.currentTarget.password.value.trim();
       const dataLog: loginDataType = { login, password };
       dispatch(fetchUser(dataLog)).then((data) => {
          if (data.meta.requestStatus === 'fulfilled') {
