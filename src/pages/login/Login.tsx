@@ -27,7 +27,7 @@ export const Login: FunctionComponent = () => {
          if (data.meta.requestStatus === 'fulfilled') {
             dispatch(fetchData());
             dispatch(fetchPlayers()).then(() => {
-               navigate('/info');
+               navigate('/players');
             });
          }
       });
@@ -35,29 +35,35 @@ export const Login: FunctionComponent = () => {
 
    return (
       <main className={styles.main}>
-         <div className={styles.container}>
-            <h2>Connexion</h2>
-            <form className={styles.form} onSubmit={(e) => handleSubmit(e)}>
-               <div className={styles.inputContainer}>
-                  <label htmlFor="login">Login</label>
-                  <input type="text" id="login" name="login" />
-               </div>
-               <div className={styles.inputContainer}>
-                  <label htmlFor="password">Mot de Passe</label>
-                  <input type="password" id="password" name="password" />
-               </div>
-               <button type="submit" className={styles.button}>
-                  {loading ? 'Loading ...' : 'Connect'}
-               </button>
-               {error ? (
-                  <div className={styles.error}>
-                     Login ou Mot de passe incorrect !
+         {loading ? (
+            <div className={styles.loaderContainer}>
+               <span className={styles.loader}></span>
+            </div>
+         ) : (
+            <div className={styles.container}>
+               <h2>Connexion</h2>
+               <form className={styles.form} onSubmit={(e) => handleSubmit(e)}>
+                  <div className={styles.inputContainer}>
+                     <label htmlFor="login">Login</label>
+                     <input type="text" id="login" name="login" />
                   </div>
-               ) : (
-                  ''
-               )}
-            </form>
-         </div>
+                  <div className={styles.inputContainer}>
+                     <label htmlFor="password">Mot de Passe</label>
+                     <input type="password" id="password" name="password" />
+                  </div>
+                  <button type="submit" className={styles.button}>
+                     Connect
+                  </button>
+                  {error ? (
+                     <div className={styles.error}>
+                        Login ou Mot de passe incorrect !
+                     </div>
+                  ) : (
+                     ''
+                  )}
+               </form>
+            </div>
+         )}
       </main>
    );
 };

@@ -17,7 +17,9 @@ function Players() {
          {error ? (
             <div>Error : {error}</div>
          ) : loading ? (
-            <div>Loading ...</div>
+            <div className={styles.loaderContainer}>
+               <span className={styles.loader}></span>
+            </div>
          ) : (
             <PlayersContainer players={players} />
          )}
