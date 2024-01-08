@@ -12,6 +12,7 @@ const Info = () => {
                key={`${players[key].id}-message`}
                name={players[key].name}
                message={players[key].message}
+               picture={players[key].picture}
             />
          ))}
       </div>
