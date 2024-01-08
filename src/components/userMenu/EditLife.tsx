@@ -28,7 +28,7 @@ const EditLife = () => {
    return (
       <div className={styles.container}>
          <form
-            className={styles.form}
+            className={`${styles.form} ${styles.lifeForm}`}
             onSubmit={(e) => {
                handleSubmitUpdateUserLife(e);
             }}

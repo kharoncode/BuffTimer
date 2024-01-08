@@ -1,10 +1,14 @@
 .container {
+   width: 100%;
+   max-width: 544px;
    display: flex;
    flex-direction: column;
    gap: 10px;
 }
 
 .modale {
+   width: 100%;
+   max-width: 544px;
    position: relative;
    display: flex;
    flex-direction: column;
