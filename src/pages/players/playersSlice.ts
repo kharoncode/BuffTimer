@@ -125,19 +125,19 @@ export const uptadePlayersBuff = createAsyncThunk(
    }
 );
 
-type spellId = {
+type spellsId = {
    id: string;
-   spell: string[];
+   list: string[];
 };
 
 type setDelete = { [key: string]: 'null' };
 
 export const deletePlayerBuff = createAsyncThunk(
    'players/deletePlayerBuff',
-   async (removeSpell: spellId) => {
-      const { id, spell } = removeSpell;
+   async (removeSpell: spellsId) => {
+      const { id, list } = removeSpell;
       const set: setDelete = {};
-      spell.map((el) => (set[el] = 'null'));
+      list.map((el) => (set[el] = 'null'));
       const body = {
          condition: { id: id },
          set: set,
@@ -231,8 +231,8 @@ export const playersSlice = createSlice({
       });
       builder.addCase(deletePlayerBuff.fulfilled, (state, action) => {
          console.log('deletePlayerBuff:fulfilled');
-         const { id, spell } = action.payload;
-         spell.map((el) => (state.players[id].spells[el].date = null));
+         const { id, list } = action.payload;
+         list.map((el) => (state.players[id].spells[el].date = null));
          state.error = null;
       });
       builder.addCase(deletePlayerBuff.rejected, (state, action) => {

@@ -1,7 +1,6 @@
 import LifeBar from '@components/lifeBar/lifeBar';
 import styles from './playerCard.module.css';
 import type { player } from '@/utils/formatPlayer';
-import type { modale } from '@/pages/players/Players';
 import editIcone from '@assets/icones/edit.svg';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
@@ -10,7 +9,6 @@ import SpellCard from '../spellCard/SpellCard';
 
 type data = {
    player: player;
-   setModale?: React.Dispatch<React.SetStateAction<modale>>;
 };
 
 const SpellContainer = styled.div<{ $flex: string }>`
@@ -27,7 +25,7 @@ const SpellContainer = styled.div<{ $flex: string }>`
 
 const PlayerCard: React.FC<data> = (data: data) => {
    const navigate = useNavigate();
-   const { player, setModale } = data;
+   const { player } = data;
    const [isOpen, setOpen] = useState(false);
    const flexDirection: string = isOpen ? 'column' : 'row';
    return (
@@ -38,9 +36,6 @@ const PlayerCard: React.FC<data> = (data: data) => {
                alt="Edit"
                className={styles.editButton}
                onClick={() => {
-                  if (setModale) {
-                     setModale({ id: player.id, isOpen: true });
-                  }
                   navigate(`/player/menu/${player.id}`);
                }}
             />

@@ -1,18 +1,19 @@
 import { useDispatch, useSelector } from 'react-redux';
-import styles from './editUser.module.css';
+import styles from './editPlayer.module.css';
 import { FormEvent, useState } from 'react';
 import { getPlayersList } from '@/router/selectors';
 import { AppDispatch } from '@/router/store';
 import { uptadePlayersBuff } from '@/pages/players/playersSlice';
 import { useParams } from 'react-router-dom';
 import { SpellSelect } from './SpellSelect';
+import type { player, players } from '@/utils/formatPlayer';
 
 const AddCurrentSpell = () => {
    const { id } = useParams();
    const dispatch = useDispatch<AppDispatch>();
    const [isLoading, setLoading] = useState(false);
-   const players = useSelector(getPlayersList);
-   const player = players[id];
+   const players: players = useSelector(getPlayersList);
+   const player: player = players[id];
 
    const handleSubmit = (e: FormEvent<HTMLFormElement>, id: string) => {
       e.preventDefault();
@@ -37,33 +38,40 @@ const AddCurrentSpell = () => {
                handleSubmit(e, player.id);
             }}
          >
+            <h3>Ajouter un sort en cours</h3>
             <SpellSelect />
             <div className={styles.inputLabel}>
                Entrez la durée:
-               <label htmlFor={`day`}>Jour</label>
-               <input
-                  className={styles.inputText}
-                  type="text"
-                  id={`day`}
-                  required
-                  defaultValue={0}
-               />
-               <label htmlFor={`hour`}>Heure</label>
-               <input
-                  className={styles.inputText}
-                  type="text"
-                  id={`hour`}
-                  required
-                  defaultValue={0}
-               />
-               <label htmlFor={`minute`}>Minute</label>
-               <input
-                  className={styles.inputText}
-                  type="text"
-                  id={`minute`}
-                  required
-                  defaultValue={1}
-               />
+               <div className={styles.inputContainer}>
+                  <label htmlFor={`day`}>Jour</label>
+                  <input
+                     className={styles.inputText}
+                     type="text"
+                     id={`day`}
+                     required
+                     defaultValue={0}
+                  />
+               </div>
+               <div className={styles.inputContainer}>
+                  <label htmlFor={`hour`}>Heure</label>
+                  <input
+                     className={styles.inputText}
+                     type="text"
+                     id={`hour`}
+                     required
+                     defaultValue={0}
+                  />
+               </div>
+               <div className={styles.inputContainer}>
+                  <label htmlFor={`minute`}>Minute</label>
+                  <input
+                     className={styles.inputText}
+                     type="text"
+                     id={`minute`}
+                     required
+                     defaultValue={1}
+                  />
+               </div>
             </div>
             <button type="submit" className={styles.button}>
                {isLoading ? 'Loading ...' : 'Ajouter un sort'}

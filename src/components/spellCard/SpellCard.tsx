@@ -34,7 +34,7 @@ const SpellCard: React.FC<data> = (data) => {
    const { id, playerId, name, category, date, isOpen } = data;
    const [isOver, setIsOver] = useState(false);
    if (isOver) {
-      const result = { id: playerId, spell: [id] };
+      const result = { id: playerId, list: [id] };
       dispatch(deletePlayerBuff(result));
    }
 
