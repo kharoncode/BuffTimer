@@ -23,6 +23,9 @@ const LifeElt = styled.div<{ $stop: string; color: string }>`
       rgb(230, 230, 230) ${({ $stop }) => $stop}%,
       rgb(230, 230, 230) 100%
    );
+   @media screen and (max-width: 700px) {
+      font-size: 1.2em;
+   }
 `;
 
 export default function LifeBar(life: life) {
