@@ -45,6 +45,10 @@ export function getData(state: RootState) {
    return state?.data.data;
 }
 
+export function getDataPages(state: RootState) {
+   return getData(state).pages;
+}
+
 export function getDataMagie(state: RootState) {
    return getData(state).magie;
 }
