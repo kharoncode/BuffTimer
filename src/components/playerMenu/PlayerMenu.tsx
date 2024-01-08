@@ -1,10 +1,9 @@
-import EditFavoris from './EditFavoris';
-import EditLife from './EditLife';
-import EditPassword from './EditPassword';
-import EditUser from './EditUser';
 import styles from './playerMenu.module.css';
 import { Navigate, useNavigate, useParams } from 'react-router-dom';
 import closeIcone from '@assets/icones/close.svg';
+import AddNewSpell from './AddNewSpell';
+import RemoveSpell from './RemoveSpell';
+import AddCurrentSpell from './AddCurrentSpell';
 
 const Section = (props: {
    section: string | undefined;
@@ -20,17 +19,15 @@ const Section = (props: {
             alt="Retour"
             className={styles.backButton}
             onClick={() => {
-               navigate('/user/menu');
+               navigate(path);
             }}
          />
-         {section === 'editUser' ? (
-            <EditUser />
-         ) : section === 'editLife' ? (
-            <EditLife />
-         ) : section === 'editFavoris' ? (
-            <EditFavoris />
-         ) : section === 'editPassword' ? (
-            <EditPassword />
+         {section === 'addNewSpell' ? (
+            <AddNewSpell />
+         ) : section === 'addCurrentSpell' ? (
+            <AddCurrentSpell />
+         ) : section === 'RemoveSpell' ? (
+            <RemoveSpell />
          ) : (
             <Navigate to={path} />
          )}
@@ -45,27 +42,21 @@ export const PlayerMenu = () => {
       <div className={styles.container}>
          <button
             className={styles.button}
-            onClick={() => navigate('/user/editUser')}
+            onClick={() => navigate(`/player/addNewSpell/${id}`)}
          >
-            Editer le Profile
+            Ajouter un nouveau sort
          </button>
          <button
             className={styles.button}
-            onClick={() => navigate('/user/editLife')}
+            onClick={() => navigate(`/player/addCurrentSpell/${id}`)}
          >
-            Editer la Vie
+            Ajouter un sort en cours
          </button>
          <button
             className={styles.button}
-            onClick={() => navigate('/user/editFavoris')}
+            onClick={() => navigate(`/player/RemoveSpell/${id}`)}
          >
-            Editer les Favoris
-         </button>
-         <button
-            className={styles.button}
-            onClick={() => navigate('/user/editPassword')}
-         >
-            Changer le Mot de Passe
+            Supprimer un sort
          </button>
       </div>
    ) : (

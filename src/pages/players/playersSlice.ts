@@ -127,7 +127,7 @@ export const uptadePlayersBuff = createAsyncThunk(
 
 type spellId = {
    id: string;
-   spell: string;
+   spell: string[];
 };
 
 type setDelete = { [key: string]: 'null' };
@@ -137,7 +137,7 @@ export const deletePlayerBuff = createAsyncThunk(
    async (removeSpell: spellId) => {
       const { id, spell } = removeSpell;
       const set: setDelete = {};
-      set[spell] = 'null';
+      spell.map((el) => (set[el] = 'null'));
       const body = {
          condition: { id: id },
          set: set,
@@ -232,7 +232,7 @@ export const playersSlice = createSlice({
       builder.addCase(deletePlayerBuff.fulfilled, (state, action) => {
          console.log('deletePlayerBuff:fulfilled');
          const { id, spell } = action.payload;
-         state.players[id].spells[spell].date = null;
+         spell.map((el) => (state.players[id].spells[el].date = null));
          state.error = null;
       });
       builder.addCase(deletePlayerBuff.rejected, (state, action) => {
