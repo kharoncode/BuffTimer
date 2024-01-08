@@ -1,5 +1,5 @@
 import getUserSpellsList from '@/utils/getUserSpellsList';
-import styles from './playerMenu.module.css';
+import styles from './editPlayer.module.css';
 
 export const SpellSelect = () => {
    const spheres = getUserSpellsList();
