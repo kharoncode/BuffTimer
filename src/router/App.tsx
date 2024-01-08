@@ -13,6 +13,7 @@ import Info from '@/pages/info/Info';
 import Player from '@/pages/player/Player';
 import User from '@/pages/user/User';
 import { UserMenu } from '@/components/userMenu/UserMenu';
+import { PlayerMenu } from '@/components/playerMenu/PlayerMenu';
 
 function App() {
    return (
@@ -27,9 +28,14 @@ function App() {
                      <Route path="/user/:section" element={<User />}>
                         <Route path="/user/:section" element={<UserMenu />} />
                      </Route>
+                     <Route path="/player/:section/:id" element={<Player />}>
+                        <Route
+                           path="/player/:section/:id"
+                           element={<PlayerMenu />}
+                        />
+                     </Route>
                      <Route path="/favoris" element={<Favoris />} />
                      <Route path="/players" element={<Players />} />
-                     <Route path="/player/:playerId" element={<Player />} />
                      <Route path="/info" element={<Info />} />
                   </Route>
                   <Route path="*" element={<Error />} />

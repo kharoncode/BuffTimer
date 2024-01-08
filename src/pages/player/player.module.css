@@ -1,53 +1,26 @@
 .container {
-   position: relative;
-   width: 300px;
-   height: 400px;
-   padding: 30px 20px 30px 20px;
+   padding: 20px;
    display: flex;
    flex-direction: column;
-   background-color: white;
-   border: solid 5px #5d557c;
-   gap: 10px;
-}
-
-.close {
-   position: absolute;
-   top: 5px;
-   right: 5px;
-   width: 25px;
-}
-
-.form {
+   align-items: center;
+   padding-top: 20px;
    display: flex;
-   flex-direction: column;
-   gap: 5px;
 }
 
-.select {
-   text-align: center;
+.title {
+   text-transform: uppercase;
+   margin-bottom: 20px;
 }
 
-.form input {
-   padding-left: 5px;
-}
-
-.inputLabel {
+.userCardContainer {
+   padding: 10px 10px 10px 60px;
    width: 100%;
    display: flex;
-   flex-direction: column;
-   justify-content: space-between;
-   gap: 5px;
+   justify-content: center;
 }
 
-.inputCritic {
-   display: flex;
-   gap: 10px;
-}
-
-.button {
-   background-color: #5d557c;
-   color: white;
-   padding: 5px;
-   border-radius: 5px;
-   font-weight: 700;
+@media screen and (max-width: 700px) {
+   .userCardContainer {
+      padding: 10px 10px 10px 40px;
+   }
 }

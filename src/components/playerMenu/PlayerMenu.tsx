@@ -2,12 +2,16 @@ import EditFavoris from './EditFavoris';
 import EditLife from './EditLife';
 import EditPassword from './EditPassword';
 import EditUser from './EditUser';
-import styles from './userMenu.module.css';
+import styles from './playerMenu.module.css';
 import { Navigate, useNavigate, useParams } from 'react-router-dom';
 import closeIcone from '@assets/icones/close.svg';
 
-const Section = (props: { section: string | undefined }) => {
-   const { section } = props;
+const Section = (props: {
+   section: string | undefined;
+   id: string | undefined;
+}) => {
+   const { section, id } = props;
+   const path = `/player/menu/${id}`;
    const navigate = useNavigate();
    return (
       <div className={styles.modale}>
@@ -28,14 +32,14 @@ const Section = (props: { section: string | undefined }) => {
          ) : section === 'editPassword' ? (
             <EditPassword />
          ) : (
-            <Navigate to="/user/menu" />
+            <Navigate to={path} />
          )}
       </div>
    );
 };
 
-export const UserMenu = () => {
-   const { section } = useParams();
+export const PlayerMenu = () => {
+   const { section, id } = useParams();
    const navigate = useNavigate();
    return section === 'menu' ? (
       <div className={styles.container}>
@@ -65,8 +69,8 @@ export const UserMenu = () => {
          </button>
       </div>
    ) : (
-      <Section section={section} />
+      <Section section={section} id={id} />
    );
 };
 
-export default UserMenu;
+export default PlayerMenu;

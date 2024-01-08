@@ -41,7 +41,7 @@ const PlayerCard: React.FC<data> = (data: data) => {
                   if (setModale) {
                      setModale({ id: player.id, isOpen: true });
                   }
-                  navigate(`/player/${player.id}`);
+                  navigate(`/player/menu/${player.id}`);
                }}
             />
             <img
