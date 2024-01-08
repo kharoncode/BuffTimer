@@ -1,9 +1,9 @@
 import { useDispatch, useSelector } from 'react-redux';
 import styles from './editUser.module.css';
 import { FormEvent, useState } from 'react';
-import { uptadeUserPlayerLife } from '@/pages/players/playersSlice';
 import { getPlayersList, getUser } from '@/router/selectors';
 import { AppDispatch } from '@/router/store';
+import { uptadeUserPlayerLife } from '@/pages/players/playersSlice';
 
 const EditLife = () => {
    const dispatch = useDispatch<AppDispatch>();
@@ -28,7 +28,7 @@ const EditLife = () => {
    return (
       <div className={styles.container}>
          <form
-            className={`${styles.form} ${styles.lifeForm}`}
+            className={styles.form}
             onSubmit={(e) => {
                handleSubmitUpdateUserLife(e);
             }}

@@ -13,26 +13,23 @@ h3 {
    width: 100%;
    display: flex;
    flex-direction: column;
+   align-items: center;
    gap: 20px;
 }
 
-.lifeForm {
-   align-items: center;
+.form label {
+   font-size: 1.2em;
+   font-weight: 500;
+}
+
+.form input {
+   text-align: center;
+   font-size: 1em;
 }
 
 .inputContainer {
    display: flex;
    gap: 5px;
-}
-
-.inputContainer label {
-   font-size: 1.2em;
-   font-weight: 500;
-}
-
-.inputContainer input {
-   text-align: center;
-   font-size: 1em;
 }
 
 .inputContainer input.inputLife {
@@ -46,4 +43,12 @@ h3 {
    padding: 5px;
    border-radius: 5px;
    font-weight: 700;
+}
+
+.checkboxContainer {
+   padding: 5px;
+   display: flex;
+   justify-content: space-between;
+   flex-wrap: wrap;
+   gap: 20px;
 }
