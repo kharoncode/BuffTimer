@@ -135,27 +135,27 @@
       },
       "spheres": {
          "protection": {
-            "name": "",
+            "name": "Protection",
             "list": "regenerationMineure resistance salutDuDivin regeneration capriceDuDestin chatiment"
          },
          "vitalite": {
-            "name": "",
+            "name": "Vitalité",
             "list": "vigueur restauration vitesse convulsions peauDePierre verdoyance agilite plenitude"
          },
          "destruction": {
-            "name": "",
+            "name": "Déstruction",
             "list": "corrosion toucherAcide brulureDeMana nappeDeBrume"
          },
          "negation": {
-            "name": "",
+            "name": "Négation",
             "list": "oeilPourOeil malediction entraves decomposition"
          },
          "alteration": {
-            "name": "",
+            "name": "Altération",
             "list": "flou invisibilite bombeDeLumiere cecite champDeantimagie imageMiroir silence distortionTemporelle visionUltime"
          },
          "justice": {
-            "name": "",
+            "name": "Justice",
             "list": "benedictionDeKeldar attaqueSacree grandeBenedictionDeKeldar lameDeJustice transcendance"
          }
       },
