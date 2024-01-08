@@ -20,6 +20,15 @@ const SpellContainer = styled.div<{ color: string }>`
    z-index: 100;
 `;
 
+const Container = styled.div<{ width: string }>`
+   position: relative;
+   display: flex;
+   justify-content: center;
+   ${({ width }) => width}
+   height: 30px;
+   overflow: hidden;
+`;
+
 type data = {
    id: string;
    playerId: string;
@@ -38,6 +47,8 @@ const SpellCard: React.FC<data> = (data) => {
       dispatch(deletePlayerBuff(result));
    }
 
+   const containerStyle = isOpen ? `width: 100%;` : ``;
+
    const color =
       category === 'justice'
          ? 'rgba(255, 186, 83, 1)'
@@ -49,7 +60,7 @@ const SpellCard: React.FC<data> = (data) => {
          ? 'rgb(114, 244, 103)'
          : 'rgb(255, 72, 23)';
    return (
-      <div className={styles.container}>
+      <Container width={containerStyle}>
          {isOpen ? (
             <SpellContainer color={color}>
                <img
@@ -71,7 +82,7 @@ const SpellCard: React.FC<data> = (data) => {
                <Timer date={date} setIsOver={setIsOver} isOpen={isOpen} />
             </span>
          )}
-      </div>
+      </Container>
    );
 };
 

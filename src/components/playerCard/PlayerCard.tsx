@@ -15,9 +15,7 @@ const SpellContainer = styled.div<{ $flex: string }>`
    align-self: flex-end;
    width: 85%;
    display: flex;
-   flex-direction: ${({ $flex }) => $flex};
-   align-items: center;
-   gap: 5px;
+   ${({ $flex }) => $flex}
    @media (max-width: 700px) {
       width: 100%;
    }
@@ -27,7 +25,13 @@ const PlayerCard: React.FC<data> = (data: data) => {
    const navigate = useNavigate();
    const { player } = data;
    const [isOpen, setOpen] = useState(false);
-   const flexDirection: string = isOpen ? 'column' : 'row';
+   const style: string = isOpen
+      ? `flex-direction: column;
+   align-items: center;
+   gap: 5px;`
+      : `flex-direction: row;
+   gap: 10px;`;
+
    return (
       <div id={`${player.id}Card`} className={styles.container}>
          <div className={styles.status}>
@@ -51,7 +55,7 @@ const PlayerCard: React.FC<data> = (data: data) => {
             onClick={() => {
                setOpen(!isOpen);
             }}
-            $flex={flexDirection}
+            $flex={style}
          >
             {Object.values(player.spells).map((el) =>
                el.date === null ? (

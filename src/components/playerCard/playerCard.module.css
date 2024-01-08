@@ -57,15 +57,6 @@
    border-style: double;
 }
 
-.spellContainer {
-   align-self: flex-end;
-   width: 85%;
-   display: flex;
-   flex-direction: column;
-   align-items: center;
-   gap: 5px;
-}
-
 @media screen and (max-width: 700px) {
    .status {
       padding-left: 35px;
