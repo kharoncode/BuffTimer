@@ -134,12 +134,30 @@
          }
       },
       "spheres": {
-         "protection": "regenerationMineure resistance salutDuDivin regeneration capriceDuDestin chatiment",
-         "vitalite": "vigueur restauration vitesse convulsions peauDePierre verdoyance agilite plenitude",
-         "destruction": "corrosion toucherAcide brulureDeMana nappeDeBrume",
-         "negation": "oeilPourOeil malediction entraves decomposition",
-         "alteration": "flou invisibilite bombeDeLumiere cecite champDeantimagie imageMiroir silence distortionTemporelle visionUltime",
-         "justice": "benedictionDeKeldar attaqueSacree grandeBenedictionDeKeldar lameDeJustice transcendance"
+         "protection": {
+            "name": "",
+            "list": "regenerationMineure resistance salutDuDivin regeneration capriceDuDestin chatiment"
+         },
+         "vitalite": {
+            "name": "",
+            "list": "vigueur restauration vitesse convulsions peauDePierre verdoyance agilite plenitude"
+         },
+         "destruction": {
+            "name": "",
+            "list": "corrosion toucherAcide brulureDeMana nappeDeBrume"
+         },
+         "negation": {
+            "name": "",
+            "list": "oeilPourOeil malediction entraves decomposition"
+         },
+         "alteration": {
+            "name": "",
+            "list": "flou invisibilite bombeDeLumiere cecite champDeantimagie imageMiroir silence distortionTemporelle visionUltime"
+         },
+         "justice": {
+            "name": "",
+            "list": "benedictionDeKeldar attaqueSacree grandeBenedictionDeKeldar lameDeJustice transcendance"
+         }
       },
       "spells": {
          "benedictionDeKeldar": {

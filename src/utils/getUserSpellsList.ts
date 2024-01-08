@@ -1,4 +1,4 @@
-import { store } from './store';
+import { store } from '../router/store';
 
 const getUserSpellsList = () => {
    const userSpellsIdList: string[] = [];
@@ -8,7 +8,7 @@ const getUserSpellsList = () => {
    const userSpheres = store.getState().login.user.spheres;
 
    userSpheres.split(' ').map((el: string) => {
-      dataSpheres[el]
+      dataSpheres[el].list
          .split(' ')
          .map((spell: string) => userSpellsIdList.push(spell));
    });

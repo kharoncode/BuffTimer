@@ -11,7 +11,7 @@ import {
 import { useState } from 'react';
 import { AppDispatch, store } from '@/router/store';
 import { uptadePlayersBuff } from '@/pages/players/playersSlice';
-import getUserSpellsList from '@/router/getUserSpellsList';
+import getUserSpellsList from '@/utils/getUserSpellsList';
 
 type data = {
    modale: modale;
