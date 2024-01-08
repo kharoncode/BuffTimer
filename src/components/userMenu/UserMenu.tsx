@@ -4,19 +4,21 @@ import EditPassword from './EditPassword';
 import EditUser from './EditUser';
 import styles from './userMenu.module.css';
 import { useNavigate, useParams } from 'react-router-dom';
+import closeIcone from '@assets/icones/close.svg';
 
 const Section = (props: { section: string | undefined }) => {
    const { section } = props;
    const navigate = useNavigate();
    return (
       <div className={styles.modale}>
-         <button
+         <img
+            src={closeIcone}
+            alt="Retour"
+            className={styles.backButton}
             onClick={() => {
                navigate('/user/menu');
             }}
-         >
-            Retour
-         </button>
+         />
          {section === 'editUser' ? (
             <EditUser />
          ) : section === 'editLife' ? (

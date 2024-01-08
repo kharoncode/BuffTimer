@@ -33,17 +33,22 @@ const EditLife = () => {
                handleSubmitUpdateUserLife(e);
             }}
          >
-            <div className={styles.inputLabel}>
-               <h3>Modifier la vie</h3>
-               <label htmlFor={`currentLife`}>Life</label>
+            <h3>Modifier la vie</h3>
+
+            <div className={styles.inputContainer}>
+               <label htmlFor={`currentLife`}>PV :</label>
                <input
+                  className={styles.inputLife}
                   type="text"
                   id={`currentLife`}
                   required
                   defaultValue={life.currentLife}
                />
-               <label htmlFor={`maxLife`}>MaxLife</label>
+            </div>
+            <div className={styles.inputContainer}>
+               <label htmlFor={`maxLife`}>PV Max :</label>
                <input
+                  className={styles.inputLife}
                   type="text"
                   id={`maxLife`}
                   required

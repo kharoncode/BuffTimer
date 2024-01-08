@@ -5,9 +5,14 @@
 }
 
 .modale {
+   position: relative;
    display: flex;
    flex-direction: column;
+   padding: 20px;
    align-items: center;
+   border: solid 5px #5d557c;
+   border-radius: 25px;
+   background-color: white;
 }
 
 .childrenModale {
@@ -23,4 +28,21 @@
    padding: 10px;
    border-radius: 15px;
    font-weight: 700;
+}
+
+.button:hover {
+   color: #ffa600;
+}
+
+.backButton {
+   position: absolute;
+   top: 8px;
+   right: 8px;
+   align-self: flex-end;
+   width: 20px;
+}
+
+.backButton:hover {
+   filter: invert(70%) sepia(51%) saturate(3131%) hue-rotate(358deg)
+      brightness(102%) contrast(106%);
 }
