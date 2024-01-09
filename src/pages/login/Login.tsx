@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch } from '@/router/store';
 import { useNavigate } from 'react-router-dom';
 import { getLogin } from '@/router/selectors';
+import { fetchData } from '@/router/dataSlice';
 
 export type loginDataType = {
    login: string;
@@ -23,6 +24,7 @@ export const Login: FunctionComponent = () => {
       const dataLog: loginDataType = { login, password };
       dispatch(fetchUser(dataLog)).then((data) => {
          if (data.meta.requestStatus === 'fulfilled') {
+            dispatch(fetchData());
             navigate('/players');
          }
       });

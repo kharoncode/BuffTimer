@@ -9,14 +9,14 @@
       "benedictionDeKeldar": "null",
       "attaqueSacree": "null",
       "grandeBenedictionDeKeldar": "null",
-      "lameDeJustice": "1704826417101",
+      "lameDeJustice": "null",
       "transcendance": "null",
       "regenerationMineure": "null",
       "resistance": "null",
       "salutDuDivin": "null",
       "regeneration": "null",
       "capriceDuDestin": "null",
-      "chatiment": "1704826417101"
+      "chatiment": "null"
    },
    {
       "id": "andrea",
@@ -27,11 +27,11 @@
       "message": "Bob l'eponge",
       "benedictionDeKeldar": "null",
       "attaqueSacree": "null",
-      "grandeBenedictionDeKeldar": "1704826417101",
+      "grandeBenedictionDeKeldar": "null",
       "lameDeJustice": "null",
       "transcendance": "null",
       "regenerationMineure": "null",
-      "resistance": "nu1704826417101ll",
+      "resistance": "null",
       "salutDuDivin": "null",
       "regeneration": "null",
       "capriceDuDestin": "null",
@@ -66,13 +66,13 @@
       "benedictionDeKeldar": "null",
       "attaqueSacree": "null",
       "grandeBenedictionDeKeldar": "null",
-      "lameDeJustice": "1704826417101",
+      "lameDeJustice": "null",
       "transcendance": "null",
       "regenerationMineure": "null",
       "resistance": "null",
       "salutDuDivin": "null",
       "regeneration": "null",
       "capriceDuDestin": "null",
-      "chatiment": "1704826417101"
+      "chatiment": "null"
    }
 ]

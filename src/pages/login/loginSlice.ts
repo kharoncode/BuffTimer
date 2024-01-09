@@ -11,7 +11,7 @@ export type user = {
    favoris: string;
    realm: string;
    spheres: string;
-   diplomacy: string[];
+   realms: string[];
    admin: string;
    error?: string;
 };
@@ -48,9 +48,14 @@ export const fetchUser = createAsyncThunk(
                   favoris: filter[0].favoris,
                   realm: filter[0].realm,
                   spheres: filter[0].spheres,
-                  diplomacy: filter[0].diplomacy.split(' '),
+                  realms: [filter[0].realm],
                   admin: filter[0].admin,
                };
+               if (filter[0].diplomacy !== '') {
+                  filter[0].diplomacy
+                     .split(' ')
+                     .map((el: string) => user.realms.push(el));
+               }
                return user;
             } else {
                return rejectWithValue({
@@ -166,7 +171,7 @@ const initialState: loginState = {
       favoris: '',
       realm: '',
       spheres: '',
-      diplomacy: [],
+      realms: [],
       admin: '',
    },
    error: null,

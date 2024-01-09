@@ -14,13 +14,14 @@ export type modale = {
 function Players() {
    const dispatch = useDispatch<AppDispatch>();
    const { loading, players, error } = useSelector(getPlayers);
-   const { realm, diplomacy } = useSelector(getUser);
+   const { realm, realms } = useSelector(getUser);
 
    useEffect(() => {
       if (Object.keys(players).length === 0) {
-         dispatch(fetchPlayers(realm));
-         if (diplomacy[0] != '') {
-            diplomacy.map((el: string) => dispatch(fetchPlayersDiplo(el)));
+         if (realms.length === 1) {
+            dispatch(fetchPlayers(realm));
+         } else {
+            realms.map((el: string) => dispatch(fetchPlayersDiplo(el)));
          }
       }
    }, []); // eslint-disable-line

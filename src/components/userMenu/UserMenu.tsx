@@ -5,10 +5,11 @@ import EditUser from './EditUser';
 import styles from './userMenu.module.css';
 import { Navigate, useNavigate, useParams } from 'react-router-dom';
 import closeIcone from '@assets/icones/close.svg';
-import { useDispatch } from 'react-redux';
-import { fetchPlayers } from '@/pages/players/playersSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchPlayers, fetchPlayersDiplo } from '@/pages/players/playersSlice';
 import { AppDispatch } from '@/router/store';
 import { useState } from 'react';
+import { getUser } from '@/router/selectors';
 
 const Section = (props: { section: string | undefined }) => {
    const { section } = props;
@@ -44,6 +45,7 @@ export const UserMenu = () => {
    const navigate = useNavigate();
    const dispatch = useDispatch<AppDispatch>();
    const [confirmation, setconfirmation] = useState(false);
+   const { realms, realm } = useSelector(getUser);
    return section === 'menu' ? (
       <div className={styles.container}>
          <button
@@ -75,7 +77,13 @@ export const UserMenu = () => {
                <button
                   className={styles.buttonConfirmation}
                   onClick={() => {
-                     dispatch(fetchPlayers());
+                     if (realms.length === 1) {
+                        dispatch(fetchPlayers(realm));
+                     } else {
+                        realms.map((el: string) =>
+                           dispatch(fetchPlayersDiplo(el))
+                        );
+                     }
                      setconfirmation(false);
                   }}
                >
