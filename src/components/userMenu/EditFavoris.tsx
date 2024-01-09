@@ -11,9 +11,7 @@ const EditFavoris = () => {
    const { id, favoris } = useSelector(getUser);
    const players = useSelector(getPlayersList);
 
-   const [favorisCheckedList, setfavorisCheckedList] = useState(
-      favoris.split(' ')
-   );
+   const [favorisCheckedList, setfavorisCheckedList] = useState(favoris);
 
    const handleSelectFavoris = (e: ChangeEvent<HTMLInputElement>) => {
       const value = e.target.id;
@@ -59,7 +57,7 @@ const EditFavoris = () => {
                      <label htmlFor={`${players[key].id}Input`}>
                         {players[key].name}
                      </label>
-                     {favoris.split(' ').includes(players[key].id) ? (
+                     {favoris.includes(players[key].id) ? (
                         <input
                            type="checkbox"
                            id={`${players[key].id}`}

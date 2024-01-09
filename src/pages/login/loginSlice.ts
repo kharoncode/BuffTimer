@@ -8,7 +8,7 @@ export type user = {
    email: string;
    name: string;
    intelligence: number;
-   favoris: string;
+   favoris: string[];
    realm: string;
    spheres: string;
    realms: string[];
@@ -45,12 +45,15 @@ export const fetchUser = createAsyncThunk(
                   email: filter[0].email,
                   name: filter[0].name,
                   intelligence: parseInt(filter[0].intelligence),
-                  favoris: filter[0].favoris,
+                  favoris: [],
                   realm: filter[0].realm,
                   spheres: filter[0].spheres,
                   realms: [filter[0].realm],
                   admin: filter[0].admin,
                };
+               if (filter[0].favoris !== 'null') {
+                  user.favoris = filter[0].split(' ');
+               }
                if (filter[0].diplomacy !== '') {
                   filter[0].diplomacy
                      .split(' ')
@@ -155,7 +158,7 @@ export const uptadeUserFavoris = createAsyncThunk(
       })
          .then((result) => result.json())
          .then(() => {
-            return list;
+            return list.split(' ');
          });
    }
 );
@@ -168,7 +171,7 @@ const initialState: loginState = {
       name: '',
       email: '',
       intelligence: 0,
-      favoris: '',
+      favoris: [],
       realm: '',
       spheres: '',
       realms: [],
