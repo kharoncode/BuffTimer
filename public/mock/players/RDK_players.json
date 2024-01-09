@@ -55,5 +55,24 @@
       "regeneration": "null",
       "capriceDuDestin": "null",
       "chatiment": "null"
+   },
+   {
+      "id": "kharon",
+      "name": "Kharon",
+      "picture": "https://i.pinimg.com/originals/e3/1c/8b/e31c8b19dfc42750ad3655647f074a94.jpg",
+      "currentLife": "157",
+      "maxLife": "157",
+      "message": "Bob l'eponge",
+      "benedictionDeKeldar": "null",
+      "attaqueSacree": "null",
+      "grandeBenedictionDeKeldar": "null",
+      "lameDeJustice": "1704826417101",
+      "transcendance": "null",
+      "regenerationMineure": "null",
+      "resistance": "null",
+      "salutDuDivin": "null",
+      "regeneration": "null",
+      "capriceDuDestin": "null",
+      "chatiment": "1704826417101"
    }
 ]
