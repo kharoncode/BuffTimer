@@ -23,7 +23,7 @@ function Players() {
             diplomacy.map((el: string) => dispatch(fetchPlayersDiplo(el)));
          }
       }
-   }, []);
+   }, []); // eslint-disable-line
 
    return (
       <div className={styles.container}>
