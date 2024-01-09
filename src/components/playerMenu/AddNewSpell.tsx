@@ -13,7 +13,7 @@ import { SpellSelect } from './SpellSelect';
 import type { player, players } from '@/utils/formatPlayer';
 
 const AddNewSpell = () => {
-   const { id } = useSelector(getPlayer);
+   const { id }: { id: string } = useSelector(getPlayer);
    const dispatch = useDispatch<AppDispatch>();
    const intelligence = useSelector(getUserIntelligence);
    const [isLoading, setLoading] = useState(false);

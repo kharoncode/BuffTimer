@@ -6,7 +6,7 @@ import { Navigate, Outlet } from 'react-router-dom';
 import { players } from '@/utils/formatPlayer';
 
 function Player() {
-   const { id } = useSelector(getPlayer);
+   const { id }: { id: string } = useSelector(getPlayer);
    const players: players = useSelector(getPlayersList);
 
    return players[id] === undefined ? (

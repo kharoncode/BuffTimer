@@ -1,14 +1,13 @@
 import { useDispatch, useSelector } from 'react-redux';
 import styles from './editPlayer.module.css';
 import { ChangeEvent, FormEvent, useState } from 'react';
-import { getPlayersList } from '@/router/selectors';
+import { getPlayer, getPlayersList } from '@/router/selectors';
 import { AppDispatch } from '@/router/store';
-import { useParams } from 'react-router-dom';
 import { deletePlayerBuff } from '@/pages/players/playersSlice';
 import { player, players, spell } from '@/utils/formatPlayer';
 
 const RemoveSpell = () => {
-   const { id } = useParams();
+   const { id }: { id: string } = useSelector(getPlayer);
    const dispatch = useDispatch<AppDispatch>();
    const [isLoading, setLoading] = useState(false);
    const [error, setError] = useState(false);
