@@ -5,6 +5,13 @@ import { getDataPages } from '@/router/selectors';
 //import { getAuth, getPlayersList } from '@/router/selectors';
 //import { players } from '@/utils/formatPlayer';
 
+type select = {
+   home: {
+      title: string;
+      articles: { [key: string]: { [key: string]: string } };
+   };
+};
+
 function Home() {
    //const auth = useSelector(getAuth);
    /* const randomProperty = function (obj: players) {
@@ -15,7 +22,7 @@ function Home() {
    /* const players = useSelector(getPlayersList);
    const player = randomProperty(players); */
 
-   const { home } = useSelector(getDataPages);
+   const { home }: select = useSelector(getDataPages);
 
    return (
       <div className={styles.container}>

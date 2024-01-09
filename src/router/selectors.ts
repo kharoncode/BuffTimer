@@ -40,6 +40,11 @@ export function getUserSpheres(state: RootState) {
    return getUser(state).spheres;
 }
 
+//player
+export function getPlayer(state: RootState) {
+   return state?.player;
+}
+
 // data
 export function getData(state: RootState) {
    return state?.data.data;

@@ -1,16 +1,19 @@
 import { useDispatch, useSelector } from 'react-redux';
 import styles from './editPlayer.module.css';
 import { FormEvent, useState } from 'react';
-import { getPlayersList, getUserIntelligence } from '@/router/selectors';
+import {
+   getPlayer,
+   getPlayersList,
+   getUserIntelligence,
+} from '@/router/selectors';
 import { AppDispatch } from '@/router/store';
 import { uptadePlayersBuff } from '@/pages/players/playersSlice';
-import { useParams } from 'react-router-dom';
 import { spellDate } from './playerMenuFactory';
 import { SpellSelect } from './SpellSelect';
 import type { player, players } from '@/utils/formatPlayer';
 
 const AddNewSpell = () => {
-   const { id } = useParams();
+   const { id } = useSelector(getPlayer);
    const dispatch = useDispatch<AppDispatch>();
    const intelligence = useSelector(getUserIntelligence);
    const [isLoading, setLoading] = useState(false);

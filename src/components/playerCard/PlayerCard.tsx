@@ -6,6 +6,8 @@ import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import styled from 'styled-components';
 import SpellCard from '../spellCard/SpellCard';
+import { store } from '@/router/store';
+import { playerSlice } from '@/pages/player/playerSlice';
 
 type data = {
    player: player;
@@ -40,6 +42,7 @@ const PlayerCard: React.FC<data> = (data: data) => {
                alt="Edit"
                className={styles.editButton}
                onClick={() => {
+                  store.dispatch(playerSlice.actions.addId(player.id));
                   navigate(`/player/menu/${player.id}`);
                }}
             />

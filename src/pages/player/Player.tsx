@@ -1,12 +1,12 @@
 import styles from './player.module.css';
-import { getPlayersList } from '@/router/selectors';
+import { getPlayer, getPlayersList } from '@/router/selectors';
 import { useSelector } from 'react-redux';
 import PlayerCard from '@/components/playerCard/PlayerCard';
-import { Navigate, Outlet, useParams } from 'react-router-dom';
+import { Navigate, Outlet } from 'react-router-dom';
 import { players } from '@/utils/formatPlayer';
 
 function Player() {
-   const { id } = useParams();
+   const { id } = useSelector(getPlayer);
    const players: players = useSelector(getPlayersList);
 
    return players[id] === undefined ? (

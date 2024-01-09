@@ -6,6 +6,7 @@ import { persistStore, persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import { thunk } from 'redux-thunk';
 import { dataSlice } from './dataSlice';
+import { playerSlice } from '@/pages/player/playerSlice';
 
 const persistConfig = {
    key: 'root',
@@ -16,6 +17,7 @@ const reducers = combineReducers({
    login: loginSlice.reducer,
    players: playersSlice.reducer,
    data: dataSlice.reducer,
+   player: playerSlice.reducer,
 });
 
 const store = configureStore({
