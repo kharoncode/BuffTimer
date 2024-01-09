@@ -4,7 +4,7 @@ import { fetchUser } from './loginSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch } from '@/router/store';
 import { useNavigate } from 'react-router-dom';
-import { fetchPlayers } from '../players/playersSlice';
+//import { fetchPlayers, fetchPlayersDiplo } from '../players/playersSlice';
 import { getLogin } from '@/router/selectors';
 import { fetchData } from '@/router/dataSlice';
 
@@ -24,11 +24,15 @@ export const Login: FunctionComponent = () => {
       const password: string = e.currentTarget.password.value.trim();
       const dataLog: loginDataType = { login, password };
       dispatch(fetchUser(dataLog)).then((data) => {
+         // const { payload } = data;
          if (data.meta.requestStatus === 'fulfilled') {
+            //const { diplomacy, realm } = payload;
             dispatch(fetchData());
-            dispatch(fetchPlayers()).then(() => {
-               navigate('/players');
-            });
+            // dispatch(fetchPlayers(realm));
+            // if (diplomacy[0] != '') {
+            //    diplomacy.map((el: string) => dispatch(fetchPlayersDiplo(el)));
+            // }
+            navigate('/players');
          }
       });
    };

@@ -11,6 +11,8 @@ export type user = {
    favoris: string;
    realm: string;
    spheres: string;
+   diplomacy: string[];
+   admin: string;
    error?: string;
 };
 
@@ -24,8 +26,8 @@ type loginState = {
 export const fetchUser = createAsyncThunk(
    'login/fetchUser',
    async (log: loginDataType, { rejectWithValue }) => {
-      //return fetch(`${import.meta.env.VITE_MOCKURL}users.json`, {
-      return fetch(`${import.meta.env.VITE_API}/users`, {
+      return fetch(`${import.meta.env.VITE_MOCKURL}users.json`, {
+         //return fetch(`${import.meta.env.VITE_API}/users`, {
          method: 'get',
          headers: {
             'Content-Type': 'application/json',
@@ -46,6 +48,8 @@ export const fetchUser = createAsyncThunk(
                   favoris: filter[0].favoris,
                   realm: filter[0].realm,
                   spheres: filter[0].spheres,
+                  diplomacy: filter[0].diplomacy.split(' '),
+                  admin: filter[0].admin,
                };
                return user;
             } else {
@@ -162,6 +166,8 @@ const initialState: loginState = {
       favoris: '',
       realm: '',
       spheres: '',
+      diplomacy: [],
+      admin: '',
    },
    error: null,
    auth: false,

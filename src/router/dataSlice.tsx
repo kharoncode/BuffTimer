@@ -1,3 +1,4 @@
+import type { player } from '@/utils/formatPlayer';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
 export const fetchData = createAsyncThunk('data/fetchData', async () => {
@@ -13,15 +14,52 @@ export const fetchData = createAsyncThunk('data/fetchData', async () => {
       });
 });
 
+type dataPages = {
+   [key: string]: {
+      title: string;
+      articles: {
+         [key: string]: { id: string; title: string; article: string };
+      };
+   };
+};
+
+type dataSpells = {
+   [key: string]: {
+      name: string;
+      category: string;
+      arcane: number;
+      time: number;
+   };
+};
+
+type DataMagie = {
+   gods: {
+      [key: string]: {
+         name: string;
+         title: string;
+         spheres: string;
+         race: string;
+      };
+   };
+   spheres: { [key: string]: { name: string; list: string } };
+   spells: dataSpells;
+};
+
 type dataState = {
    loading: boolean;
-   data: { [key: string]: [key: string] };
+   data:
+      | {
+           fakeUser: { [key: string]: player };
+           pages: dataPages;
+           magie: DataMagie;
+        }
+      | undefined;
    error: null | string | undefined;
 };
 
 const initialState: dataState = {
    loading: false,
-   data: {},
+   data: undefined,
    error: null,
 };
 

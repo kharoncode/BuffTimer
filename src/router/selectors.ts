@@ -29,7 +29,7 @@ export function getUserFavoris(state: RootState) {
 }
 
 export function getUserIntelligence(state: RootState) {
-   return parseInt(getUser(state).intelligence);
+   return getUser(state).intelligence;
 }
 
 export function getUserRealm(state: RootState) {
@@ -51,26 +51,21 @@ export function getData(state: RootState) {
 }
 
 export function getDataPages(state: RootState) {
-   return getData(state).pages;
+   return getData(state)?.pages;
 }
 
 export function getDataMagie(state: RootState) {
-   return getData(state).magie;
+   return getData(state)?.magie;
 }
 
 export function getDataSpells(state: RootState) {
-   return getDataMagie(state).spells;
+   return getDataMagie(state)?.spells;
 }
 
 export function getDataGods(state: RootState) {
-   return getDataMagie(state).gods;
+   return getDataMagie(state)?.gods;
 }
 
 export function getDataSpheres(state: RootState) {
-   return getDataMagie(state).spheres;
-}
-
-//store.getState()
-export function getDataSpellsStore(store: RootState) {
-   return store.getState().data.data.magie.spells;
+   return getDataMagie(state)?.spheres;
 }

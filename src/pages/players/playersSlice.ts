@@ -10,14 +10,37 @@ export type playersState = {
 
 export const fetchPlayers = createAsyncThunk(
    'players/fetchPlayers',
-   async () => {
-      //return fetch(`${import.meta.env.VITE_MOCKURL}players.json`, {
-      return fetch(`${import.meta.env.VITE_API}/players`, {
-         method: 'get',
-         headers: {
-            'Content-Type': 'application/json',
-         },
-      })
+   async (realm: string) => {
+      return fetch(
+         `${import.meta.env.VITE_MOCKURL}/players/${realm}_players.json`,
+         {
+            //return fetch(`${import.meta.env.VITE_${realm}_API}/players`, {
+            method: 'get',
+            headers: {
+               'Content-Type': 'application/json',
+            },
+         }
+      )
+         .then((result) => result.json())
+         .then((data: data) => {
+            return formatPlayers(data);
+         });
+   }
+);
+
+export const fetchPlayersDiplo = createAsyncThunk(
+   'players/fetchPlayersDiplo',
+   async (realm: string) => {
+      return fetch(
+         `${import.meta.env.VITE_MOCKURL}/players/${realm}_players.json`,
+         {
+            //return fetch(`${import.meta.env.VITE_${realm}_API}/players`, {
+            method: 'get',
+            headers: {
+               'Content-Type': 'application/json',
+            },
+         }
+      )
          .then((result) => result.json())
          .then((data: data) => {
             return formatPlayers(data);
@@ -183,6 +206,24 @@ export const playersSlice = createSlice({
       });
       builder.addCase(fetchPlayers.rejected, (state, action) => {
          console.log('fetchPlayers:error');
+         state.loading = false;
+         state.players = {};
+         state.error = action.error.message;
+      });
+      builder.addCase(fetchPlayersDiplo.pending, (state) => {
+         console.log('fetchPlayersDiplo:pending');
+         state.loading = true;
+      });
+      builder.addCase(fetchPlayersDiplo.fulfilled, (state, action) => {
+         console.log('fetchPlayersDiplo:fulfilled');
+         state.loading = false;
+         Object.keys(action.payload).map(
+            (key) => (state.players[key] = action.payload[key])
+         );
+         state.error = null;
+      });
+      builder.addCase(fetchPlayersDiplo.rejected, (state, action) => {
+         console.log('fetchPlayersDiplo:error');
          state.loading = false;
          state.players = {};
          state.error = action.error.message;
