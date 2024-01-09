@@ -1,10 +1,10 @@
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { Route, Routes, HashRouter } from 'react-router-dom';
 import Header from '@/components/header/Header';
 import Home from '@/pages/home/Home';
 import { Login } from '@/pages/login/Login';
 import Favoris from '@/pages/favoris/Favoris';
 import Players from '@/pages/players/Players';
-import Error from '@/pages/error/Error';
+//import Error from '@/pages/error/Error';
 import { persistor, store } from './store';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
@@ -19,7 +19,7 @@ function App() {
    return (
       <Provider store={store}>
          <PersistGate loading={null} persistor={persistor}>
-            <Router>
+            <HashRouter>
                <Header />
                <Routes>
                   <Route path="/" element={<Home />} />
@@ -38,9 +38,9 @@ function App() {
                      <Route path="/players" element={<Players />} />
                      <Route path="/info" element={<Info />} />
                   </Route>
-                  <Route path="*" element={<Error />} />
+                  {/* <Route path="*" element={<Error />} /> */}
                </Routes>
-            </Router>
+            </HashRouter>
          </PersistGate>
       </Provider>
    );
