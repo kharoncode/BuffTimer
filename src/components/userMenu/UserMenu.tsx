@@ -10,6 +10,7 @@ import { fetchPlayers, fetchPlayersDiplo } from '@/pages/players/playersSlice';
 import { AppDispatch } from '@/router/store';
 import { useState } from 'react';
 import { getUser } from '@/router/selectors';
+import EditMessage from './EditMessage';
 
 const Section = (props: { section: string | undefined }) => {
    const { section } = props;
@@ -27,6 +28,8 @@ const Section = (props: { section: string | undefined }) => {
          />
          {section === 'editUser' ? (
             <EditUser />
+         ) : section === 'editMessage' ? (
+            <EditMessage />
          ) : section === 'editLife' ? (
             <EditLife />
          ) : section === 'editFavoris' ? (
@@ -53,6 +56,12 @@ export const UserMenu = () => {
             onClick={() => navigate('/user/editUser')}
          >
             Editer le Profile
+         </button>
+         <button
+            className={styles.button}
+            onClick={() => navigate('/user/editMessage')}
+         >
+            Changer son MdJ
          </button>
          <button
             className={styles.button}
