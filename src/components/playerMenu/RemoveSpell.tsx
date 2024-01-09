@@ -7,7 +7,7 @@ import { deletePlayerBuff } from '@/pages/players/playersSlice';
 import { player, players, spell } from '@/utils/formatPlayer';
 
 const RemoveSpell = () => {
-   const { id }: { id: string } = useSelector(getPlayer);
+   const { id } = useSelector(getPlayer);
    const dispatch = useDispatch<AppDispatch>();
    const [isLoading, setLoading] = useState(false);
    const [error, setError] = useState(false);

@@ -47,19 +47,21 @@ type DataMagie = {
 
 type dataState = {
    loading: boolean;
-   data:
-      | {
-           fakeUser: { [key: string]: player };
-           pages: dataPages;
-           magie: DataMagie;
-        }
-      | undefined;
+   data: {
+      fakeUser: { [key: string]: player };
+      pages: dataPages;
+      magie: DataMagie;
+   };
    error: null | string | undefined;
 };
 
 const initialState: dataState = {
    loading: false,
-   data: undefined,
+   data: {
+      fakeUser: {},
+      pages: {},
+      magie: { gods: {}, spheres: {}, spells: {} },
+   },
    error: null,
 };
 

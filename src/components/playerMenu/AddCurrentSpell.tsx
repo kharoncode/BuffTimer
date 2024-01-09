@@ -8,7 +8,7 @@ import { SpellSelect } from './SpellSelect';
 import type { player, players } from '@/utils/formatPlayer';
 
 const AddCurrentSpell = () => {
-   const { id }: { id: string } = useSelector(getPlayer);
+   const { id } = useSelector(getPlayer);
    const dispatch = useDispatch<AppDispatch>();
    const [isLoading, setLoading] = useState(false);
    const players: players = useSelector(getPlayersList);

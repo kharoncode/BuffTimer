@@ -1,11 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 type playerState = {
-   id: null;
+   id: string;
 };
 
 const initialState: playerState = {
-   id: null,
+   id: '',
 };
 
 export const playerSlice = createSlice({
