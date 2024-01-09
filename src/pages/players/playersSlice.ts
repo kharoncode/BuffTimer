@@ -8,6 +8,19 @@ export type playersState = {
    error: null | string | undefined;
 };
 
+const URL = (realm) => {
+   switch (realm) {
+      case 'RDK':
+         import.meta.env.VITE_RDK_API;
+         break;
+      case 'PE':
+         import.meta.env.VITE_PE_API;
+         break;
+      default:
+         'error';
+   }
+};
+
 export const fetchPlayers = createAsyncThunk(
    'players/fetchPlayers',
    async (realm: string) => {
@@ -31,16 +44,15 @@ export const fetchPlayers = createAsyncThunk(
 export const fetchPlayersDiplo = createAsyncThunk(
    'players/fetchPlayersDiplo',
    async (realm: string) => {
-      return fetch(
-         `${import.meta.env.VITE_MOCKURL}/players/${realm}_players.json`,
-         {
-            //return fetch(`${import.meta.env.VITE_${realm}_API}/players`, {
-            method: 'get',
-            headers: {
-               'Content-Type': 'application/json',
-            },
-         }
-      )
+      // return fetch(
+      //    `${import.meta.env.VITE_MOCKURL}/players/${realm}_players.json`,
+      //    {
+      return fetch(`${import.meta.env.VITE_API}_${realm}/players`, {
+         method: 'get',
+         headers: {
+            'Content-Type': 'application/json',
+         },
+      })
          .then((result) => result.json())
          .then((data: data) => {
             return formatPlayers(data);

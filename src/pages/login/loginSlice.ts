@@ -26,8 +26,8 @@ type loginState = {
 export const fetchUser = createAsyncThunk(
    'login/fetchUser',
    async (log: loginDataType, { rejectWithValue }) => {
-      return fetch(`${import.meta.env.VITE_MOCKURL}users.json`, {
-         //return fetch(`${import.meta.env.VITE_API}/users`, {
+      //return fetch(`${import.meta.env.VITE_MOCKURL}users.json`, {
+      return fetch(`${import.meta.env.VITE_API}/users`, {
          method: 'get',
          headers: {
             'Content-Type': 'application/json',
