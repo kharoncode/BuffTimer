@@ -8,7 +8,6 @@ function Favoris() {
    const favorisList = useSelector(getUserFavoris);
    const players = useSelector(getPlayersList);
    const favoris = formatFavoris(favorisList, players);
-   console.log(favoris);
    return (
       <div className={styles.container}>
          {Object.keys(favoris).length !== 0 ? (
