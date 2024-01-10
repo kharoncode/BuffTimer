@@ -11,28 +11,28 @@ const EditFavoris = () => {
    const { id, favoris } = useSelector(getUser);
    const players = useSelector(getPlayersList);
 
-   const [favorisCheckedList, setfavorisCheckedList] = useState(favoris);
+   const [checkedList, setCheckedList] = useState(favoris);
 
    const handleSelectFavoris = (e: ChangeEvent<HTMLInputElement>) => {
       const value = e.target.id;
       const isChecked = e.target.checked;
 
       if (isChecked) {
-         setfavorisCheckedList([...favorisCheckedList, value]);
+         setCheckedList([...checkedList, value]);
       } else {
-         const filteredList = favorisCheckedList.filter(
+         const filteredList = checkedList.filter(
             (item: string) => item !== value
          );
-         setfavorisCheckedList(filteredList);
+         setCheckedList(filteredList);
       }
    };
 
-   const handleSubmitFavoris = (e: FormEvent<HTMLFormElement>) => {
+   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
       e.preventDefault();
       setLoading(true);
       const result = {
          id: id,
-         list: favorisCheckedList.join(' '),
+         list: checkedList.join(' '),
       };
       dispatch(uptadeUserFavoris(result)).then(() => {
          setLoading(false);
@@ -44,7 +44,7 @@ const EditFavoris = () => {
          <form
             className={styles.form}
             onSubmit={(e) => {
-               handleSubmitFavoris(e);
+               handleSubmit(e);
             }}
          >
             <h3>Modifier la liste des Favoris</h3>

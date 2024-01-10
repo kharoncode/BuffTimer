@@ -1,14 +1,21 @@
 import { useDispatch, useSelector } from 'react-redux';
 import styles from './editUser.module.css';
 import { ChangeEvent, FormEvent, useState } from 'react';
-import { getDataSpheres, getUser } from '@/router/selectors';
+import { getDataSpheres, getPlayersList, getUser } from '@/router/selectors';
 import { AppDispatch } from '@/router/store';
 import { newData, uptadeUser } from '@/pages/login/loginSlice';
+import {
+   newPicture,
+   uptadeUserPlayerPicture,
+} from '@/pages/players/playersSlice';
 
 const EditUser = () => {
    const dispatch = useDispatch<AppDispatch>();
    const [isLoading, setLoading] = useState(false);
-   const { id, login, email, intelligence, spheres } = useSelector(getUser);
+   const { id, login, email, intelligence, spheres, name } =
+      useSelector(getUser);
+   const players = useSelector(getPlayersList);
+   const picture = players[id].picture;
    const spheresList = useSelector(getDataSpheres);
    const [spheresCheckedList, setspheresCheckedList] = useState(
       spheres.split(' ')
@@ -25,6 +32,18 @@ const EditUser = () => {
          spheres: spheresCheckedList.join(' '),
       };
       dispatch(uptadeUser(result)).then(() => {
+         setLoading(false);
+      });
+   };
+
+   const handleSubmitUpdatePicture = (e: FormEvent<HTMLFormElement>) => {
+      e.preventDefault();
+      setLoading(true);
+      const result: newPicture = {
+         id: id,
+         picture: e.currentTarget.picture.value,
+      };
+      dispatch(uptadeUserPlayerPicture(result)).then(() => {
          setLoading(false);
       });
    };
@@ -46,6 +65,26 @@ const EditUser = () => {
    return (
       <div className={styles.container}>
          <form
+            className={`${styles.form} ${styles.pictureForm}`}
+            onSubmit={(e) => {
+               handleSubmitUpdatePicture(e);
+            }}
+         >
+            <img src={picture} alt={name} />
+            <div className={styles.inputContainer}>
+               <label htmlFor={`picture`}>Lien de l'avatar</label>
+               <input
+                  type="text"
+                  id={`picture`}
+                  required
+                  defaultValue={picture}
+               />
+            </div>
+            <button type="submit" className={styles.button}>
+               {isLoading ? 'Loading ...' : 'Envoyer'}
+            </button>
+         </form>
+         <form
             className={styles.form}
             onSubmit={(e) => {
                handleSubmitUpdateUser(e);
@@ -53,12 +92,12 @@ const EditUser = () => {
          >
             <h3>Modifier le profile</h3>
             <div className={styles.inputContainer}>
-               <label htmlFor={`email`}>Email</label>
-               <input type="text" id={`email`} required defaultValue={email} />
-            </div>
-            <div className={styles.inputContainer}>
                <label htmlFor={`login`}>Login</label>
                <input type="text" id={`login`} required defaultValue={login} />
+            </div>
+            <div className={styles.inputContainer}>
+               <label htmlFor={`email`}>Email</label>
+               <input type="text" id={`email`} required defaultValue={email} />
             </div>
             <div className={styles.inputContainer}>
                <label htmlFor={`intelligence`}>Intelligence</label>

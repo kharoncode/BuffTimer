@@ -32,14 +32,12 @@ const EditMessage = () => {
          >
             <h3>{`Modifier le Message du Jour (MdJ)`}</h3>
 
-            <div className={styles.inputContainer}>
-               <label htmlFor={`message`}>PV :</label>
-               <textarea
-                  className={styles.inputLife}
-                  id={`message`}
-                  defaultValue={message}
-               />
-            </div>
+            <label htmlFor={`message`}></label>
+            <textarea
+               className={styles.textArea}
+               id={`message`}
+               defaultValue={message}
+            />
             <button type="submit" className={styles.button}>
                {isLoading ? 'Loading ...' : 'Envoyer'}
             </button>

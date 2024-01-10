@@ -8,32 +8,26 @@ export type playersState = {
    error: null | string | undefined;
 };
 
-const URL = (realm) => {
-   switch (realm) {
-      case 'RDK':
-         import.meta.env.VITE_RDK_API;
-         break;
-      case 'PE':
-         import.meta.env.VITE_PE_API;
-         break;
-      default:
-         'error';
-   }
+const URL: { [key: string]: string } = {
+   rdk: import.meta.env.VITE_RDK_API,
+   pe: import.meta.env.VITE_PE_API,
+   ca: import.meta.env.VITE_CA_API,
+   ek: import.meta.env.VITE_EK_API,
+   hb: import.meta.env.VITE_HB_API,
 };
 
 export const fetchPlayers = createAsyncThunk(
    'players/fetchPlayers',
    async (realm: string) => {
-      return fetch(
-         `${import.meta.env.VITE_MOCKURL}/players/${realm}_players.json`,
-         {
-            //return fetch(`${import.meta.env.VITE_${realm}_API}/players`, {
-            method: 'get',
-            headers: {
-               'Content-Type': 'application/json',
-            },
-         }
-      )
+      // return fetch(
+      //    `${import.meta.env.VITE_MOCKURL}/players/${realm}_players.json`,
+      //    {
+      return fetch(`${URL[realm]}/players`, {
+         method: 'get',
+         headers: {
+            'Content-Type': 'application/json',
+         },
+      })
          .then((result) => result.json())
          .then((data: data) => {
             return formatPlayers(data);
@@ -47,7 +41,7 @@ export const fetchPlayersDiplo = createAsyncThunk(
       // return fetch(
       //    `${import.meta.env.VITE_MOCKURL}/players/${realm}_players.json`,
       //    {
-      return fetch(`${import.meta.env.VITE_API}_${realm}/players`, {
+      return fetch(`${URL[realm]}/players`, {
          method: 'get',
          headers: {
             'Content-Type': 'application/json',
@@ -124,6 +118,35 @@ export const uptadeUserPlayerMessage = createAsyncThunk(
          .then((result) => result.json())
          .then(() => {
             return newMessage;
+         });
+   }
+);
+
+export type newPicture = {
+   id: string;
+   picture: string;
+};
+
+export const uptadeUserPlayerPicture = createAsyncThunk(
+   'players/uptadeUserPlayerPicture',
+   async (newPicture: newPicture) => {
+      const { id, picture } = newPicture;
+      const body = {
+         condition: { id: id },
+         set: {
+            picture: picture,
+         },
+      };
+      return fetch(`${import.meta.env.VITE_API}/players`, {
+         method: 'put',
+         headers: {
+            'Content-Type': 'application/json',
+         },
+         body: JSON.stringify(body),
+      })
+         .then((result) => result.json())
+         .then(() => {
+            return newPicture;
          });
    }
 );
@@ -264,6 +287,19 @@ export const playersSlice = createSlice({
       });
       builder.addCase(uptadeUserPlayerMessage.rejected, (state, action) => {
          console.log('uptadeUserPlayerMessage:error');
+         state.error = action.error.message;
+      });
+      builder.addCase(uptadeUserPlayerPicture.pending, () => {
+         console.log('uptadeUserPlayerPicture:pending');
+      });
+      builder.addCase(uptadeUserPlayerPicture.fulfilled, (state, action) => {
+         console.log('uptadeUserPlayerPicture:fulfilled');
+         const { id, picture } = action.payload;
+         state.players[id].picture = picture;
+         state.error = null;
+      });
+      builder.addCase(uptadeUserPlayerPicture.rejected, (state, action) => {
+         console.log('uptadeUserPlayerPicture:error');
          state.error = action.error.message;
       });
       builder.addCase(uptadePlayersBuff.pending, () => {

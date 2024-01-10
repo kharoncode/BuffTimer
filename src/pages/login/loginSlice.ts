@@ -51,10 +51,11 @@ export const fetchUser = createAsyncThunk(
                   realms: [filter[0].realm],
                   admin: filter[0].admin,
                };
-               if (filter[0].favoris !== 'null') {
-                  user.favoris = filter[0].split(' ');
+               if (filter[0].favoris !== null) {
+                  user.favoris = filter[0].favoris.split(' ');
                }
-               if (filter[0].diplomacy !== '') {
+               console.log(filter[0].diplomacy);
+               if (filter[0].diplomacy !== null) {
                   filter[0].diplomacy
                      .split(' ')
                      .map((el: string) => user.realms.push(el));
@@ -158,7 +159,11 @@ export const uptadeUserFavoris = createAsyncThunk(
       })
          .then((result) => result.json())
          .then(() => {
-            return list.split(' ');
+            if (list === '') {
+               return [];
+            } else {
+               return list.split(' ');
+            }
          });
    }
 );

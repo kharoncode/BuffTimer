@@ -1,8 +1,11 @@
 .container {
    width: 100%;
    display: flex;
+   flex-direction: column;
+   align-items: center;
    text-align: center;
    padding: 10px;
+   gap: 20px;
 }
 
 h3 {
@@ -14,7 +17,6 @@ h3 {
    display: flex;
    flex-direction: column;
    align-items: center;
-   gap: 20px;
 }
 
 .form label {
@@ -28,6 +30,19 @@ h3 {
    font-size: 1em;
 }
 
+.pictureForm {
+   width: 80%;
+   padding: 10px;
+   border: solid 2px grey;
+   border-radius: 25px;
+}
+
+.pictureForm img {
+   width: 200px;
+   height: 200px;
+   object-fit: cover;
+}
+
 .inputContainer {
    display: flex;
    flex-direction: column;
@@ -36,6 +51,13 @@ h3 {
 
 .inputContainer input.inputLife {
    width: 100px;
+}
+
+.textArea {
+   margin: 10px;
+   padding: 10px;
+   width: 75%;
+   height: 80px;
 }
 
 .button {

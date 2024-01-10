@@ -5,9 +5,10 @@ import { useSelector } from 'react-redux';
 import formatFavoris from '@/utils/formatFavoris';
 
 function Favoris() {
-   const favorisS = useSelector(getUserFavoris);
+   const favorisList = useSelector(getUserFavoris);
    const players = useSelector(getPlayersList);
-   const favoris = formatFavoris(favorisS, players);
+   const favoris = formatFavoris(favorisList, players);
+   console.log(favoris);
    return (
       <div className={styles.container}>
          {Object.keys(favoris).length !== 0 ? (
