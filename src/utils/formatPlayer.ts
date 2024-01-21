@@ -26,7 +26,7 @@ export type spell = {
    id: string;
    name: string;
    category: string;
-   date: null | number;
+   date: null | string;
 };
 
 type spells = { [key: string]: spell };
@@ -50,16 +50,27 @@ const formatPlayer = (el: dataEl) => {
 
    const spells: spells = {};
    for (let i = 6; i < Object.keys(el).length; i++) {
-      spells[Object.keys(el)[i]] = {
-         id: Object.keys(el)[i],
-         name: spellsData[Object.keys(el)[i] as keyof typeof spellsData].name,
-         category:
-            spellsData[Object.keys(el)[i] as keyof typeof spellsData].category,
-         date:
-            Object.values(el)[i] === 'null'
-               ? null
-               : Number(Object.values(el)[i]),
-      };
+      if (Object.keys(el)[i] !== 'enseignement') {
+         spells[Object.keys(el)[i]] = {
+            id: Object.keys(el)[i],
+            name: spellsData[Object.keys(el)[i] as keyof typeof spellsData]
+               .name,
+            category:
+               spellsData[Object.keys(el)[i] as keyof typeof spellsData]
+                  .category,
+            date: Object.values(el)[i] === 'null' ? null : Object.values(el)[i],
+         };
+      } else {
+         const enseignement = Object.values(el)[i].split(' ');
+         spells[Object.keys(el)[i]] = {
+            id: Object.keys(el)[i],
+            name: enseignement[0],
+            category:
+               spellsData[Object.keys(el)[i] as keyof typeof spellsData]
+                  .category,
+            date: Object.values(el)[i] === 'null' ? null : enseignement[1],
+         };
+      }
    }
 
    return {

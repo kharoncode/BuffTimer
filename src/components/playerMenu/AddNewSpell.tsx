@@ -32,7 +32,7 @@ const AddNewSpell = () => {
       const result = {
          id: id,
          spell: spell,
-         date: spellDate(submitData),
+         date: spellDate(submitData).toString(),
       };
       dispatch(uptadePlayersBuff(result)).then(() => setLoading(false));
    };

@@ -51,6 +51,7 @@ type dataState = {
       fakeUser: { [key: string]: player };
       pages: dataPages;
       magie: DataMagie;
+      skills: { [key: string]: { name: string; time: number } };
    };
    error: null | string | undefined;
 };
@@ -61,6 +62,7 @@ const initialState: dataState = {
       fakeUser: {},
       pages: {},
       magie: { gods: {}, spheres: {}, spells: {} },
+      skills: {},
    },
    error: null,
 };

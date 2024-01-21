@@ -154,10 +154,10 @@ export const uptadeUserPlayerPicture = createAsyncThunk(
 type newSpell = {
    id: string;
    spell: string;
-   date: number;
+   date: string;
 };
 
-type setAdd = { [key: string]: number };
+type setAdd = { [key: string]: string };
 
 export const uptadePlayersBuff = createAsyncThunk(
    'players/uptadePlayersBuff',
@@ -308,7 +308,13 @@ export const playersSlice = createSlice({
       builder.addCase(uptadePlayersBuff.fulfilled, (state, action) => {
          console.log('uptadePlayersBuff:fulfilled');
          const { spell, id, date } = action.payload;
-         state.players[id].spells[spell].date = date;
+         if (spell !== 'enseignement') {
+            state.players[id].spells[spell].date = date;
+         } else {
+            const enseignement = date.split(' ');
+            state.players[id].spells[spell].date = enseignement[1];
+            state.players[id].spells[spell].name = enseignement[0];
+         }
          state.error = null;
       });
       builder.addCase(uptadePlayersBuff.rejected, (state, action) => {

@@ -4,6 +4,7 @@ import closeIcone from '@assets/icones/close.svg';
 import AddNewSpell from './AddNewSpell';
 import RemoveSpell from './RemoveSpell';
 import AddCurrentSpell from './AddCurrentSpell';
+import AddSkill from './AddSkill';
 
 const Section = (props: {
    section: string | undefined;
@@ -26,8 +27,10 @@ const Section = (props: {
             <AddNewSpell />
          ) : section === 'addCurrentSpell' ? (
             <AddCurrentSpell />
-         ) : section === 'RemoveSpell' ? (
+         ) : section === 'removeSpell' ? (
             <RemoveSpell />
+         ) : section === 'addSkill' ? (
+            <AddSkill />
          ) : (
             <Navigate to={path} />
          )}
@@ -54,9 +57,15 @@ export const PlayerMenu = () => {
          </button>
          <button
             className={styles.button}
-            onClick={() => navigate(`/player/RemoveSpell/${id}`)}
+            onClick={() => navigate(`/player/removeSpell/${id}`)}
          >
             Supprimer un sort
+         </button>
+         <button
+            className={styles.button}
+            onClick={() => navigate(`/player/addSkill/${id}`)}
+         >
+            Ajouter une compétence
          </button>
       </div>
    ) : (

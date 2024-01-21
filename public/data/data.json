@@ -343,17 +343,29 @@
             "category": "negation",
             "arcane": 5,
             "time": 1800000
+         },
+         "musique": {
+            "name": "Musique",
+            "category": "general",
+            "time": 93600000
+         },
+         "enseignement": {
+            "name": "Enseignement",
+            "category": "general",
+            "time": 187200000
          }
       }
    },
    "skills": {
       "musique": {
          "name": "Musique",
+         "category": "general",
          "time": 93600000
       },
 
       "enseignement": {
          "name": "Enseignement",
+         "category": "general",
          "time": 187200000
       }
    }

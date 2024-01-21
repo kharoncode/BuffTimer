@@ -58,7 +58,9 @@ const SpellCard: React.FC<data> = (data) => {
          ? 'rgb(210, 210, 210)'
          : category === 'vitalite'
          ? 'rgb(114, 244, 103)'
-         : 'rgb(255, 72, 23)';
+         : category === 'destruction'
+         ? 'rgb(255, 72, 23)'
+         : 'rgb(241, 200, 247)';
    return (
       <Container width={containerStyle}>
          {isOpen ? (

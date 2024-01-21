@@ -69,3 +69,7 @@ export function getDataGods(state: RootState) {
 export function getDataSpheres(state: RootState) {
    return getDataMagie(state)?.spheres;
 }
+
+export function getDataSkills(state: RootState) {
+   return getData(state)?.skills;
+}

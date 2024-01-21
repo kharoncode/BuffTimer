@@ -24,7 +24,7 @@ const AddCurrentSpell = () => {
       const result = {
          id: id,
          spell: spell,
-         date: day + houre + minute + Date.now(),
+         date: (day + houre + minute + Date.now()).toString(),
       };
       dispatch(uptadePlayersBuff(result)).then(() => setLoading(false));
    };
