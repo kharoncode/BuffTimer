@@ -347,11 +347,13 @@
          "musique": {
             "name": "Musique",
             "category": "general",
+            "arcane": 0,
             "time": 93600000
          },
          "enseignement": {
             "name": "Enseignement",
             "category": "general",
+            "arcane": 0,
             "time": 187200000
          }
       }
