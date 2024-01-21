@@ -345,5 +345,16 @@
             "time": 1800000
          }
       }
+   },
+   "skills": {
+      "musique": {
+         "name": "Musique",
+         "time": 93600000
+      },
+
+      "enseignement": {
+         "name": "Enseignement",
+         "time": 187200000
+      }
    }
 }
