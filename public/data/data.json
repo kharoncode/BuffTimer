@@ -361,13 +361,11 @@
    "skills": {
       "musique": {
          "name": "Musique",
-         "category": "general",
          "time": 93600000
       },
 
       "enseignement": {
          "name": "Enseignement",
-         "category": "general",
          "time": 187200000
       }
    }
