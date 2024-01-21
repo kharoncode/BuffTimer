@@ -62,7 +62,7 @@ const PlayerCard: React.FC<data> = (data: data) => {
          >
             {Object.values(player.spells).map((el) =>
                el.date === null ? (
-                  ''
+                  <></>
                ) : (
                   <SpellCard
                      key={`${player.id}-${el.id}-spell`}
@@ -70,7 +70,7 @@ const PlayerCard: React.FC<data> = (data: data) => {
                      playerId={player.id}
                      name={el.name}
                      category={el.category}
-                     date={el.date}
+                     date={Number(el.date)}
                      isOpen={isOpen}
                   />
                )
