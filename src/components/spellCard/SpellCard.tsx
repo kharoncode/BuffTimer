@@ -20,13 +20,16 @@ const SpellContainer = styled.div<{ color: string }>`
    z-index: 100;
 `;
 
-const Container = styled.div<{ width: string }>`
+const Container = styled.div<{ width: string; border: string }>`
    position: relative;
    display: flex;
    justify-content: center;
    ${({ width }) => width}
    height: 30px;
    overflow: hidden;
+   border: solid 2px;
+   border-color: ${({ border }) => border};
+   border-radius: 5px;
 `;
 
 type data = {
@@ -46,6 +49,16 @@ const SpellCard: React.FC<data> = (data) => {
       const result = { id: playerId, list: [id] };
       dispatch(deletePlayerBuff(result));
    }
+   const deadLines = date - Date.now();
+
+   const border =
+      deadLines < 43200000 && deadLines > 28800000
+         ? 'yellow'
+         : deadLines < 28800000 && deadLines > 7200000
+         ? 'rgb(255, 116, 0)'
+         : deadLines < 7200000
+         ? 'rgb(255, 60, 55)'
+         : 'transparent';
 
    const containerStyle = isOpen ? `width: 100%;` : ``;
 
@@ -62,7 +75,7 @@ const SpellCard: React.FC<data> = (data) => {
          ? 'rgb(255, 72, 23)'
          : 'rgb(241, 200, 247)';
    return (
-      <Container width={containerStyle}>
+      <Container width={containerStyle} border={border}>
          {isOpen ? (
             <SpellContainer color={color}>
                <img
