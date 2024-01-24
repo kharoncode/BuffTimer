@@ -18,7 +18,20 @@ const AddHeal = () => {
       setLoading(true);
       const life =
          select === 'heal'
-            ? currentLife + Number(e.currentTarget.addLife.value)
+            ? currentLife +
+                 Number(
+                    e.currentTarget.addLife.value > 0
+                       ? e.currentTarget.addLife.value
+                       : 0
+                 ) >
+              maxLife
+               ? maxLife
+               : currentLife +
+                 Number(
+                    e.currentTarget.addLife.value > 0
+                       ? e.currentTarget.addLife.value
+                       : 0
+                 )
             : Math.round((Number(e.currentTarget.state.value) / 100) * maxLife);
       const result = {
          id: id,
@@ -27,7 +40,6 @@ const AddHeal = () => {
             maxLife: maxLife,
          },
       };
-      console.log(result);
       dispatch(uptadeUserPlayerLife(result)).then(() => setLoading(false));
    };
 
