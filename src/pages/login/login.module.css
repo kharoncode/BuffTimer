@@ -28,6 +28,12 @@
    width: 150px;
    display: flex;
    flex-direction: column;
+   gap: 5px;
+}
+
+.inputContainer input {
+   padding-left: 10px;
+   height: 30px;
 }
 
 .button {
@@ -36,6 +42,7 @@
    padding: 5px;
    border-radius: 5px;
    font-weight: 700;
+   font-size: 1.1em;
 }
 
 .error {
