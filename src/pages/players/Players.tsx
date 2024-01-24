@@ -20,7 +20,7 @@ function Players() {
 
    useEffect(() => {
       if (Object.keys(players).length === 0) {
-         console.log('No Player Loaded');
+         console.log('No PlayersList Loaded');
          store.dispatch(loginSlice.actions.updateTimer(Date.now() + 43200000));
          if (realms.length === 1) {
             dispatch(fetchPlayers(realm));
