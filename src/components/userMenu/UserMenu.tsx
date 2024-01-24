@@ -7,10 +7,11 @@ import { Navigate, useNavigate, useParams } from 'react-router-dom';
 import closeIcone from '@assets/icones/close.svg';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchPlayers, fetchPlayersDiplo } from '@/pages/players/playersSlice';
-import { AppDispatch } from '@/router/store';
+import { AppDispatch, store } from '@/router/store';
 import { useState } from 'react';
 import { getUser } from '@/router/selectors';
 import EditMessage from './EditMessage';
+import { loginSlice } from '@/pages/login/loginSlice';
 
 const Section = (props: { section: string | undefined }) => {
    const { section } = props;
@@ -86,6 +87,9 @@ export const UserMenu = () => {
                <button
                   className={styles.buttonConfirmation}
                   onClick={() => {
+                     store.dispatch(
+                        loginSlice.actions.updateTimer(Date.now() + 43200000)
+                     );
                      if (realms.length === 1) {
                         dispatch(fetchPlayers(realm));
                      } else {
