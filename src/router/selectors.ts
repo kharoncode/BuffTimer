@@ -40,6 +40,10 @@ export function getUserSpheres(state: RootState) {
    return getUser(state).spheres;
 }
 
+export function getUserTimer(state: RootState) {
+   return getUser(state).timer;
+}
+
 //player
 export function getPlayer(state: RootState) {
    return state?.player;

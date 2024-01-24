@@ -13,7 +13,7 @@ export type user = {
    spheres: string;
    realms: string[];
    admin: string;
-   timer: string | null;
+   timer: number;
    error?: string;
 };
 
@@ -51,12 +51,11 @@ export const fetchUser = createAsyncThunk(
                   spheres: filter[0].spheres,
                   realms: [filter[0].realm],
                   admin: filter[0].admin,
-                  timer: filter[0].timer,
+                  timer: 0,
                };
                if (filter[0].favoris !== null) {
                   user.favoris = filter[0].favoris.split(' ');
                }
-               console.log(filter[0].diplomacy);
                if (filter[0].diplomacy !== null) {
                   filter[0].diplomacy
                      .split(' ')
@@ -183,7 +182,7 @@ const initialState: loginState = {
       spheres: '',
       realms: [],
       admin: '',
-      timer: null,
+      timer: 0,
    },
    error: null,
    auth: false,
@@ -195,6 +194,12 @@ export const loginSlice = createSlice({
    reducers: {
       resetLogin: () => {
          return initialState;
+      },
+      updateTimer: (state, action) => {
+         return {
+            ...state,
+            user: { ...state.user, timer: action.payload },
+         };
       },
    },
    extraReducers: (builder) => {
