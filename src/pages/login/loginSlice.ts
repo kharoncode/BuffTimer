@@ -13,6 +13,7 @@ export type user = {
    spheres: string;
    realms: string[];
    admin: string;
+   timer: string | null;
    error?: string;
 };
 
@@ -50,6 +51,7 @@ export const fetchUser = createAsyncThunk(
                   spheres: filter[0].spheres,
                   realms: [filter[0].realm],
                   admin: filter[0].admin,
+                  timer: filter[0].timer,
                };
                if (filter[0].favoris !== null) {
                   user.favoris = filter[0].favoris.split(' ');
@@ -181,6 +183,7 @@ const initialState: loginState = {
       spheres: '',
       realms: [],
       admin: '',
+      timer: null,
    },
    error: null,
    auth: false,
