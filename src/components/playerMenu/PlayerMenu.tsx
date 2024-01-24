@@ -5,6 +5,7 @@ import AddNewSpell from './AddNewSpell';
 import RemoveSpell from './RemoveSpell';
 import AddCurrentSpell from './AddCurrentSpell';
 import AddSkill from './AddSkill';
+import AddHeal from './AddHeal';
 
 const Section = (props: {
    section: string | undefined;
@@ -31,6 +32,8 @@ const Section = (props: {
             <RemoveSpell />
          ) : section === 'addSkill' ? (
             <AddSkill />
+         ) : section === 'addHeal' ? (
+            <AddHeal />
          ) : (
             <Navigate to={path} />
          )}
@@ -66,6 +69,12 @@ export const PlayerMenu = () => {
             onClick={() => navigate(`/player/addSkill/${id}`)}
          >
             Ajouter une compétence
+         </button>
+         <button
+            className={styles.button}
+            onClick={() => navigate(`/player/addHeal/${id}`)}
+         >
+            Modifier la vie
          </button>
       </div>
    ) : (

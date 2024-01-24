@@ -38,6 +38,7 @@ const AddSkill = () => {
          >
             <h3>Ajouter une compétence</h3>
             <select
+               className={styles.select}
                name="skillSelect"
                id="skillSelect"
                onChange={(e) => setSelect(e.target.value)}
