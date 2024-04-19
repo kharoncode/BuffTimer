@@ -2,28 +2,24 @@
 import { FormEvent, useState } from 'react';
 
 export default function Home() {
-   const [isLogin, setIsLogin] = useState('');
    const onSubmit = (e: FormEvent<HTMLFormElement>) => {
       e.preventDefault();
       const login = {
-         email: e.currentTarget.login.value,
+         name: e.currentTarget.login.value,
          password: e.currentTarget.password.value,
       };
-      const log = async () => {
-         const fet = await fetch('http://localhost:4000/api/auth/login', {
-            method: 'POST',
-            headers: {
-               'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(login),
-         })
-            .then((res) => res.json())
-            .then((data) => setIsLogin(data));
-      };
-      log();
-      if (isLogin !== '') {
-         console.log(isLogin);
-      }
+
+      fetch('http://localhost:4000/api/auth/login', {
+         method: 'POST',
+         headers: {
+            'Content-Type': 'application/json',
+         },
+         body: JSON.stringify(login),
+      })
+         .then((res) => res.json())
+         .then((data) => {
+            console.log(data);
+         });
    };
 
    return (
