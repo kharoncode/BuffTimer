@@ -1,4 +1,5 @@
 import { character } from '@/types/character';
+import Link from 'next/link';
 import React from 'react';
 
 const Players = async () => {
@@ -9,7 +10,11 @@ const Players = async () => {
       <div>
          {data &&
             data.map((el, index) => {
-               return <div key={index}>{el.name}</div>;
+               return (
+                  <Link href={`/players/player/${el._id}`} key={index}>
+                     {el.name}
+                  </Link>
+               );
             })}
       </div>
    );

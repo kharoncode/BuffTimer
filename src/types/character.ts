@@ -1,6 +1,7 @@
 import { spell } from './spell';
 
 export type character = {
+   _id: string;
    name: string;
    life: {
       currentLife: number;
