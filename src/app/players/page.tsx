@@ -2,9 +2,9 @@ import { character } from '@/types/character';
 import React from 'react';
 
 const Players = async () => {
-   const data: character[] = await fetch(
-      'https://kharon.alwaysdata.net/api/characters'
-   ).then((res) => res.json());
+   const url = 'http://localhost:4000/api/characters';
+   //const url = 'https://kharon.alwaysdata.net/api/characters'
+   const data: character[] = await fetch(url).then((res) => res.json());
    return (
       <div>
          {data &&
