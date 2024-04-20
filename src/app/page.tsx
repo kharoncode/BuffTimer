@@ -1,7 +1,8 @@
 'use client';
-import { FormEvent, useState } from 'react';
+import React, { FormEvent, useState } from 'react';
 
 export default function Home() {
+   const [error, setError] = useState(false);
    const onSubmit = (e: FormEvent<HTMLFormElement>) => {
       e.preventDefault();
       const login = {
@@ -16,14 +17,20 @@ export default function Home() {
          },
          body: JSON.stringify(login),
       })
-         .then((res) => res.json())
+         .then((res) => {
+            if (res.status !== 200) {
+               setError(true);
+            } else {
+               setError(false);
+            }
+            return res.json();
+         })
          .then((data) => {
             console.log(data);
          });
    };
-
    return (
-      <div className="flex flex-col items-center">
+      <React.Fragment>
          <h1 className="text-center">Hello World</h1>
          <form
             onSubmit={(e) => onSubmit(e)}
@@ -44,6 +51,7 @@ export default function Home() {
             />
             <button className="p-1 rounded-xl bg-orange-500">Submit</button>
          </form>
-      </div>
+         {error && <div>Error</div>}
+      </React.Fragment>
    );
 }

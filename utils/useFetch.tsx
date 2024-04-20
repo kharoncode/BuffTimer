@@ -32,7 +32,8 @@ export const useFetch = (url: string, option: fetchOption) => {
             setIsLoading(false);
          }
       };
-   }, [url, option]);
+      getData();
+   }, []);
 
    return { data, isLoading, error };
 };
