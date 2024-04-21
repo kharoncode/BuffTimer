@@ -1,3 +1,4 @@
+import { character } from '@/types/character';
 import { useEffect, useState } from 'react';
 
 type fetchOption = {
@@ -5,27 +6,67 @@ type fetchOption = {
    headers?: {
       [key: string]: string;
    };
+   credentials: 'same-origin';
    body?: string;
 };
 
-export const useFetch = (url: string, option: fetchOption) => {
-   const [data, setData] = useState({});
-   const [isLoading, setIsLoading] = useState(false);
-   const [error, setError] = useState<unknown>(null);
+export const useFetchCharacters = (url: string, option?: fetchOption) => {
+   const [data, setData] = useState<character[]>();
+   const [isLoading, setIsLoading] = useState(true);
+   const [error, setError] = useState<any>(null);
 
    useEffect(() => {
       const getData = () => {
          try {
-            setIsLoading(true);
             fetch(url, option)
-               .then((res) => res.json())
+               .then((res) => {
+                  return res.json();
+               })
                .then((data) => {
                   {
-                     setData(data);
-                     setError(null);
+                     if (data.error) {
+                        setError(data.error);
+                     } else {
+                        setData(data);
+                        setError(null);
+                     }
                   }
                });
-         } catch (error) {
+         } catch (error: any) {
+            setError(error);
+            setIsLoading(false);
+         } finally {
+            setIsLoading(false);
+         }
+      };
+      getData();
+   }, []);
+
+   return { data, isLoading, error };
+};
+export const useFetchCharacter = (url: string, option?: fetchOption) => {
+   const [data, setData] = useState<character>();
+   const [isLoading, setIsLoading] = useState(true);
+   const [error, setError] = useState<any>(null);
+
+   useEffect(() => {
+      const getData = () => {
+         try {
+            fetch(url, option)
+               .then((res) => {
+                  return res.json();
+               })
+               .then((data) => {
+                  {
+                     if (data.error) {
+                        setError(data.error);
+                     } else {
+                        setData(data);
+                        setError(null);
+                     }
+                  }
+               });
+         } catch (error: any) {
             setError(error);
             setIsLoading(false);
          } finally {
