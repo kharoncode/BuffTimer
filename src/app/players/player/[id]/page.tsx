@@ -3,8 +3,9 @@ import { useFetchCharacter } from '../../../../../utils/useFetch';
 import React from 'react';
 
 const Player = ({ params }: { params: { id: string } }) => {
-   const url = `http://localhost:4000/api/characters/${params.id}`;
+   //const url = `http://localhost:4000/api/characters/${params.id}`;
    /* const data: character = await fetch(url).then((res) => res.json()); */
+   const url = `https://kharon.alwaysdata.net/api/characters/${params.id}`;
    const props = useFetchCharacter(url, {
       method: 'GET',
       headers: {

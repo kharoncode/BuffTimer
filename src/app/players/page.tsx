@@ -6,8 +6,8 @@ import { useFetchCharacters } from '../../../utils/useFetch';
 
 const Players = () => {
    //const url = 'https://bufftimer-server.onrender.com/api/characters/';
-   const url = 'http://localhost:4000/api/characters/';
-   //const url = 'https://kharon.alwaysdata.net/api/characters';
+   //const url = 'http://localhost:4000/api/characters/';
+   const url = 'https://kharon.alwaysdata.net/api/characters';
    //const data: character[] = await fetch(url).then((res) => res.json());
    const props = useFetchCharacters(url, {
       method: 'GET',
