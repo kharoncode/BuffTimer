@@ -47,7 +47,9 @@ export function useFetch<T>(url: string, option?: fetchOption): FetchData<T> {
       };
 
       fetchData();
+      /* eslint-disable */
    }, [url]);
+   /* eslint-enable */
 
    return { data, isLoading, error };
 }
